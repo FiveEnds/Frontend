@@ -1,7 +1,11 @@
 import './App.css';
 
 export const App: React.FC = () => {
-  return <></>;
+  return (
+    <>
+      <p>Test Vercel Deploy</p>
+    </>
+  );
 };
 
 export default App;
