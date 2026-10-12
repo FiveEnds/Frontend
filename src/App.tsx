@@ -1,18 +1,19 @@
 import './App.css';
-import { Icon } from './components/atoms/Icon/icon';
+import { Icon } from './components/atoms/Icon/Icon';
+import { icons } from './constants/icons';
 
 export const App: React.FC = () => {
   return (
     <>
       <Icon
-        src="/public/icons/home.svg"
+        src={icons.HOME}
         isDisabled={false}
       />
-      <Icon src="/icons/heart-filled.svg" />
+      <Icon src={icons.PLUS} />
+      <Icon src={icons.ARROW.LEFT} />
       <Icon
-        src="/public/icons/arrow.svg"
+        src={icons.HEART_FILLED}
         isDisabled={true}
-        rotate="right"
       />
     </>
   );
