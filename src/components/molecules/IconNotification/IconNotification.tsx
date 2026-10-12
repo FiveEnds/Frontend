@@ -1,5 +1,5 @@
-import { Icon } from '../../atoms/Icon/Icon';
 import cn from 'classnames';
+import { Icon } from '../../atoms/Icon/Icon';
 
 type Props = {
   src: string;
