@@ -3,11 +3,12 @@ import cn from 'classnames';
 type Props = {
   src: string;
   isDisabled?: boolean;
+  className?: string;
 };
 
 const RED_HEART_URL = '/icons/heart-filled.svg';
 
-export const Icon: React.FC<Props> = ({ src, isDisabled }) => {
+export const Icon: React.FC<Props> = ({ src, isDisabled, className }) => {
   const isRedHeart = src === RED_HEART_URL;
 
   return (
@@ -19,6 +20,7 @@ export const Icon: React.FC<Props> = ({ src, isDisabled }) => {
           'bg-primary': !isDisabled,
           'bg-icons': isDisabled,
         },
+        className,
       )}
       style={{
         maskImage: `url(${src})`,

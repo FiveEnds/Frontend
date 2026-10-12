@@ -1,4 +1,4 @@
-export const icons = {
+export const ICONS = {
   ARROW: {
     UP: '/icons/arrow-up.svg',
     RIGHT: '/icons/arrow-right.svg',
