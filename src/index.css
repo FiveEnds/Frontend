@@ -11,4 +11,7 @@
   --color-white: #fff;
   --color-green: #27ae60;
   --color-red: #eb5757;
+
+  --breakpoint-md: 640px;
+  --breakpoint-lg: 1200px;
 }
