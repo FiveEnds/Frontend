@@ -1,42 +1,32 @@
 import './App.css';
-import { Icon } from './components/atoms/Icon/Icon';
-import { IconNotification } from './components/molecules/IconNotification/IconNotification';
-import { ICONS } from './constants/icons';
-import { useState } from 'react';
-import { Dropdown } from './components/molecules/Dropdown';
-import { Typography } from './components/atoms/Typography/Typography';
-import './App.css';
+import { PhoneSpecsTable } from './components/molecules/PhoneSpecsTable/PhoneSpecsTable';
+import { PhoneTechSpecs } from './components/organisms/PhoneTechSpecs/PhoneTechSpecs';
+
+const specs = {
+  id: 'apple-iphone-11-128gb-black',
+  namespaceId: 'apple-iphone-11',
+  name: 'Apple iPhone 11 128GB Black',
+  capacityAvailable: ['64GB', '128GB', '256GB'],
+  capacity: '128GB',
+  priceRegular: 1100,
+  priceDiscount: 1050,
+  colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  color: 'black',
+  screen: "6.1' IPS",
+  resolution: '1792x828',
+  processor: 'Apple A13 Bionic',
+  ram: '4GB',
+  camera: '12 Mp + 12 Mp + 12MP',
+  zoom: 'Digital, 5x',
+  cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+};
 
 export const App: React.FC = () => {
-  const [value, setValue] = useState('Default');
-
   return (
     <>
-      <Icon
-        src={ICONS.HOME}
-        isDisabled={false}
-      />
-      <Icon src={ICONS.PLUS} />
-      <Icon src={ICONS.ARROW.LEFT} />
-      <Icon
-        src={ICONS.HEART_FILLED}
-        isDisabled={true}
-      />
-      <IconNotification
-        src={ICONS.BAG}
-        notification={13}
-      />
-      <div className="p-6">
-        <Typography level="button">
-          <span></span>
-        </Typography>
-        <Dropdown
-          label="Description"
-          options={['Default', 'Item', 'Another item']}
-          value={value}
-          onChange={setValue}
-        />
-      </div>
+      <PhoneTechSpecs>
+        <PhoneSpecsTable specs={specs} />
+      </PhoneTechSpecs>
     </>
   );
 };
