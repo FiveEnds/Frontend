@@ -25,7 +25,7 @@ export const ButtonColor: React.FC<Props> = ({
       transition-all duration-300 ease-in-out
       ${className}`,
       {
-        'variant.selected': isSelected,
+        [variant.selected]: isSelected,
         [variant.default]: !isSelected,
       },
     )}
