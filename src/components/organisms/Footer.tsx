@@ -18,7 +18,9 @@ export const Footer: React.FC = () => {
         <div className="mb-8 md:mb-0">
           <NavigationList />
         </div>
-        <ScrollToTopButton onClick={handleScrollTop} />
+        <div className="w-full flex justify-center md:w-auto">
+          <ScrollToTopButton onClick={handleScrollTop} />
+        </div>
       </div>
     </footer>
   );
