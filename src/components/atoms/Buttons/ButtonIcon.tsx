@@ -9,10 +9,6 @@ type Props = {
   isSelected?: boolean;
 };
 
-const variant = {
-  selected: 'border-elements',
-};
-
 export const ButtonArrow: React.FC<Props> = ({
   children,
   className,
@@ -23,15 +19,11 @@ export const ButtonArrow: React.FC<Props> = ({
   <button
     type="button"
     className={classNames(
-      `border
-      transition-all
-      duration-400
-      ease-in-out
-      ${className}`,
+      'border flex justify-center items-center transition-all duration-400 ease-in-out',
+      className,
       {
-        'disabled:border-elements': isDisabled,
-        'enabled:hover:border-primary border-icons': !isSelected,
-        [variant.selected]: isSelected,
+        'border-elements': isSelected || isDisabled,
+        'border-icons enabled:hover:border-primary': !isSelected && !isDisabled,
       },
     )}
     onClick={handleClick}
