@@ -15,7 +15,7 @@ export const IconNotification: React.FC<Props> = ({
   return (
     <span
       className={cn(
-        'relative flex items-center justify-center w-7 h-7',
+        'relative flex items-center justify-center w-[28px] h-[28px]',
         className,
       )}
     >
@@ -32,7 +32,7 @@ export const IconNotification: React.FC<Props> = ({
         justify-center
         top-0
         right-0
-        size-3.5
+        size-[14px]
         rounded-full 
         border 
         border-white 
