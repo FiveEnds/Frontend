@@ -39,7 +39,7 @@ export const IconNotification: React.FC<Props> = ({
         bg-red
       "
       >
-        <p className="text-white text-[9px] leading-[100%] font-mont font-bold">
+        <p className="text-white text-[9px] leading-[100%] font-mont font-semibold absolute bottom-0.25">
           {notification}
         </p>
       </span>
