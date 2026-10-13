@@ -8,7 +8,7 @@ export const Logo = () => {
         <img
           src="/img/Logo.svg"
           alt="Nice Gadgets"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-[89px] h-[32.25px] object-contain"
         />
         <img
           src="/img/Logo_hand.svg"
