@@ -1,8 +1,9 @@
 import type React from 'react';
 import classNames from 'classnames';
+import { Typography } from '../Typography/Typography';
 
 type Props = {
-  children: React.ReactNode;
+  content: string;
   className?: string;
   handleClick: () => void;
   isSelected: boolean;
@@ -15,7 +16,7 @@ const variant = {
 };
 
 export const ButtonCart: React.FC<Props> = ({
-  children,
+  content,
   className,
   handleClick,
   isSelected,
@@ -31,6 +32,11 @@ export const ButtonCart: React.FC<Props> = ({
     )}
     onClick={handleClick}
   >
-    {children}
+    <Typography
+      level="button"
+      textColor="inherit"
+    >
+      {content}
+    </Typography>
   </button>
 );
