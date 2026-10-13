@@ -15,8 +15,6 @@ export const Header: React.FC = () => {
             <NavigationTopList />
           </div>
         </div>
-
-        {/* Використовуємо md: */}
         <div className="hidden md:flex items-center h-full ">
           <NavigationButtons />
         </div>
