@@ -2,19 +2,19 @@ import type React from 'react';
 import classNames from 'classnames';
 
 type Props = {
-  children?: React.ReactNode;
   className?: string;
   handleClick: () => void;
   isDisabled?: boolean;
   isSelected?: boolean;
+  // src?: string;
 };
 
 export const ButtonArrow: React.FC<Props> = ({
-  children,
   className,
   handleClick,
   isDisabled,
   isSelected,
+  // src,
 }) => (
   <button
     type="button"
@@ -29,6 +29,6 @@ export const ButtonArrow: React.FC<Props> = ({
     onClick={handleClick}
     disabled={isDisabled}
   >
-    {children}
+    {/* <Icon src={src} /> */}
   </button>
 );

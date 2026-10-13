@@ -1,8 +1,9 @@
 import type React from 'react';
 import classNames from 'classnames';
+import { Typography } from '../Typography/Typography';
 
 type Props = {
-  children?: React.ReactNode;
+  content: React.ReactNode;
   className?: string;
   handleClick: () => void;
   isSelected: boolean;
@@ -14,7 +15,7 @@ const variant = {
 };
 
 export const ButtonSelect: React.FC<Props> = ({
-  children,
+  content,
   className,
   handleClick,
   isSelected,
@@ -30,6 +31,6 @@ export const ButtonSelect: React.FC<Props> = ({
     )}
     onClick={handleClick}
   >
-    {children}
+    <Typography level="button">{content}</Typography>
   </button>
 );
