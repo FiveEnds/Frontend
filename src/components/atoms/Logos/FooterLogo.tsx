@@ -2,7 +2,7 @@ export const FooterLogo = () => {
   return (
     <a
       href="/"
-      className="cursor-pointer w-[89px] h-[32px] block shrink-0"
+      className="cursor-pointer block shrink-0"
     >
       <img
         src="/img/Logo.svg"
