@@ -55,7 +55,7 @@ We work **only** with the `develop` branch. Never commit directly to it: always 
 git checkout develop
 
 # 2. Pull the latest updates from the server to stay up to date
-git pull origin -u develop
+git pull origin develop
 
 # 3. Create and switch to a new feature branch
 git checkout -b feature/my-new-task
