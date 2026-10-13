@@ -1,28 +1,32 @@
 import { ICONS } from '../../../constants/icons';
 import type { Product } from '../../../types/Product';
+import { ButtonCart } from '../../atoms/Buttons/ButtonCart';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
-import { ButtonSelect } from '../../atoms/Buttons/ButtonSelect';
-import { Icon } from '../../atoms/Icon/Icon';
 import { Typography } from '../../atoms/Typography/Typography';
 import { ProductCardSpecs } from '../../molecules/ProductCardSpecs/ProductCardSpecs';
 
 type Props = {
   product: Product;
   className?: string;
-  handleClick: () => void;
+  handleLikeClick: () => void;
+  handleSelectClick: () => void;
   isSelected: boolean;
   isLiked: boolean;
+  cardHeight: number;
 };
 
 export const ProductCard: React.FC<Props> = ({
   product,
-  handleClick,
+  handleLikeClick,
+  handleSelectClick,
   isSelected,
   className = '',
   isLiked,
+  cardHeight,
 }) => (
   <div
     className={`p-8 flex flex-col gap-2 border border-elements ${className}`}
+    style={{ height: cardHeight }}
   >
     <div className="flex-1 min-h-0 flex items-center justify-center w-full">
       <img
@@ -55,22 +59,18 @@ export const ProductCard: React.FC<Props> = ({
       ram={product.ram}
     />
     <div className="flex gap-2">
-      <ButtonSelect
-        handleClick={handleClick}
+      <ButtonCart
+        handleClick={handleSelectClick}
         isSelected={isSelected}
         className="flex-1 h-10"
-      >
-        <Typography>Add to cart</Typography>
-      </ButtonSelect>
+        content="Add to cart"
+      />
       <ButtonIcon
         className={'w-10 h-10 flex items-center justify-center'}
         isSelected={isLiked}
-        handleClick={() => handleClick}
-      >
-        {isLiked ?
-          <Icon src={ICONS.HEART_FILLED} />
-        : <Icon src={ICONS.HEART_EMPTY} />}
-      </ButtonIcon>
+        handleClick={handleLikeClick}
+        src={isLiked ? ICONS.HEART_FILLED : ICONS.HEART_EMPTY}
+      />
     </div>
   </div>
 );

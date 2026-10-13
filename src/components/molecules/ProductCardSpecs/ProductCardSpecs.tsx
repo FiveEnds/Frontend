@@ -19,9 +19,9 @@ export const ProductCardSpecs: React.FC<Props> = ({
         <Typography className="text-secondary">RAM</Typography>
       </div>
       <div className="flex flex-col gap-2">
-        <Typography>{screen}</Typography>
-        <Typography>{capacity}</Typography>
-        <Typography>{ram}</Typography>
+        <Typography className="text-end">{screen}</Typography>
+        <Typography className="text-end">{capacity}</Typography>
+        <Typography className="text-end">{ram}</Typography>
       </div>
     </div>
   </>
