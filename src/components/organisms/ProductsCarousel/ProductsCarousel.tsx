@@ -85,7 +85,8 @@ export const ProductsCarousel: React.FC<Props> = ({
                   isSelected={select}
                   handleSelectClick={() => setSelect((current) => !current)}
                   handleLikeClick={() => setLike((current) => !current)}
-                  className={`w-full h-[${productCardHeight}px]`}
+                  className={'w-full'}
+                  cardHeight={productCardHeight}
                   isLiked={like}
                 />
               </div>

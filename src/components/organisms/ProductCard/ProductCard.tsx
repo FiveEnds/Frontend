@@ -12,6 +12,7 @@ type Props = {
   handleSelectClick: () => void;
   isSelected: boolean;
   isLiked: boolean;
+  cardHeight: number;
 };
 
 export const ProductCard: React.FC<Props> = ({
@@ -21,9 +22,11 @@ export const ProductCard: React.FC<Props> = ({
   isSelected,
   className = '',
   isLiked,
+  cardHeight,
 }) => (
   <div
     className={`p-8 flex flex-col gap-2 border border-elements ${className}`}
+    style={{ height: cardHeight }}
   >
     <div className="flex-1 min-h-0 flex items-center justify-center w-full">
       <img
