@@ -1,6 +1,7 @@
 @import 'tailwindcss';
+
 @font-face {
-  font-family: 'Mont';
+  font-family: Mont;
   src:
     url('fonts/Mont-Regular.woff2') format('woff2'),
     url('fonts/Mont-Regular.woff') format('woff');
@@ -8,8 +9,9 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
-  font-family: 'Mont';
+  font-family: Mont;
   src:
     url('fonts/Mont-SemiBold.woff2') format('woff2'),
     url('fonts/Mont-SemiBold.woff') format('woff');
@@ -17,8 +19,9 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
-  font-family: 'Mont';
+  font-family: Mont;
   src:
     url('fonts/Mont-Bold.woff2') format('woff2'),
     url('fonts/Mont-Bold.woff') format('woff');
@@ -26,6 +29,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @theme {
   --font-mont: 'Mont', sans-serif;
   --color-primary: #313237;
@@ -36,7 +40,6 @@
   --color-white: #fff;
   --color-green: #27ae60;
   --color-red: #eb5757;
-
   --breakpoint-md: 640px;
   --breakpoint-lg: 1200px;
 }

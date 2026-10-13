@@ -1,20 +1,21 @@
 import type React from 'react';
 import classNames from 'classnames';
+import { Typography } from '../Typography/Typography';
 
 type Props = {
-  children?: React.ReactNode;
+  content: string;
   className?: string;
   handleClick: () => void;
   isSelected: boolean;
 };
 
 const variant = {
-  default: 'border-elements text-primary hover:border-primary',
+  default: 'border-elements text-black hover:border-primary',
   selected: 'bg-primary text-white',
 };
 
 export const ButtonSelect: React.FC<Props> = ({
-  children,
+  content,
   className,
   handleClick,
   isSelected,
@@ -22,7 +23,7 @@ export const ButtonSelect: React.FC<Props> = ({
   <button
     type="button"
     className={classNames(
-      `text-center text-black border transition-all duration-400 ease-in-out ${className}`,
+      `text-center border transition-all duration-400 ease-in-out ${className}`,
       {
         [variant.default]: !isSelected,
         [variant.selected]: isSelected,
@@ -30,6 +31,11 @@ export const ButtonSelect: React.FC<Props> = ({
     )}
     onClick={handleClick}
   >
-    {children}
+    <Typography
+      level="button"
+      textColor="inherit"
+    >
+      {content}
+    </Typography>
   </button>
 );
