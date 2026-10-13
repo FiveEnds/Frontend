@@ -1,6 +1,6 @@
 import { Typography } from '../components/atoms/Typography/Typography';
-import { Footer } from '../components/organisms/Footer';
-import { Header } from '../components/organisms/Header';
+import { Footer } from '../components/organisms/Footer/Footer';
+import { Header } from '../components/organisms/Header/Header';
 
 export const VladyslavPetrovskyi = () => (
   <>
