@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Typography } from '../Typography/Typography';
 
 type Props = {
-  content: React.ReactNode;
+  content: string;
   className?: string;
   handleClick: () => void;
   isSelected: boolean;
@@ -31,6 +31,11 @@ export const ButtonSelect: React.FC<Props> = ({
     )}
     onClick={handleClick}
   >
-    <Typography level="button">{content}</Typography>
+    <Typography
+      level="button"
+      textColor="inherit"
+    >
+      {content}
+    </Typography>
   </button>
 );
