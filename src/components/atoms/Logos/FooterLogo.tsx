@@ -1,4 +1,4 @@
-export const Logo = () => {
+export const FooterLogo = () => {
   return (
     <a
       href="/"

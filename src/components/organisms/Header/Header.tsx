@@ -1,9 +1,9 @@
 import type React from 'react';
-import { NavigationTopList } from '../molecules/Header/NavigationTopList';
-import { NavigationButtons } from '../molecules/Header/NavigationalButtons';
-import { Icon } from '../atoms/Icon/Icon';
-import { ICONS } from '../../constants/icons';
-import { HeadLogo } from '../atoms/Header/HeadLogo';
+import { NavigationTopList } from '../../molecules/Navigation/NavigationTopList';
+import { NavigationButtons } from '../../molecules/Navigation/NavigationalButtons';
+import { Icon } from '../../atoms/Icon/Icon';
+import { ICONS } from '../../../constants/icons';
+import { HeadLogo } from '../../atoms/Logos/HeadLogo';
 
 export const Header: React.FC = () => {
   return (

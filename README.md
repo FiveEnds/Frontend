@@ -11,7 +11,6 @@ Frontend part of the app, built with **React**, **TypeScript** and **Vite**.
 - [Getting Started](#getting-started)
 - [Running the App](#running-the-app)
 - [Branching Strategy](#branching-strategy)
-- [Starting a New Task](#starting-a-new-task)
 - [Submitting Your Work](#submitting-your-work)
 - [Branch Naming Convention](#branch-naming-convention)
 
@@ -56,23 +55,11 @@ We work **only** with the `develop` branch. Never commit directly to it: always 
 git checkout develop
 
 # 2. Pull the latest updates from the server to stay up to date
-git pull origin develop
+git pull origin -u develop
 
 # 3. Create and switch to a new feature branch
 git checkout -b feature/my-new-task
 ```
-
----
-
-## Starting a New Task
-
-Every time you start a new task, create a fresh branch directly from the remote `develop`:
-
-```bash
-git checkout -B feature/my-new-task origin/develop
-```
-
-This fetches the latest state of `develop` and makes sure your branch is based on it.
 
 ---
 
@@ -129,11 +116,10 @@ Use a double underscore (`__`) between the ticket ID and the description, and hy
 
 ## Quick Reference
 
-| Step                 | Command                                              |
-| -------------------- | ---------------------------------------------------- |
-| Install dependencies | `npm i --legacy-peer-deps`                           |
-| Run the app locally  | `npm run dev`                                        |
-| Update `develop`     | `git checkout develop && git pull origin develop`    |
-| Start a new task     | `git checkout -B feature/<task-name> origin/develop` |
-| Stage and commit     | `git add . && git commit -m "message"`               |
-| Push your work       | `git push origin feature/<task-name>`                |
+| Step                 | Command                                           |
+| -------------------- | ------------------------------------------------- |
+| Install dependencies | `npm i --legacy-peer-deps`                        |
+| Run the app locally  | `npm run dev`                                     |
+| Update `develop`     | `git checkout develop && git pull origin develop` |
+| Stage and commit     | `git add . && git commit -m "message"`            |
+| Push your work       | `git push origin feature/<task-name>`             |
