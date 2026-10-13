@@ -1,21 +1,10 @@
 import { ICONS } from '../../../constants/icons';
+import type { Product } from '../../../types/Product';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { ButtonSelect } from '../../atoms/Buttons/ButtonSelect';
 import { Icon } from '../../atoms/Icon/Icon';
 import { Typography } from '../../atoms/Typography/Typography';
 import { ProductCardSpecs } from '../../molecules/ProductCardSpecs/ProductCardSpecs';
-
-type Product = {
-  images: string[];
-  namespaceId: string;
-  name: string;
-  priceRegular: number;
-  priceDiscount?: number;
-  screen: string;
-  capacity: string;
-  ram: string;
-  [key: string]: unknown;
-};
 
 type Props = {
   product: Product;
@@ -71,7 +60,7 @@ export const ProductCard: React.FC<Props> = ({
         isSelected={isSelected}
         className="flex-1 h-10"
       >
-        Add To Cart
+        <Typography>Add to cart</Typography>
       </ButtonSelect>
       <ButtonIcon
         className={'w-10 h-10 flex items-center justify-center'}
