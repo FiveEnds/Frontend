@@ -1,12 +1,13 @@
 import type React from 'react';
 import classNames from 'classnames';
+import { Icon } from '../Icon/Icon';
 
 type Props = {
-  children?: React.ReactNode;
   className?: string;
   handleClick: () => void;
   isDisabled?: boolean;
   isSelected?: boolean;
+  src: string;
 };
 
 const variant = {
@@ -14,20 +15,17 @@ const variant = {
 };
 
 export const ButtonIcon: React.FC<Props> = ({
-  children,
   className,
   handleClick,
   isDisabled,
   isSelected,
+  src,
 }) => (
   <button
     type="button"
     className={classNames(
-      `border
-      transition-all
-      duration-400
-      ease-in-out
-      ${className}`,
+      'border flex justify-center items-center transition-all duration-400 ease-in-out',
+      className,
       {
         'disabled:border-elements': isDisabled,
         'enabled:hover:border-primary border-icons': !isSelected && !isDisabled,
@@ -37,6 +35,9 @@ export const ButtonIcon: React.FC<Props> = ({
     onClick={handleClick}
     disabled={isDisabled}
   >
-    {children}
+    <Icon
+      isDisabled={isDisabled}
+      src={src}
+    />
   </button>
 );
