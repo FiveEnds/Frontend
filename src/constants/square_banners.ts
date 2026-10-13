@@ -1,5 +1,5 @@
 export const SQUARE_BANNERS = [
-  '/img/SquareBanner.png',
-  '/img/SquarePhone.png',
-  '/img/SquareTablet.png',
+  '/img/banners/SquarePhoneBanner.png',
+  '/img/banners/SquarePhones.png',
+  '/img/banners/SquareTablets.png',
 ];
