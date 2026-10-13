@@ -1,4 +1,4 @@
-import { NavigationLink } from '../../atoms/Footer/NavigationLink';
+import { NavigationLink } from '../../atoms/NavigationLink/NavigationLink';
 
 export const NavigationTopList = () => {
   return (

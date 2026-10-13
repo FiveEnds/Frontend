@@ -23,7 +23,7 @@ export const ButtonSelect: React.FC<Props> = ({
   <button
     type="button"
     className={classNames(
-      `text-center border transition-all duration-400 ease-in-out ${className}`,
+      `flex justify-center items-center text-center border transition-all duration-400 ease-in-out ${className}`,
       {
         [variant.default]: !isSelected,
         [variant.selected]: isSelected,

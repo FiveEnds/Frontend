@@ -1,8 +1,8 @@
 import type React from 'react';
-import { Logo } from '../atoms/Footer/Logo';
-import { NavigationList } from '../molecules/Footer/NavigationList';
-import { ScrollToTopButton } from '../atoms/Footer/ScrollTopButton';
+import { NavigationList } from '../../molecules/Navigation/NavigationList';
+import { ScrollToTopButton } from '../../atoms/ScrollTopButton/ScrollTopButton';
 import { useCallback } from 'react';
+import { FooterLogo } from '../../atoms/Logos/FooterLogo';
 
 export const Footer: React.FC = () => {
   const handleScrollTop = useCallback(() => {
@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
     <footer className="w-full bg-white border-t border-elements px-4 md:px-8 py-8 lg:px-[152px] ">
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="mb-8 md:mb-0">
-          <Logo />
+          <FooterLogo />
         </div>
         <div className="mb-8 md:mb-0">
           <NavigationList />

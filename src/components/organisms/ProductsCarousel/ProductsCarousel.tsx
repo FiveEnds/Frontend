@@ -1,12 +1,11 @@
 import type { EmblaOptionsType } from 'embla-carousel';
 import { Typography } from '../../atoms/Typography/Typography';
 // Change this line to import your local component file (adjust the relative path if needed):
-import React from 'react';
+import React, { useState } from 'react';
 import './css/base.css';
 import './css/sandbox.css';
 import './css/embla.css';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
-import { Icon } from '../../atoms/Icon/Icon';
 import { ICONS } from '../../../constants/icons';
 import { useAutoplay } from './js/EmblaCarouselAutoplay';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -43,31 +42,26 @@ export const ProductsCarousel: React.FC<Props> = ({
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
+  const [like, setLike] = useState(false);
+  const [select, setSelect] = useState(false);
+
   return (
     <>
       <div className="flex justify-between pb-6">
         <Typography level="h2">{title}</Typography>
         <div className="flex gap-4">
           <ButtonIcon
-            className="w-8 h-8 flex justify-center items-center"
+            className="w-8 h-8"
             handleClick={() => onAutoplayButtonClick(onPrevButtonClick)}
             isDisabled={prevBtnDisabled}
-          >
-            <Icon
-              src={ICONS.ARROW.LEFT}
-              isDisabled={prevBtnDisabled}
-            />
-          </ButtonIcon>
+            src={ICONS.ARROW.LEFT}
+          />
           <ButtonIcon
-            className="w-8 h-8 flex justify-center items-center"
+            className="w-8 h-8"
             handleClick={() => onAutoplayButtonClick(onNextButtonClick)}
             isDisabled={nextBtnDisabled}
-          >
-            <Icon
-              src={ICONS.ARROW.RIGHT}
-              isDisabled={nextBtnDisabled}
-            />
-          </ButtonIcon>
+            src={ICONS.ARROW.RIGHT}
+          />
         </div>
       </div>
       <div
@@ -88,10 +82,12 @@ export const ProductsCarousel: React.FC<Props> = ({
               >
                 <ProductCard
                   product={product}
-                  isSelected={false}
-                  handleClick={() => console.log('Click')}
-                  className={`w-full h-[${productCardHeight}px]`}
-                  isLiked={true}
+                  isSelected={select}
+                  handleSelectClick={() => setSelect((current) => !current)}
+                  handleLikeClick={() => setLike((current) => !current)}
+                  className={'w-full'}
+                  cardHeight={productCardHeight}
+                  isLiked={like}
                 />
               </div>
             ))}
