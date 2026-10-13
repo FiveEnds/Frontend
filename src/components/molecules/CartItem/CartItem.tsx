@@ -75,12 +75,8 @@ export const CartItem: React.FC<Props> = ({
             className="grid size-8 place-items-center"
             handleClick={() => onQuantityChange(quantity - 1)}
             isDisabled={isMinQuantity}
-          >
-            <Icon
-              src={ICONS.MINUS}
-              isDisabled={isMinQuantity}
-            />
-          </ButtonIcon>
+            src={ICONS.MINUS}
+          />
 
           <Typography
             level="body"
@@ -92,9 +88,8 @@ export const CartItem: React.FC<Props> = ({
           <ButtonIcon
             className="grid size-8 place-items-center"
             handleClick={() => onQuantityChange(quantity + 1)}
-          >
-            <Icon src={ICONS.PLUS} />
-          </ButtonIcon>
+            src={ICONS.PLUS}
+          />
         </div>
 
         <div className="flex w-20 shrink-0 justify-end">
