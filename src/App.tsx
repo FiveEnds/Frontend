@@ -2,65 +2,86 @@ import { useState } from 'react';
 import './App.css';
 import { ButtonCart } from './components/atoms/Buttons/ButtonCart';
 import { ButtonSelect } from './components/atoms/Buttons/ButtonSelect';
-import { Typography } from './components/atoms/Typography/Typography';
-import { ButtonArrow } from './components/atoms/Buttons/ButtonIcon';
+import { ButtonIcon } from './components/atoms/Buttons/ButtonIcon';
+import { ICONS } from './constants/icons';
+import { ButtonColor } from './components/atoms/Buttons/ButtonColor';
+
 export const App: React.FC = () => {
   const [isAdded, setIsAdded] = useState<boolean>(false);
   return (
     <>
       <div className="flex flex-col items-center gap-2">
-        {/* Cart Button usage with Typography */}
+        {/* Cart Button usage */}
         <ButtonCart
+          content={isAdded ? 'Added' : 'Add to Cart'}
           className="w-40 h-12"
           handleClick={() => setIsAdded(!isAdded)}
           isSelected={isAdded}
-        >
-          <Typography level="button">Add to cart</Typography>
-        </ButtonCart>
+        />
 
-        {/* Select Buttons usage with Typography for slider and capacity phone gb */}
+        {/* Select Button usage */}
         <ButtonSelect
-          className="px-2 py-1"
+          content="64gb"
+          className="w-40 h-12"
           handleClick={() => setIsAdded(!isAdded)}
           isSelected={isAdded}
-        >
-          <Typography level="button">64 GB</Typography>
-        </ButtonSelect>
-        <ButtonSelect
-          className="px-2 py-1"
-          handleClick={() => setIsAdded(!isAdded)}
-          isSelected={isAdded}
-        >
-          <Typography level="button">256 GB</Typography>
-        </ButtonSelect>
+        />
 
-        {/* Arrow Buttons usage */}
+        <div className="flex gap-1">
+          <ButtonSelect
+            content="1"
+            className="w-12 h-12"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
+          />
+          <ButtonSelect
+            content="2"
+            className="w-12 h-12"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
+          />
+          <ButtonSelect
+            content="3"
+            className="w-12 h-12"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
+          />
+          <ButtonSelect
+            content="4"
+            className="w-12 h-12"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
+          />
+        </div>
 
-        <ButtonArrow
-          className="w-10 h-10"
+        {/* Color Button usage */}
+        <ButtonIcon
+          src={ICONS.ARROW.DOWN}
           handleClick={() => setIsAdded(!isAdded)}
           isDisabled={isAdded}
-        >
-          {/* <Icon src="" alt="TEst" />  USE ICON COMPONENT HERE WITH SRC within the img tag */}
-          <img
-            className="w-5 h-5"
-            src="/public/favicon.svg"
-            alt="dfvfvf"
-          />
-        </ButtonArrow>
-
-        <ButtonArrow
-          className="w-10 h-10"
+        />
+        <ButtonIcon
+          src={ICONS.HEART_EMPTY}
           handleClick={() => setIsAdded(!isAdded)}
           isSelected={isAdded}
-        >
-          {/* <Icon src="" alt="TEst" />  USE ICON COMPONENT HERE WITH SRC within the img tag */}
-          <img
-            className="w-5 h-5"
-            src="/public/favicon.svg"
-            alt="dfvfvf"
+        />
+        <div className="flex gap-1">
+          <ButtonColor
+            className="bg-red-200"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
           />
-        </ButtonArrow>
+          <ButtonColor
+            className="bg-red-500"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
+          />
+          <ButtonColor
+            className="bg-red-900"
+            handleClick={() => setIsAdded(!isAdded)}
+            isSelected={isAdded}
+          />
+        </div>
       </div>
     </>
   );
