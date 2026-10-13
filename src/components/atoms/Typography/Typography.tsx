@@ -49,7 +49,7 @@ export const Typography: React.FC<TypographyProps> = ({
         <h3
           className={classNames(
             'font-semibold font-mont tracking-normal md:font-bold',
-            'text-[20px] leading-[26px] md:text-[22px] md:leading-[31px]',
+            'text-[20px] leading-[26px] md:text-[22px] md:leading-[31px] flex justify-between',
             className,
             textColor,
           )}
