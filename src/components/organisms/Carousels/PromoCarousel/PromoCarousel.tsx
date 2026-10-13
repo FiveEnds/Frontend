@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -54,11 +55,18 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
   useEffect(() => {
     if (!emblaApi) return;
 
+    onInit(emblaApi);
+    onSelect(emblaApi);
+
+    emblaApi.on('init', onInit);
+    emblaApi.on('init', onSelect);
     emblaApi.on('reInit', onInit);
     emblaApi.on('reInit', onSelect);
     emblaApi.on('select', onSelect);
 
     return () => {
+      emblaApi.off('init', onInit);
+      emblaApi.off('init', onSelect);
       emblaApi.off('reInit', onInit);
       emblaApi.off('reInit', onSelect);
       emblaApi.off('select', onSelect);
@@ -123,7 +131,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
       </div>
       <div className="flex justify-center items-center gap-2 mt-4">
         {scrollSnaps.map((_, index) => (
-          <div className="w-6 h-6 justify-center items-center hidden md:flex">
+          <div className="w-6 h-6 justify-center items-center md:flex hidden">
             <button
               key={index}
               type="button"
