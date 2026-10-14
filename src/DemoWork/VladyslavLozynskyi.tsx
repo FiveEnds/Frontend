@@ -5,12 +5,12 @@
   {insert your component here...}
 </div>
 */
-import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
+// import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 // import { AvailableColors } from '../components/molecules/AvailableColors/AvailableColors';
 // import { SelectCapacity } from '../components/molecules/SelectCapacity/SelectCapacity';
 // import { ProductCardSpecs } from '../components/molecules/ProductCardSpecs/ProductCardSpecs';
 import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 // import { BANNERS } from '../constants/banners';
 // import { SQUARE_BANNERS } from '../constants/square_banners';
@@ -548,20 +548,20 @@ export const VladyslavLozynskyi: React.FC = () => {
     },
   ];
 
-  const [size, setSize] = useState(1.5);
+  // const [size, setSize] = useState(1.5);
 
-  window.addEventListener('resize', () => {
-    // Отримуємо поточну ширину та висоту вікна перегляду (Viewport)
-    const width = window.innerWidth;
+  // window.addEventListener('resize', () => {
+  //   // Отримуємо поточну ширину та висоту вікна перегляду (Viewport)
+  //   const width = window.innerWidth;
 
-    if (width < 640) {
-      setSize(1.5);
-    } else if (width < 1200) {
-      setSize(2.5);
-    } else {
-      setSize(4);
-    }
-  });
+  //   if (width < 640) {
+  //     setSize(1.5);
+  //   } else if (width < 1200) {
+  //     setSize(2.5);
+  //   } else {
+  //     setSize(4);
+  //   }
+  // });
   return (
     <>
       {/* <ProductCardSpecs
@@ -570,12 +570,12 @@ export const VladyslavLozynskyi: React.FC = () => {
           ['Capacity', '64GB'],
         ]}
       /> */}
-      <ProductsCarousel
+      {/* <ProductsCarousel
         title="Brand new models"
         products={product}
         displayedSlides={size}
         productCardHeight={440}
-      />
+      /> */}
       {/* <PromoCarousel
         banners={BANNERS}
         squareBanners={SQUARE_BANNERS}
