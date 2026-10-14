@@ -1,5 +1,5 @@
-import { AboutPhone } from '../components/molecules/AboutPhone/AboutPhone';
 import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
+import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
 import { Footer } from '../components/organisms/Footer/Footer';
 import { Header } from '../components/organisms/Header/Header';
 import { ProductCard } from '../components/organisms/ProductCard/ProductCard';
@@ -139,7 +139,7 @@ export const ProductPage: React.FC = () => {
           <div>
             <section>
               <h1>About Page</h1>
-              <AboutPhone description={product.description} />
+              <ProductAbout description={product.description} />
             </section>
             <div>
               <section>
