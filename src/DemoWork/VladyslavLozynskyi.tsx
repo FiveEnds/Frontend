@@ -43,8 +43,8 @@ export const VladyslavLozynskyi: React.FC = () => {
 
   // #region Cart Item
   const [quantity, setQuantity] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isItemVisible, setIsItemVisible] = useState(true);
+   
+  const [, setIsItemVisible] = useState(true);
   // #endregion
 
   const product = {
