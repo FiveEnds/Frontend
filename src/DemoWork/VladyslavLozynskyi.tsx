@@ -9,21 +9,18 @@
 // import { AvailableColors } from '../components/molecules/AvailableColors/AvailableColors';
 // import { SelectCapacity } from '../components/molecules/SelectCapacity/SelectCapacity';
 // import { ProductCardSpecs } from '../components/molecules/ProductCardSpecs/ProductCardSpecs';
-import { useEffect, useState } from 'react';
-import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
-import { getPhones } from '../services';
-import type { Product } from '../types/Product';
+import { useState } from 'react';
 // import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
 // import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
 // import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
-// import { Footer } from '../components/organisms/Footer/Footer';
-// import { Header } from '../components/organisms/Header/Header';
+import { Footer } from '../components/organisms/Footer/Footer';
+import { Header } from '../components/organisms/Header/Header';
 // import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTechSpecs';
 // import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
 // import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
-// import { CartLayout } from '../components/templates/CartLayout/CartLayout';
-// import { CartItem } from '../components/molecules/CartItem';
-// import { Checkout } from '../components/molecules/Checkout/Checkout';
+import { CartLayout } from '../components/templates/CartLayout/CartLayout';
+import { CartItem } from '../components/molecules/CartItem';
+import { Checkout } from '../components/molecules/Checkout/Checkout';
 // import { useState } from 'react';
 // import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 // import { BANNERS } from '../constants/banners';
@@ -45,66 +42,58 @@ export const VladyslavLozynskyi: React.FC = () => {
   //#endregion
 
   // #region Cart Item
-  // const [quantity, setQuantity] = useState(1);
-  // const [, setIsItemVisible] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+   
+  const [, setIsItemVisible] = useState(true);
   // #endregion
 
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    getPhones().then((data) => setProducts(data));
-  }, []);
-
-  console.log(products);
-
-  // const product = {
-  //   id: 'apple-iphone-11-128gb-purple',
-  //   namespaceId: 'apple-iphone-11',
-  //   name: 'Apple iPhone 11 128GB Purple',
-  //   capacityAvailable: ['64GB', '128GB', '256GB'],
-  //   capacity: '128GB',
-  //   category: 'phone',
-  //   priceRegular: 1100,
-  //   priceDiscount: 1050,
-  //   colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-  //   color: 'purple',
-  //   images: [
-  //     'img/phones/apple-iphone-11/purple/00.webp',
-  //     'img/phones/apple-iphone-11/purple/01.webp',
-  //     'img/phones/apple-iphone-11/purple/02.webp',
-  //     'img/phones/apple-iphone-11/purple/03.webp',
-  //     'img/phones/apple-iphone-11/purple/04.webp',
-  //   ],
-  //   description: [
-  //     {
-  //       title: 'And then there was Pro',
-  //       text: [
-  //         'A transformative triple-camera system that adds tons of capability without complexity.',
-  //         'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-  //       ],
-  //     },
-  //     {
-  //       title: 'Camera',
-  //       text: [
-  //         'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-  //       ],
-  //     },
-  //     {
-  //       title:
-  //         'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-  //       text: [
-  //         'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-  //       ],
-  //     },
-  //   ],
-  //   screen: "6.1' IPS",
-  //   resolution: '1792x828',
-  //   processor: 'Apple A13 Bionic',
-  //   ram: '4GB',
-  //   camera: '12 Mp + 12 Mp + 12MP',
-  //   zoom: 'Digital, 5x',
-  //   cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-  // };
+  const product = {
+    id: 'apple-iphone-11-128gb-purple',
+    namespaceId: 'apple-iphone-11',
+    name: 'Apple iPhone 11 128GB Purple',
+    capacityAvailable: ['64GB', '128GB', '256GB'],
+    capacity: '128GB',
+    priceRegular: 1100,
+    priceDiscount: 1050,
+    colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+    color: 'purple',
+    images: [
+      'img/phones/apple-iphone-11/purple/00.webp',
+      'img/phones/apple-iphone-11/purple/01.webp',
+      'img/phones/apple-iphone-11/purple/02.webp',
+      'img/phones/apple-iphone-11/purple/03.webp',
+      'img/phones/apple-iphone-11/purple/04.webp',
+    ],
+    description: [
+      {
+        title: 'And then there was Pro',
+        text: [
+          'A transformative triple-camera system that adds tons of capability without complexity.',
+          'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+        ],
+      },
+      {
+        title: 'Camera',
+        text: [
+          'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+        ],
+      },
+      {
+        title:
+          'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+        text: [
+          'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+        ],
+      },
+    ],
+    screen: "6.1' IPS",
+    resolution: '1792x828',
+    processor: 'Apple A13 Bionic',
+    ram: '4GB',
+    camera: '12 Mp + 12 Mp + 12MP',
+    zoom: 'Digital, 5x',
+    cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  };
   // const productColors = [
   //   'black',
   //   'green',
@@ -778,7 +767,7 @@ export const VladyslavLozynskyi: React.FC = () => {
         }
         footer={<Footer />}
       /> */}
-      {/* <CartLayout
+      <CartLayout
         header={<Header />}
         pageTopPart={<div className="bg-amber-300">hello</div>}
         productSelectedItems={
@@ -794,7 +783,7 @@ export const VladyslavLozynskyi: React.FC = () => {
         }
         productCart={<Checkout />}
         footer={<Footer />}
-      /> */}
+      />
     </>
   );
 };
