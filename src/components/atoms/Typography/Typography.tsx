@@ -1,8 +1,6 @@
 import type React from 'react';
 import classNames from 'classnames';
-
-type HeadingLevel =
-  'h1' | 'h2' | 'h3' | 'h4' | 'uppercase' | 'button' | 'body' | 'small';
+import type { HeadingLevel } from '../../../types/HeadingLevel';
 
 type TypographyProps = {
   level?: HeadingLevel;

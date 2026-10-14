@@ -6,10 +6,12 @@ import { HomeLayout } from '../components/templates/HomeLayout';
 import { PhoneLayout } from '../components/templates/PhoneLayout';
 import { TabletsLayout } from '../components/templates/TabletsLayout';
 import { ProductPagelayout } from '../components/templates/ProductPageLayout';
+import { HomePage } from '../pages/HomePage';
 
 export const VladyslavPetrovskyi = () => {
   return (
     <>
+      <HomePage />
       <Typography level="body">test1</Typography>
       <Typography level="button">test2</Typography>
       <Typography level="h1">test3 and mobile</Typography>

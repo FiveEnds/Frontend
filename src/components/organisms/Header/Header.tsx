@@ -2,7 +2,7 @@ import type React from 'react';
 import { NavigationButtons } from '../../molecules/Navigation/NavigationalButtons';
 import { ICONS } from '../../../constants/icons';
 import { HeadLogo } from '../../atoms/Logos/HeadLogo';
-import { NavigationList } from '../../molecules/Navigation/NavigationList';
+import { NavigationTopList } from '../../molecules/Navigation/NavigationTopList';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { useCallback } from 'react';
 
@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-[32px] lg:gap-[48px]">
           <HeadLogo />
           <div className="hidden md:flex items-center gap-[32px] lg:gap-[64px]">
-            <NavigationList />
+            <NavigationTopList />
           </div>
         </div>
         <div className="hidden md:flex items-center h-full ">
