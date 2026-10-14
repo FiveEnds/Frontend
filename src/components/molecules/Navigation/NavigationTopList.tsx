@@ -8,7 +8,7 @@ export const NavigationTopList: React.FC<NavigationListProps> = ({
   direction = 'row',
 }) => {
   const navItems = [
-    { href: '/home', label: 'Home' },
+    { href: '/', label: 'Home' },
     { href: '/phones', label: 'Phones' },
     { href: '/tablets', label: 'Tablets' },
     { href: '/accessories', label: 'Accessories' },
