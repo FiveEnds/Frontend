@@ -2,9 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { Header } from '../components/organisms/Header/Header';
 import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 import { BANNERS } from '../constants/banners';
-import { SQUARE_BANNERS } from '../constants/square_banners';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { Footer } from '../components/organisms/Footer/Footer';
+import { SQUARE_BANNERS } from '../constants/squareBanners';
 
 const productsData = [
   {
