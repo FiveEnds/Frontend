@@ -10,572 +10,82 @@
 // import { SelectCapacity } from '../components/molecules/SelectCapacity/SelectCapacity';
 // import { ProductCardSpecs } from '../components/molecules/ProductCardSpecs/ProductCardSpecs';
 import { useState } from 'react';
-import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
-import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
-import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
+// import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
+// import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
+// import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { Footer } from '../components/organisms/Footer/Footer';
 import { Header } from '../components/organisms/Header/Header';
-import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTechSpecs';
-import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
-import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
+// import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTechSpecs';
+// import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
+// import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
+import { CartLayout } from '../components/templates/CartLayout/CartLayout';
+import { CartItem } from '../components/molecules/CartItem';
+import { Checkout } from '../components/molecules/Checkout/Checkout';
 // import { useState } from 'react';
 // import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 // import { BANNERS } from '../constants/banners';
 // import { SQUARE_BANNERS } from '../constants/square_banners';
 
-function getResizeValue() {
-  const width = window.innerWidth;
-  if (width < 640) {
-    return 1.5;
-  } else if (width < 1200) {
-    return 2.5;
-  } else {
-    return 4;
-  }
-}
+// function getResizeValue() {
+//   const width = window.innerWidth;
+//   if (width < 640) {
+//     return 1.5;
+//   } else if (width < 1200) {
+//     return 2.5;
+//   } else {
+//     return 4;
+//   }
+// }
+
 export const VladyslavLozynskyi: React.FC = () => {
-  const productColors = [
-    'black',
-    'green',
-    'starlight',
-    'spacegray',
-    'midnightgreen',
-    'gold',
-    'yellow',
-    'white',
-    'purple',
-    'red',
-  ];
+  // const [value, setValue] = useState('Default');
+  //#endregion
 
-  const product = [
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-    {
-      id: 'apple-iphone-11-128gb-purple',
-      namespaceId: 'apple-iphone-11',
-      name: 'Apple iPhone 11 128GB Purple',
-      capacityAvailable: ['64GB', '128GB', '256GB'],
-      capacity: '128GB',
-      priceRegular: 1100,
-      priceDiscount: 1050,
-      colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-      color: 'purple',
-      images: [
-        'img/phones/apple-iphone-11/purple/00.webp',
-        'img/phones/apple-iphone-11/purple/01.webp',
-        'img/phones/apple-iphone-11/purple/02.webp',
-        'img/phones/apple-iphone-11/purple/03.webp',
-        'img/phones/apple-iphone-11/purple/04.webp',
-      ],
-      description: [
-        {
-          title: 'And then there was Pro',
-          text: [
-            'A transformative triple-camera system that adds tons of capability without complexity.',
-            'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
-          ],
-        },
-        {
-          title: 'Camera',
-          text: [
-            'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
-          ],
-        },
-        {
-          title:
-            'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-          text: [
-            'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-          ],
-        },
-      ],
-      screen: "6.1' IPS",
-      resolution: '1792x828',
-      processor: 'Apple A13 Bionic',
-      ram: '4GB',
-      camera: '12 Mp + 12 Mp + 12MP',
-      zoom: 'Digital, 5x',
-      cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
-    },
-  ];
+  // #region Cart Item
+  const [quantity, setQuantity] = useState(1);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isItemVisible, setIsItemVisible] = useState(true);
+  // #endregion
 
-  const specs = {
-    id: 'apple-iphone-11-128gb-black',
+  const product = {
+    id: 'apple-iphone-11-128gb-purple',
     namespaceId: 'apple-iphone-11',
-    name: 'Apple iPhone 11 128GB Black',
+    name: 'Apple iPhone 11 128GB Purple',
     capacityAvailable: ['64GB', '128GB', '256GB'],
     capacity: '128GB',
     priceRegular: 1100,
     priceDiscount: 1050,
     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
-    color: 'black',
+    color: 'purple',
+    images: [
+      'img/phones/apple-iphone-11/purple/00.webp',
+      'img/phones/apple-iphone-11/purple/01.webp',
+      'img/phones/apple-iphone-11/purple/02.webp',
+      'img/phones/apple-iphone-11/purple/03.webp',
+      'img/phones/apple-iphone-11/purple/04.webp',
+    ],
+    description: [
+      {
+        title: 'And then there was Pro',
+        text: [
+          'A transformative triple-camera system that adds tons of capability without complexity.',
+          'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+        ],
+      },
+      {
+        title: 'Camera',
+        text: [
+          'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+        ],
+      },
+      {
+        title:
+          'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+        text: [
+          'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+        ],
+      },
+    ],
     screen: "6.1' IPS",
     resolution: '1792x828',
     processor: 'Apple A13 Bionic',
@@ -584,11 +94,561 @@ export const VladyslavLozynskyi: React.FC = () => {
     zoom: 'Digital, 5x',
     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
   };
+  // const productColors = [
+  //   'black',
+  //   'green',
+  //   'starlight',
+  //   'spacegray',
+  //   'midnightgreen',
+  //   'gold',
+  //   'yellow',
+  //   'white',
+  //   'purple',
+  //   'red',
+  // ];
 
-  const [size, setSize] = useState(getResizeValue);
+  // const products = [
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  //   {
+  //     id: 'apple-iphone-11-128gb-purple',
+  //     namespaceId: 'apple-iphone-11',
+  //     name: 'Apple iPhone 11 128GB Purple',
+  //     capacityAvailable: ['64GB', '128GB', '256GB'],
+  //     capacity: '128GB',
+  //     priceRegular: 1100,
+  //     priceDiscount: 1050,
+  //     colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //     color: 'purple',
+  //     images: [
+  //       'img/phones/apple-iphone-11/purple/00.webp',
+  //       'img/phones/apple-iphone-11/purple/01.webp',
+  //       'img/phones/apple-iphone-11/purple/02.webp',
+  //       'img/phones/apple-iphone-11/purple/03.webp',
+  //       'img/phones/apple-iphone-11/purple/04.webp',
+  //     ],
+  //     description: [
+  //       {
+  //         title: 'And then there was Pro',
+  //         text: [
+  //           'A transformative triple-camera system that adds tons of capability without complexity.',
+  //           'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+  //         ],
+  //       },
+  //       {
+  //         title: 'Camera',
+  //         text: [
+  //           'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+  //         ],
+  //       },
+  //       {
+  //         title:
+  //           'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+  //         text: [
+  //           'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+  //         ],
+  //       },
+  //     ],
+  //     screen: "6.1' IPS",
+  //     resolution: '1792x828',
+  //     processor: 'Apple A13 Bionic',
+  //     ram: '4GB',
+  //     camera: '12 Mp + 12 Mp + 12MP',
+  //     zoom: 'Digital, 5x',
+  //     cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  //   },
+  // ];
+
+  // const specs = {
+  //   id: 'apple-iphone-11-128gb-black',
+  //   namespaceId: 'apple-iphone-11',
+  //   name: 'Apple iPhone 11 128GB Black',
+  //   capacityAvailable: ['64GB', '128GB', '256GB'],
+  //   capacity: '128GB',
+  //   priceRegular: 1100,
+  //   priceDiscount: 1050,
+  //   colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+  //   color: 'black',
+  //   screen: "6.1' IPS",
+  //   resolution: '1792x828',
+  //   processor: 'Apple A13 Bionic',
+  //   ram: '4GB',
+  //   camera: '12 Mp + 12 Mp + 12MP',
+  //   zoom: 'Digital, 5x',
+  //   cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  // };
+
+  // const [size, setSize] = useState(getResizeValue);
 
   window.addEventListener('resize', () => {
-    setSize(getResizeValue);
+    // setSize(getResizeValue);
   });
   return (
     <>
@@ -646,7 +706,7 @@ export const VladyslavLozynskyi: React.FC = () => {
       /> */}
 
       {/* <div className="pb-50">,</div> */}
-      <ProductItemLayout
+      {/* <ProductItemLayout
         header={<Header />}
         pageProductDetails={<div className="bg-black">hello</div>}
         productGallery={<div className="bg-yellow">gallery</div>}
@@ -705,6 +765,23 @@ export const VladyslavLozynskyi: React.FC = () => {
             productCardHeight={440}
           />
         }
+        footer={<Footer />}
+      /> */}
+      <CartLayout
+        header={<Header />}
+        pageTopPart={<div className="bg-amber-300">hello</div>}
+        productSelectedItems={
+          <CartItem
+            image={`/${product.images[0]}`}
+            title={product.name}
+            price={product.priceDiscount * quantity}
+            quantity={quantity}
+            productPath={`/phones/${product.id}`}
+            onRemove={() => setIsItemVisible(false)}
+            onQuantityChange={setQuantity}
+          />
+        }
+        productCart={<Checkout />}
         footer={<Footer />}
       />
     </>
