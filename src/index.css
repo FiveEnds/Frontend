@@ -40,6 +40,10 @@
   --color-white: #fff;
   --color-green: #27ae60;
   --color-red: #eb5757;
+  --color-silver: #f0f0f0;
+  --color-spacegray: #4c4c4c;
+  --color-midnightgreen: #5f7170;
+  --color-gold: #fcdbc1;
   --breakpoint-md: 640px;
   --breakpoint-lg: 1200px;
 }
