@@ -1,17 +1,19 @@
 import type React from 'react';
 import { ICONS } from '../../../constants/icons';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
+import CN from 'classnames';
 
 type Props = {
   onClick: () => void;
+  classNames?: string;
 };
 
-export const NavigationButtons: React.FC<Props> = ({ onClick }) => {
+export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
   return (
-    <nav className="flex items-center">
+    <nav className={CN('flex items-center', classNames)}>
       <a
         href="#favorites"
-        className="w-[48px] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center border-l border-elements hover:bg-gray-50 transition-colors"
+        className="w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center border-l border-elements hover:bg-gray-50 transition-colors"
       >
         <ButtonIcon
           className="border-none cursor-pointer"
@@ -21,7 +23,7 @@ export const NavigationButtons: React.FC<Props> = ({ onClick }) => {
       </a>
       <a
         href="#bag"
-        className="w-[48px] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center border-l border-elements hover:bg-gray-50 transition-colors"
+        className="w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center border-l border-elements hover:bg-gray-50 transition-colors"
       >
         <ButtonIcon
           className="border-none cursor-pointer"

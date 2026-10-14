@@ -2,11 +2,16 @@ import type React from 'react';
 import { NavigationButtons } from '../../molecules/Navigation/NavigationalButtons';
 import { ICONS } from '../../../constants/icons';
 import { HeadLogo } from '../../atoms/Logos/HeadLogo';
-import { NavigationList } from '../../molecules/Navigation/NavigationList';
+import { NavigationTopList } from '../../molecules/Navigation/NavigationTopList';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { useCallback } from 'react';
 
-export const Header: React.FC = () => {
+type Props = {
+  menuToggle: () => void;
+  isMenuOpen: boolean;
+};
+
+export const Header: React.FC<Props> = ({ menuToggle, isMenuOpen }) => {
   const handleRedirect = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -17,17 +22,20 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-[32px] lg:gap-[48px]">
           <HeadLogo />
           <div className="hidden md:flex items-center gap-[32px] lg:gap-[64px]">
-            <NavigationList />
+            <NavigationTopList />
           </div>
         </div>
         <div className="hidden md:flex items-center h-full ">
-          <NavigationButtons onClick={handleRedirect} />
+          <NavigationButtons
+            classNames="w-[128px]"
+            onClick={handleRedirect}
+          />
         </div>
         <div className="flex md:hidden items-center h-full">
           <ButtonIcon
-            className="w-[48px] h-[48px]"
-            src={ICONS.MENU}
-            handleClick={handleRedirect}
+            className="w-[48px] h-[48px] border-b-0 border-t-0 border-r-0 border-l-elements"
+            src={isMenuOpen ? ICONS.CLOSE : ICONS.MENU}
+            handleClick={menuToggle}
           />
         </div>
       </div>
