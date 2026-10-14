@@ -9,8 +9,8 @@ type Props = {
   description: DescriptionPart[];
 };
 
-export const AboutPhone: React.FC<Props> = ({ description }) => (
-  <>
+export const ProductAbout: React.FC<Props> = ({ description }) => (
+  <div>
     <Typography
       level="h3"
       className="pb-[16px] border-b-[1px] border-elements"
@@ -35,5 +35,5 @@ export const AboutPhone: React.FC<Props> = ({ description }) => (
         ))}
       </>
     ))}
-  </>
+  </div>
 );
