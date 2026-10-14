@@ -14,7 +14,7 @@ export const NavigationLink: React.FC<NavLinkProps> = ({
 }) => (
   <a
     href={href}
-    className="group"
+    className="group flex"
   >
     <Typography
       level="uppercase"

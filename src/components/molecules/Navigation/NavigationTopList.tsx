@@ -5,7 +5,7 @@ type NavigationListProps = {
   direction?: 'row' | 'column';
 };
 
-export const NavigationList: React.FC<NavigationListProps> = ({
+export const NavigationTopList: React.FC<NavigationListProps> = ({
   direction = 'row',
 }) => {
   const location = useLocation();
@@ -30,7 +30,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
         return (
           <div
             key={item.href}
-            className={`relative flex items-center ${isColumn ? 'h-auto py-[8px]' : 'h-[48px]'}`}
+            className={`relative flex items-center ${isColumn ? 'h-auto py-[8px]' : 'h-[48px] lg:h-[64px]'}`}
           >
             <NavigationLink
               href={item.href}
