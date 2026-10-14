@@ -1,0 +1,32 @@
+import { ICONS } from '../../../constants/icons';
+import { ButtonCart } from '../../atoms/Buttons/ButtonCart';
+import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
+
+type Props = {
+  handleSelectClick: () => void;
+  isSelected: boolean;
+  isLiked: boolean;
+  handleLikeClick: () => void;
+};
+
+export const ProductSelectActions: React.FC<Props> = ({
+  handleLikeClick,
+  handleSelectClick,
+  isSelected,
+  isLiked,
+}) => (
+  <div className="flex gap-2">
+    <ButtonCart
+      handleClick={handleSelectClick}
+      isSelected={isSelected}
+      className="flex-1 h-10"
+      content="Add to cart"
+    />
+    <ButtonIcon
+      className={'w-10 h-10 flex items-center justify-center'}
+      isSelected={isLiked}
+      handleClick={handleLikeClick}
+      src={isLiked ? ICONS.HEART_FILLED : ICONS.HEART_EMPTY}
+    />
+  </div>
+);
