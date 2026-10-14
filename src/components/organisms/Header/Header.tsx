@@ -17,8 +17,8 @@ export const Header: React.FC<Props> = ({ menuToggle, isMenuOpen }) => {
   }, []);
 
   return (
-    <header className="w-full bg-white border-b border-elements pl-[16px] lg:pl-[24px]">
-      <div className="mx-auto flex items-center justify-between h-[48px] lg:h-[64px]">
+    <header className="w-full border-b border-elements h-12 lg:h-16 bg-white pl-[16px] lg:pl-[24px]">
+      <div className="h-full mx-auto flex items-center justify-between">
         <div className="flex items-center gap-[32px] lg:gap-[48px]">
           <HeadLogo />
           <div className="hidden md:flex items-center gap-[32px] lg:gap-[64px]">
@@ -33,7 +33,7 @@ export const Header: React.FC<Props> = ({ menuToggle, isMenuOpen }) => {
         </div>
         <div className="flex md:hidden items-center h-full">
           <ButtonIcon
-            className="w-[48px] h-[48px] border-b-0 border-t-0 border-r-0 border-l-elements"
+            className="w-[48px] h-full border-b-0 border-t-0 border-r-0 border-l-elements"
             src={isMenuOpen ? ICONS.CLOSE : ICONS.MENU}
             handleClick={menuToggle}
           />

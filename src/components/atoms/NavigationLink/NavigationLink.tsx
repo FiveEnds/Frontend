@@ -5,9 +5,14 @@ import { NavLink } from 'react-router-dom';
 type NavLinkProps = {
   href: string;
   children: React.ReactNode;
+  classNames?: string;
 };
 
-export const NavigationLink: React.FC<NavLinkProps> = ({ href, children }) => (
+export const NavigationLink: React.FC<NavLinkProps> = ({
+  href,
+  children,
+  classNames,
+}) => (
   <NavLink
     to={href}
     end
@@ -17,11 +22,13 @@ export const NavigationLink: React.FC<NavLinkProps> = ({ href, children }) => (
       <>
         <Typography
           level="uppercase"
-          className={`transition-colors ${
-            isActive ? 'text-primary' : (
-              'text-secondary group-hover:text-primary'
-            )
-          }`}
+          className={`transition-colors 
+            ${
+              isActive ? 'text-primary' : (
+                'text-secondary group-hover:text-primary'
+              )
+            }
+          ${classNames}`}
         >
           {children}
         </Typography>
