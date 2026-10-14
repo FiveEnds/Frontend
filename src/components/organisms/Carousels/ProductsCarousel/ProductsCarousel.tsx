@@ -1,18 +1,18 @@
 import type { EmblaOptionsType } from 'embla-carousel';
-import { Typography } from '../../atoms/Typography/Typography';
+import { Typography } from '../../../atoms/Typography/Typography';
 // Change this line to import your local component file (adjust the relative path if needed):
 import React, { useState } from 'react';
-import './css/base.css';
-import './css/sandbox.css';
-import './css/embla.css';
-import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
-import { ICONS } from '../../../constants/icons';
-import { useAutoplay } from './js/EmblaCarouselAutoplay';
+import '../css/base.css';
+import '../css/sandbox.css';
+import '../css/embla.css';
+import { ButtonIcon } from '../../../atoms/Buttons/ButtonIcon';
+import { ICONS } from '../../../../constants/icons';
+import { useAutoplay } from '../js/EmblaCarouselAutoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { usePrevNextButtons } from './js/EmblaCarouselArrowButtons';
-import type { Product } from '../../../types/Product';
-import { ProductCard } from '../ProductCard/ProductCard';
+import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
+import type { Product } from '../../../../types/Product';
+import { ProductCard } from '../../ProductCard/ProductCard';
 
 type Props = {
   title: string;
@@ -30,7 +30,7 @@ export const ProductsCarousel: React.FC<Props> = ({
   productCardHeight,
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
-    Autoplay({ delay: 3000 }),
+    Autoplay({ playOnInit: false }),
   ]);
 
   const { onAutoplayButtonClick } = useAutoplay(emblaApi);
