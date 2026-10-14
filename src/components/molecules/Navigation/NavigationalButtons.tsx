@@ -4,6 +4,7 @@ import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 
 type Props = {
   onClick: () => void;
+  className?: string;
 };
 
 export const NavigationButtons: React.FC<Props> = ({ onClick }) => {

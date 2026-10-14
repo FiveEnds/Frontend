@@ -1,69 +1,6 @@
-import { Footer } from '../organisms/Footer/Footer';
-import { Header } from '../organisms/Header/Header';
-import { PhoneSpecsTable } from '../molecules/PhoneSpecsTable/PhoneSpecsTable';
-import { ProductCard } from '../organisms/ProductCard/ProductCard';
-import { ProductAbout } from '../molecules/ProductAbout/ProductAbout';
-
-const productDescriptionData = [
-  {
-    title: 'And then there was Pro',
-    text: [
-      'A transformative triple camera system that adds tons of capability without complexity.',
-      'An unprecedented leap in battery life.And a mind blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do.Welcome to the first iPhone powerful enough to be called Pro.',
-    ],
-  },
-  {
-    title: 'Camera',
-    text: [
-      'Meet the first triple camera system to combine cutting edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest quality video in a smartphone — then edit with the same tools you love for photos. You ve never shot with anything like it.',
-    ],
-  },
-  {
-    title:
-      'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
-    text: [
-      'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
-    ],
-  },
-];
-
-const phoneSpecsData = {
-  screen: '6.5" OLED',
-  resolution: '2688x1242',
-  processor: 'Apple A12 Bionic',
-  ram: '3 GB',
-  capacity: '64 GB',
-  camera: '12 Mp + 12 Mp + 12 Mp (Triple)',
-  zoom: 'Optical, 2x',
-  cell: ['GSM', 'LTE', 'UMTS'],
-};
-
-const sampleRecommendedProduct = {
-  id: '2',
-  category: 'phones',
-  phoneId: 'apple-iphone-11-pro-max-64gb-gold',
-  itemId: 'apple-iphone-11-pro-max-64gb-gold',
-  name: 'Apple iPhone 11 Pro Max 64GB Gold',
-  fullPrice: 1100,
-  price: 999,
-  priceRegular: 1100,
-  priceDiscount: 999,
-  screen: '6.5" OLED',
-  resolution: '2688x1242',
-  processor: 'Apple A12 Bionic',
-  capacity: '64GB',
-  color: 'gold',
-  ram: '4GB',
-  year: 2019,
-  image: 'img/phones/apple-iphone-11-pro-max/gold/00.jpg',
-  images: ['https://via.placeholder.com/200'],
-  namespaceId: 'apple-iphone-11-pro-max',
-};
-
 export const ProductPagelayout = () => (
   <>
     <header>
-      <Header />
       <aside></aside>
     </header>
     <main>
@@ -142,12 +79,12 @@ export const ProductPagelayout = () => (
         <div>
           <section>
             <h1>About Page</h1>
-            <ProductAbout description={productDescriptionData} />
+            {/* Опис телефонів */}
           </section>
           <div>
             <section>
               <h2>Tech specs</h2>
-              <PhoneSpecsTable specs={phoneSpecsData} />
+              {/* характеристики*/}
             </section>
           </div>
         </div>
@@ -165,27 +102,12 @@ export const ProductPagelayout = () => (
           <div>
             <div>
               {/* Щось схоче до слайдера? */}
-              <div className="flex gap-4 mt-4">
-                <ProductCard
-                  product={sampleRecommendedProduct}
-                  cardHeight={506}
-                  isLiked={false}
-                  isSelected={false}
-                  handleLikeClick={() => {
-                    console.log('Like clicked');
-                  }}
-                  handleSelectClick={() => {
-                    console.log('Cart clicked');
-                  }}
-                />
-              </div>
+              <div>{/* Наша карточка */}</div>
             </div>
           </div>
         </section>
       </section>
     </main>
-    <footer>
-      <Footer />
-    </footer>
+    <footer></footer>
   </>
 );
