@@ -12,6 +12,8 @@ const sampleRecommendedProduct = {
   price: 999,
   priceRegular: 1100,
   priceDiscount: 999,
+  resolution: '2688x1242',
+  processor: 'Apple A12 Bionic',
   screen: '6.5" OLED',
   capacity: '64GB',
   color: 'gold',
