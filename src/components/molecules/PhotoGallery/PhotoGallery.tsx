@@ -17,7 +17,7 @@ type ButtonProps = {
 const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
   <button
     className={cn(
-      'flex justify-center items-center size-[80px] mb-4 last:mb-0 border border-elements',
+      'flex justify-center items-center min-w-0 w-full border border-elements p-[5%]',
       {
         'border-primary': currentPhoto === imageSrc,
       },
@@ -27,7 +27,7 @@ const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
     <img
       src={imageSrc}
       alt=""
-      className={cn('object-contain size-[70px]')}
+      className={cn('object-contain w-full aspect-square')}
     />
   </button>
 );
@@ -36,9 +36,31 @@ export const PhotoGallery: React.FC<Props> = ({ product }) => {
   const [currentPhoto, setCurrentPhoto] = useState<string>(product.images[0]);
 
   return (
-    <div className="flex m-3">
-      <div className="h-116 overflow-auto ">
-        <div className={cn('flex flex-col')}>
+    <div
+      className="
+    grid grid-cols-subgrid
+    min-[1200px]:col-span-12
+
+    min-[640px]:max-[1200px]:col-span-7
+    min-[320px]:max-[640px]:col-span-4
+    "
+    >
+      <div
+        className="
+      order-1
+      min-[1200px]:col-span-2
+
+      min-[640px]:max-[1200px]:col-span-1
+      
+      min-[320px]:max-[640px]:col-span-4
+      min-[320px]:max-[640px]:order-2
+      "
+      >
+        <div
+          className={cn(
+            'flex flex-col gap-2 min-[1200px]:gap-4 min-[320px]:max-[640px]:flex-row',
+          )}
+        >
           {product.images.map((image) => (
             <Button
               key={image}
@@ -49,11 +71,23 @@ export const PhotoGallery: React.FC<Props> = ({ product }) => {
           ))}
         </div>
       </div>
-      <img
-        src={currentPhoto}
-        alt="mobilka ept"
-        className="w-116 h-116 object-contain ml-4"
-      />
+      <div
+        className="
+      min-w-0 w-full order-2 p-2
+      min-[1200px]:col-span-10
+
+      min-[640px]:max-[1200px]:col-span-6
+
+      min-[320px]:max-[640px]:col-span-4
+      min-[320px]:max-[640px]:order-1
+      "
+      >
+        <img
+          src={currentPhoto}
+          alt={product.name}
+          className="object-contain block w-full aspect-square"
+        />
+      </div>
     </div>
   );
 };
