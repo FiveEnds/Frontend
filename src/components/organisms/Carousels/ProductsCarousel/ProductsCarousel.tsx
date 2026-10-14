@@ -65,7 +65,7 @@ export const ProductsCarousel: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className="embla"
+        className="embla -mr-4 md:-mr-6 lg:-mr-4"
         style={
           { '--slide-size': `${100 / displayedSlides}%` } as React.CSSProperties
         }
