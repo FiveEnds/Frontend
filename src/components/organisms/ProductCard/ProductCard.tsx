@@ -5,6 +5,7 @@ import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
 import { ProductSelectActions } from '../../molecules/ProductSelectActions/ProductSelectActions';
 import type { Spec } from '../../../types/Specifications';
 import { SPECIFICATIONS } from '../../../constants/specifications';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
