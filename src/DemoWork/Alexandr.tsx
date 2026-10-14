@@ -3,6 +3,7 @@ import { CartItem } from '../components/molecules/CartItem/CartItem';
 import type { Phone } from '../types/api';
 import { getPhones } from '../services/api';
 import { Dropdown } from '../components/molecules/Dropdown';
+import { HeadingWithCount } from '../components/molecules/HeadingWithCount/HeadingWithCount';
 
 const options = ['Newest', 'Alphabetically', 'Cheapest', '1', '2', '3'];
 
@@ -60,6 +61,13 @@ export const Alexandr = () => {
           onChange={setSortBy}
         />
       </div>
+
+      <HeadingWithCount
+        title="Mobile phones"
+        itemsCount={phones.length}
+        titleLevel="h1"
+        countLabel="item"
+      />
     </>
   );
 };
