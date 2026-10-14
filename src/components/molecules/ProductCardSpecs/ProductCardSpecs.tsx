@@ -1,28 +1,22 @@
+import type { Spec } from '../../../types/Specifications';
 import { Typography } from '../../atoms/Typography/Typography';
 
 type Props = {
-  screen: string;
-  capacity: string;
-  ram: string;
+  specifications: Spec[];
 };
 
-export const ProductCardSpecs: React.FC<Props> = ({
-  screen,
-  capacity,
-  ram,
-}) => (
+export const ProductCardSpecs: React.FC<Props> = ({ specifications }) => (
   <>
-    <div className="flex justify-between pt-2 pb-2">
-      <div className="flex flex-col gap-2">
-        <Typography className="text-secondary">Screen</Typography>
-        <Typography className="text-secondary">Capacity</Typography>
-        <Typography className="text-secondary">RAM</Typography>
-      </div>
-      <div className="flex flex-col gap-2">
-        <Typography className="text-end">{screen}</Typography>
-        <Typography className="text-end">{capacity}</Typography>
-        <Typography className="text-end">{ram}</Typography>
-      </div>
+    <div className="flex flex-col gap-2">
+      {specifications.map(([specName, specValue]) => (
+        <div
+          className="flex justify-between"
+          key={specName}
+        >
+          <Typography className="text-secondary">{specName}</Typography>
+          <Typography className="text-end">{specValue}</Typography>
+        </div>
+      ))}
     </div>
   </>
 );

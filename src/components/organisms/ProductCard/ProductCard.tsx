@@ -1,9 +1,10 @@
-import { ICONS } from '../../../constants/icons';
 import type { Product } from '../../../types/Product';
-import { ButtonCart } from '../../atoms/Buttons/ButtonCart';
-import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { Typography } from '../../atoms/Typography/Typography';
 import { ProductCardSpecs } from '../../molecules/ProductCardSpecs/ProductCardSpecs';
+import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
+import { ProductSelectActions } from '../../molecules/ProductSelectActions/ProductSelectActions';
+import type { Spec } from '../../../types/Specifications';
+import { SPECIFICATIONS } from '../../../constants/specifications';
 
 type Props = {
   product: Product;
@@ -14,6 +15,14 @@ type Props = {
   isLiked: boolean;
   cardHeight: number;
 };
+
+function getSpecifications(product: Product): Spec[] {
+  return [
+    [SPECIFICATIONS.SCREEN, product.screen],
+    [SPECIFICATIONS.CAPACITY, product.capacity],
+    [SPECIFICATIONS.RAM, product.ram],
+  ];
+}
 
 export const ProductCard: React.FC<Props> = ({
   product,
@@ -37,40 +46,17 @@ export const ProductCard: React.FC<Props> = ({
     </div>
     <Typography>{product.name}</Typography>
     {product.priceDiscount ?
-      <div className="pb-2 border-b border-elements flex gap-2">
-        <Typography level="h3">${product.priceDiscount}</Typography>
-        <Typography level="h3">
-          <span className="relative inline-block text-secondary">
-            ${product.priceRegular}
-            <span className="absolute inset-x-0 top-11/26 h-[1px] bg-secondary mix-blend-color-dodge" />
-          </span>
-        </Typography>
-      </div>
-    : <Typography
-        level="h3"
-        className="pb-2 border-b border-elements"
-      >
-        ${product.priceRegular}
-      </Typography>
-    }
-    <ProductCardSpecs
-      screen={product.screen}
-      capacity={product.capacity}
-      ram={product.ram}
+      <ProductPrice
+        currentPrice={product.priceDiscount}
+        oldPrice={product.priceRegular}
+      />
+    : <ProductPrice currentPrice={product.priceRegular} />}
+    <ProductCardSpecs specifications={getSpecifications(product)} />
+    <ProductSelectActions
+      handleSelectClick={handleSelectClick}
+      handleLikeClick={handleLikeClick}
+      isSelected={isSelected}
+      isLiked={isLiked}
     />
-    <div className="flex gap-2">
-      <ButtonCart
-        handleClick={handleSelectClick}
-        isSelected={isSelected}
-        className="flex-1 h-10"
-        content="Add to cart"
-      />
-      <ButtonIcon
-        className={'w-10 h-10 flex items-center justify-center'}
-        isSelected={isLiked}
-        handleClick={handleLikeClick}
-        src={isLiked ? ICONS.HEART_FILLED : ICONS.HEART_EMPTY}
-      />
-    </div>
   </div>
 );

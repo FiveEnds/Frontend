@@ -8,5 +8,7 @@ export type Product = {
   screen: string;
   capacity: string;
   ram: string;
+  resolution: string;
+  processor: string;
   [key: string]: unknown;
 };
