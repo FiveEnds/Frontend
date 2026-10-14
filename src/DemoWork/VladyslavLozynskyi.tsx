@@ -9,7 +9,9 @@
 // import { AvailableColors } from '../components/molecules/AvailableColors/AvailableColors';
 // import { SelectCapacity } from '../components/molecules/SelectCapacity/SelectCapacity';
 // import { ProductCardSpecs } from '../components/molecules/ProductCardSpecs/ProductCardSpecs';
+import { Header } from '../components/organisms/Header/Header';
 import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
+import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
 // import { useState } from 'react';
 // import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 // import { BANNERS } from '../constants/banners';
@@ -615,6 +617,13 @@ export const VladyslavLozynskyi: React.FC = () => {
         handleColorSelect={() => {}}
         handleLikeClick={() => {}}
         handleSelectClick={() => {}}
+      />
+
+      <div className="pb-50">,</div>
+      <ProductItemLayout
+        header={<Header />}
+        pageProductDetails={<div className="bg-black">hello</div>}
+        productGallery={<div className="bg-yellow">gallery</div>}
       />
     </>
   );

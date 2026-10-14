@@ -1,5 +1,5 @@
 import { BANNERS } from '../../constants/banners';
-import { SQUARE_BANNERS } from '../../constants/square_banners';
+import { SQUARE_BANNERS } from '../../constants/squareBanners';
 import { PromoCarousel } from '../organisms/Carousels/PromoCarousel/PromoCarousel';
 import { Footer } from '../organisms/Footer/Footer';
 import { Header } from '../organisms/Header/Header';
