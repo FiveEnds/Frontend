@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Header } from '../components/organisms/Header/Header';
 import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 import { BANNERS } from '../constants/banners';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
@@ -199,10 +198,10 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className=" sticky top-0 z-50">
+      {/* <header className=" sticky top-0 z-50">
         <Header />
-        <aside>{/*наша компонента бургер меню */}</aside>
-      </header>
+        <aside></aside>
+      </header> */}
 
       <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-8 py-6">
         <section>
