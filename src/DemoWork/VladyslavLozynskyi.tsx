@@ -9,7 +9,13 @@
 // import { AvailableColors } from '../components/molecules/AvailableColors/AvailableColors';
 // import { SelectCapacity } from '../components/molecules/SelectCapacity/SelectCapacity';
 // import { ProductCardSpecs } from '../components/molecules/ProductCardSpecs/ProductCardSpecs';
+import { useState } from 'react';
+import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
+import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
+import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
+import { Footer } from '../components/organisms/Footer/Footer';
 import { Header } from '../components/organisms/Header/Header';
+import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTechSpecs';
 import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
 import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
 // import { useState } from 'react';
@@ -17,6 +23,16 @@ import { ProductItemLayout } from '../components/templates/ProductItemLayout/Pro
 // import { BANNERS } from '../constants/banners';
 // import { SQUARE_BANNERS } from '../constants/square_banners';
 
+function getResizeValue() {
+  const width = window.innerWidth;
+  if (width < 640) {
+    return 1.5;
+  } else if (width < 1200) {
+    return 2.5;
+  } else {
+    return 4;
+  }
+}
 export const VladyslavLozynskyi: React.FC = () => {
   const productColors = [
     'black',
@@ -550,20 +566,30 @@ export const VladyslavLozynskyi: React.FC = () => {
     },
   ];
 
-  // const [size, setSize] = useState(1.5);
+  const specs = {
+    id: 'apple-iphone-11-128gb-black',
+    namespaceId: 'apple-iphone-11',
+    name: 'Apple iPhone 11 128GB Black',
+    capacityAvailable: ['64GB', '128GB', '256GB'],
+    capacity: '128GB',
+    priceRegular: 1100,
+    priceDiscount: 1050,
+    colorsAvailable: ['black', 'green', 'yellow', 'white', 'purple', 'red'],
+    color: 'black',
+    screen: "6.1' IPS",
+    resolution: '1792x828',
+    processor: 'Apple A13 Bionic',
+    ram: '4GB',
+    camera: '12 Mp + 12 Mp + 12MP',
+    zoom: 'Digital, 5x',
+    cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  };
 
-  // window.addEventListener('resize', () => {
-  //   // Отримуємо поточну ширину та висоту вікна перегляду (Viewport)
-  //   const width = window.innerWidth;
+  const [size, setSize] = useState(getResizeValue);
 
-  //   if (width < 640) {
-  //     setSize(1.5);
-  //   } else if (width < 1200) {
-  //     setSize(2.5);
-  //   } else {
-  //     setSize(4);
-  //   }
-  // });
+  window.addEventListener('resize', () => {
+    setSize(getResizeValue);
+  });
   return (
     <>
       {/* <ProductCardSpecs
@@ -604,7 +630,7 @@ export const VladyslavLozynskyi: React.FC = () => {
         handleClick={() => {}}
       /> */}
 
-      <ProductConfigurator
+      {/* <ProductConfigurator
         productColors={productColors}
         selectedColor="green"
         availableCapacities={['64GB', '256GB', '512GB']}
@@ -617,13 +643,69 @@ export const VladyslavLozynskyi: React.FC = () => {
         handleColorSelect={() => {}}
         handleLikeClick={() => {}}
         handleSelectClick={() => {}}
-      />
+      /> */}
 
-      <div className="pb-50">,</div>
+      {/* <div className="pb-50">,</div> */}
       <ProductItemLayout
         header={<Header />}
         pageProductDetails={<div className="bg-black">hello</div>}
         productGallery={<div className="bg-yellow">gallery</div>}
+        productConfigurator={
+          <ProductConfigurator
+            productColors={productColors}
+            selectedColor="green"
+            availableCapacities={['64GB', '256GB', '512GB']}
+            selectedCapacity="256GB"
+            currentPrice={product[0].priceRegular}
+            isSelected={false}
+            isLiked={false}
+            product={product[0]}
+            handleCapacitySelect={() => {}}
+            handleColorSelect={() => {}}
+            handleLikeClick={() => {}}
+            handleSelectClick={() => {}}
+          />
+        }
+        productAbout={
+          <ProductAbout
+            description={[
+              {
+                title: 'And then was a Pro',
+                text: [
+                  'A transformative triple-camera system that adds tons of capability without complexity.',
+                  'An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
+                ],
+              },
+              {
+                title: 'Camera',
+                text: [
+                  'Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.',
+                ],
+              },
+              {
+                title:
+                  'Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.',
+                text: [
+                  'iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.',
+                ],
+              },
+            ]}
+          />
+        }
+        techSpecs={
+          <PhoneTechSpecs>
+            <PhoneSpecsTable specs={specs} />
+          </PhoneTechSpecs>
+        }
+        productsCarousel={
+          <ProductsCarousel
+            title="Brand new models"
+            products={product}
+            displayedSlides={size}
+            productCardHeight={440}
+          />
+        }
+        footer={<Footer />}
       />
     </>
   );

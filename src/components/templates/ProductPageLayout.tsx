@@ -1,8 +1,8 @@
-import { AboutPhone } from '../molecules/AboutPhone/AboutPhone';
 import { Footer } from '../organisms/Footer/Footer';
 import { Header } from '../organisms/Header/Header';
 import { PhoneSpecsTable } from '../molecules/PhoneSpecsTable/PhoneSpecsTable';
 import { ProductCard } from '../organisms/ProductCard/ProductCard';
+import { ProductAbout } from '../molecules/ProductAbout/ProductAbout';
 
 const productDescriptionData = [
   {
@@ -49,6 +49,8 @@ const sampleRecommendedProduct = {
   priceRegular: 1100,
   priceDiscount: 999,
   screen: '6.5" OLED',
+  resolution: '2688x1242',
+  processor: 'Apple A12 Bionic',
   capacity: '64GB',
   color: 'gold',
   ram: '4GB',
@@ -140,7 +142,7 @@ export const ProductPagelayout = () => (
         <div>
           <section>
             <h1>About Page</h1>
-            <AboutPhone description={productDescriptionData} />
+            <ProductAbout description={productDescriptionData} />
           </section>
           <div>
             <section>

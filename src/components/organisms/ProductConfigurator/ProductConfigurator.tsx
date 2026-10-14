@@ -61,7 +61,7 @@ export const ProductConfigurator: React.FC<Props> = ({
   }, []);
 
   return (
-    <>
+    <div>
       <AvailableColors
         colors={productColors}
         handleClick={handleColorSelect}
@@ -93,6 +93,6 @@ export const ProductConfigurator: React.FC<Props> = ({
         </div>
         <ProductCardSpecs specifications={getSpecifications(product)} />
       </div>
-    </>
+    </div>
   );
 };
