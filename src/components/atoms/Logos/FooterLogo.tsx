@@ -7,7 +7,7 @@ export const FooterLogo = () => {
       <img
         src="/img/Logo.svg"
         alt="Nice Gadgets"
-        className="w-full h-full object-contain"
+        className="w-22.25 h-8 object-contain"
       />
     </a>
   );
