@@ -7,10 +7,13 @@ import { PhoneLayout } from '../components/templates/PhoneLayout';
 import { TabletsLayout } from '../components/templates/TabletsLayout';
 import { ProductPagelayout } from '../components/templates/ProductPageLayout';
 import { HomePage } from '../pages/HomePage';
+import { Breadcrumbs } from '../components/molecules/BreadCrumbs/BreadCrumbs';
 
 export const VladyslavPetrovskyi = () => {
   return (
     <>
+      <Breadcrumbs />
+
       <HomePage />
       <Typography level="body">test1</Typography>
       <Typography level="button">test2</Typography>
