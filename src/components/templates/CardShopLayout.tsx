@@ -1,15 +1,7 @@
-import { useState } from 'react';
-import { CartItem } from '../molecules/CartItem';
-import { Header } from '../organisms/Header/Header';
-import { Footer } from '../organisms/Footer/Footer';
-
 export const CardShopLayout = () => {
-  const [quantity, setQuantity] = useState(1);
-
   return (
     <>
       <header>
-        <Header />
         <aside></aside>
       </header>
       <main>
@@ -27,22 +19,12 @@ export const CardShopLayout = () => {
               {/*Або нічого не показуємо і типу якусь картинку павутинки*/}
               {/* <img></img> Павутинка*/}
             </div>
-            <CartItem
-              image="/img/phones/apple-iphone-11/purple/00.webp"
-              title="Apple iPhone 11 128GB Purple"
-              price={1050 * quantity}
-              quantity={quantity}
-              productPath="/phones/apple-iphone-11-128gb-purple"
-              onRemove={() => console.log('remove')}
-              onQuantityChange={setQuantity}
-            />
+            {/*Вибір нашої карточки*/}
           </div>
         </section>
       </main>
 
-      <footer>
-        <Footer />
-      </footer>
+      <footer></footer>
     </>
   );
 };
