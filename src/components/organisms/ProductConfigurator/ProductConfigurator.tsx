@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { SPECIFICATIONS } from '../../../constants/specifications';
 import type { Product } from '../../../types/Product';
 import type { Spec } from '../../../types/Specifications';
@@ -46,38 +47,52 @@ export const ProductConfigurator: React.FC<Props> = ({
   isSelected,
   isLiked,
   product,
-}) => (
-  <>
-    <AvailableColors
-      colors={productColors}
-      handleClick={handleColorSelect}
-      isSelected={selectedColor}
-      classNames="pb-6"
-    />
-    <div className="lg:w-[62.5%]">
-      <div className="py-6 border-y border-elements">
-        <SelectCapacity
-          availableCapacities={availableCapacities}
-          selectedCapacity={selectedCapacity}
-          handleClick={handleCapacitySelect}
-        />
-      </div>
-      <div className="py-8">
-        <div className="pb-4">
-          <ProductPrice
-            currentPrice={currentPrice}
-            oldPrice={oldPrice}
-            currentPriceSize="h2"
+}) => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 640);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  return (
+    <>
+      <AvailableColors
+        colors={productColors}
+        handleClick={handleColorSelect}
+        isSelected={selectedColor}
+        classNames="pb-6"
+      />
+      <div className="lg:w-[62.5%]">
+        <div className="py-6 border-y border-elements">
+          <SelectCapacity
+            availableCapacities={availableCapacities}
+            selectedCapacity={selectedCapacity}
+            handleClick={handleCapacitySelect}
           />
         </div>
-        <ProductSelectActions
-          handleLikeClick={handleLikeClick}
-          handleSelectClick={handleSelectClick}
-          isSelected={isSelected}
-          isLiked={isLiked}
-        />
+        <div className="py-8">
+          <div className="pb-4">
+            <ProductPrice
+              currentPrice={currentPrice}
+              oldPrice={oldPrice}
+              currentPriceSize={isSmallScreen ? 'h1' : 'h2'}
+            />
+          </div>
+          <ProductSelectActions
+            handleLikeClick={handleLikeClick}
+            handleSelectClick={handleSelectClick}
+            isSelected={isSelected}
+            isLiked={isLiked}
+          />
+        </div>
+        <ProductCardSpecs specifications={getSpecifications(product)} />
       </div>
-      <ProductCardSpecs specifications={getSpecifications(product)} />
-    </div>
-  </>
-);
+    </>
+  );
+};
