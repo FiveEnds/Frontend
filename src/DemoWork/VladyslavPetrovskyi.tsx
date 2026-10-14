@@ -1,18 +1,30 @@
 import { Typography } from '../components/atoms/Typography/Typography';
-import { Footer } from '../components/organisms/Footer/Footer';
-import { Header } from '../components/organisms/Header/Header';
+import { AccessoriesLayout } from '../components/templates/AccessoriesLayout';
+import { CardShopLayout } from '../components/templates/CardShopLayout';
+import { FavoritesLayout } from '../components/templates/FavoritesLayout';
+import { HomeLayout } from '../components/templates/HomeLayout';
+import { PhoneLayout } from '../components/templates/PhoneLayout';
+import { TabletsLayout } from '../components/templates/TabletsLayout';
+import { ProductPagelayout } from '../components/templates/ProductPageLayout';
 
-export const VladyslavPetrovskyi = () => (
-  <>
-    <Header />
-    <Typography level="body">test1</Typography>
-    <Typography level="button">test2</Typography>
-    <Typography level="h1">test3 and mobile</Typography>
-    <Typography level="h2">test4 and mobile</Typography>
-    <Typography level="h3">test5 and mobile</Typography>
-    <Typography level="h4">test6 and mobile</Typography>
-    <Typography level="small">test7</Typography>
-    <Typography level="uppercase">test8</Typography>
-    <Footer />
-  </>
-);
+export const VladyslavPetrovskyi = () => {
+  return (
+    <>
+      <Typography level="body">test1</Typography>
+      <Typography level="button">test2</Typography>
+      <Typography level="h1">test3 and mobile</Typography>
+      <Typography level="h2">test4 and mobile</Typography>
+      <Typography level="h3">test5 and mobile</Typography>
+      <Typography level="h4">test6 and mobile</Typography>
+      <Typography level="small">test7</Typography>
+      <Typography level="uppercase">test8</Typography>
+      <HomeLayout />
+      <AccessoriesLayout />
+      <CardShopLayout />
+      <FavoritesLayout />
+      <PhoneLayout />
+      <ProductPagelayout />
+      <TabletsLayout />
+    </>
+  );
+};
