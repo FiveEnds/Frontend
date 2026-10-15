@@ -10,7 +10,8 @@ export const NavigationList = () => {
     <nav className="flex flex-col md:flex-row items-start md:items-center gap-[4px] md:gap-[16px] lg:gap-[103px] ">
       {navItems.map((item) => (
         <NavigationLink
-          classNames="py-1"
+          key={item.href}
+          classNames=""
           href={item.href}
         >
           {item.label}

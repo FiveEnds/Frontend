@@ -1,4 +1,4 @@
-import type { Product } from '../../../types/Product';
+import type { Products } from '../../../types/Product';
 import { Typography } from '../../atoms/Typography/Typography';
 import { ProductCardSpecs } from '../../molecules/ProductCardSpecs/ProductCardSpecs';
 import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
@@ -8,16 +8,17 @@ import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
 
 type Props = {
-  product: Product;
+  product: Products;
   className?: string;
   handleLikeClick: () => void;
   handleSelectClick: () => void;
   isSelected: boolean;
   isLiked: boolean;
   cardHeight: number;
+  hasDiscount?: boolean;
 };
 
-function getSpecifications(product: Product): Spec[] {
+function getSpecifications(product: Products): Spec[] {
   return [
     [SPECIFICATIONS.SCREEN, product.screen],
     [SPECIFICATIONS.CAPACITY, product.capacity],
@@ -33,6 +34,7 @@ export const ProductCard: React.FC<Props> = ({
   className = '',
   isLiked,
   cardHeight,
+  hasDiscount = true,
 }) => (
   <div
     className={`p-8 flex flex-col gap-2 border border-elements ${className}`}
@@ -45,8 +47,8 @@ export const ProductCard: React.FC<Props> = ({
       >
         <img
           className="max-h-full max-w-full object-contain"
-          src={product.images[0]}
-          alt={product.namespaceId}
+          src={product.image}
+          alt={product.itemId}
         />
       </Link>
     </div>
@@ -57,12 +59,12 @@ export const ProductCard: React.FC<Props> = ({
     >
       <Typography>{product.name}</Typography>
     </Link>
-    {product.priceDiscount ?
+    {hasDiscount && product.fullPrice && product.fullPrice > product.price ?
       <ProductPrice
-        currentPrice={product.priceDiscount}
-        oldPrice={product.priceRegular}
+        currentPrice={product.price}
+        oldPrice={product.fullPrice}
       />
-    : <ProductPrice currentPrice={product.priceRegular} />}
+    : <ProductPrice currentPrice={product.fullPrice || product.price} />}
     <ProductCardSpecs specifications={getSpecifications(product)} />
     <ProductSelectActions
       handleSelectClick={handleSelectClick}
