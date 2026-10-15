@@ -4,8 +4,9 @@ import type { Category } from '../types/category';
 import type { Product } from '../types/Product';
 import { useEffect } from 'react';
 // import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
-// import { Breadcrumbs } from '../components/molecules/BreadCrumbs/BreadCrumbs';
 // import { ProductItemTopBar } from '../components/molecules/ProductItemTopBar/ProductItemTopBar';
+// import { PhotoGallery } from '../components/molecules/PhotoGallery/PhotoGallery';
+// import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
 
 type Props = {
   category: Category;
@@ -42,9 +43,11 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
   }
 
   return (
-    <></>
     // <ProductItemLayout
     //   pageProductDetails={<ProductItemTopBar title={product.name} />}
+    //   productGallery={<PhotoGallery product={product} />}
+    //   productConfigurator={<ProductConfigurator product={product}/>}
     // />
+    <></>
   );
 };
