@@ -1,3 +1,4 @@
+import { ButtonSelect } from '../../atoms/Buttons/ButtonSelect';
 import { Typography } from '../../atoms/Typography/Typography';
 
 type Props = {
@@ -17,9 +18,12 @@ export const Checkout: React.FC<Props> = ({ sum = 0, amount = 0 }) => {
       </Typography>
 
       <span className="h-px w-full bg-elements my-6" />
-      <button className="h-12 w-full bg-red items-center justify-center flex">
-        BUTTON
-      </button>
+      <ButtonSelect
+        content="Checkout"
+        className="h-12 w-full bg-primary text-white items-center justify-center flex"
+        handleClick={() => console.log('Checkout')}
+        isSelected={true}
+      />
     </div>
   );
 };
