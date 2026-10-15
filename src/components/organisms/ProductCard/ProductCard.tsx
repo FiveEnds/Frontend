@@ -37,7 +37,7 @@ export const ProductCard: React.FC<Props> = ({
   hasDiscount = true,
 }) => (
   <div
-    className={`p-8 flex flex-col gap-2 border border-elements ${className}`}
+    className={`p-8 flex flex-col gap-2 border border-elements transition-transform duration-300 ease-in-out hover:scale-105 ${className}`}
     style={{ height: cardHeight }}
   >
     <div className="flex-1 min-h-0 flex items-center justify-center w-full">
@@ -46,7 +46,7 @@ export const ProductCard: React.FC<Props> = ({
         className="flex justify-center w-full h-full overflow-hidden"
       >
         <img
-          className="max-h-full max-w-full object-contain transition-transform duration-300 ease-in-out hover:scale-105"
+          className="max-h-full max-w-full object-contain "
           src={product.image}
           alt={product.itemId}
         />
