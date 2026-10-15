@@ -18,10 +18,11 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
   const navigate = useNavigate();
 
   const products = useAppState((state) => state[category]);
-  console.log(products);
+  console.log('hello', products);
 
   useEffect(() => {
     if (products.length === 0) {
+      console.log('few');
       return;
     }
 
@@ -32,7 +33,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     if (product) {
       setProductItem(product);
     } else {
-      // navigate('/*', { replace: true });
+      navigate('/*', { replace: true });
     }
   }, [productId, products, setProductItem, navigate]);
 
