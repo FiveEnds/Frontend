@@ -1,6 +1,7 @@
+import cn from 'classnames';
 import { ICONS } from '../../../constants/icons';
-import { ButtonSelect } from '../../atoms/Buttons/ButtonSelect';
 import { Icon } from '../../atoms/Icon/Icon';
+import { Typography } from '../../atoms/Typography/Typography';
 
 type Props = {
   currentPage: number;
@@ -49,15 +50,31 @@ export const Pagination = ({
       </button>
 
       <div className="flex gap-2">
-        {pageNumbers.map((page) => (
-          <ButtonSelect
-            key={page}
-            content={String(page)}
-            className="h-8 w-8"
-            isSelected={page === currentPage}
-            handleClick={() => onPageChange(page)}
-          />
-        ))}
+        {pageNumbers.map((page) => {
+          const isCurrentPage = page === currentPage;
+
+          return (
+            <button
+              key={page}
+              type="button"
+              aria-current={isCurrentPage ? 'page' : undefined}
+              className={cn(
+                'flex h-8 w-8 items-center justify-center border text-center transition-colors',
+                isCurrentPage ?
+                  'border-primary bg-primary text-white'
+                : 'border-elements text-black hover:border-primary',
+              )}
+              onClick={() => onPageChange(page)}
+            >
+              <Typography
+                level="body"
+                textColor="inherit"
+              >
+                {page}
+              </Typography>
+            </button>
+          );
+        })}
       </div>
 
       <button

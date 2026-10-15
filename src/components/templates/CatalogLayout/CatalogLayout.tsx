@@ -18,8 +18,6 @@ export type CatalogLayoutProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  isInCart: (productId: string) => boolean;
-  onAddToCart: (product: Product) => void;
 };
 
 export const CatalogLayout = ({
@@ -35,8 +33,6 @@ export const CatalogLayout = ({
   currentPage,
   totalPages,
   onPageChange,
-  isInCart,
-  onAddToCart,
 }: CatalogLayoutProps) => (
   <div className="mx-auto w-full max-w-300 px-4 pt-6 pb-20 md:px-6 lg:px-8">
     <Breadcrumbs />
@@ -75,10 +71,6 @@ export const CatalogLayout = ({
           <ProductCard
             product={product}
             cardHeight={506}
-            isLiked={false}
-            isSelected={isInCart(product.id)}
-            handleLikeClick={() => undefined}
-            handleSelectClick={() => onAddToCart(product)}
           />
         </div>
       ))}

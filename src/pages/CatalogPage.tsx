@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import { CatalogLayout } from '../components/templates/CatalogLayout/CatalogLayout';
-import { useAppActions, useAppState } from '../store/store';
+import { useAppState } from '../store/store';
 import type { Category } from '../types/category';
 
 const sortOptions = ['Newest', 'Price low', 'Price high'];
@@ -19,15 +19,12 @@ type Props = {
 
 export const CatalogPage: React.FC<Props> = ({ category }) => {
   const products = useAppState((state) => state[category]);
-  const cart = useAppState((state) => state.cart);
 
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [itemsPerPage, setItemsPerPage] = useState('16');
   const [pagesByCategory, setPagesByCategory] = useState<
     Partial<Record<Category, number>>
   >({});
-
-  const { addItemToCart } = useAppActions();
 
   const currentPage = pagesByCategory[category] ?? 1;
 
@@ -72,6 +69,7 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
 
   const handlePageChange = (page: number) => {
     setPagesByCategory((pages) => ({ ...pages, [category]: page }));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -88,8 +86,6 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={handlePageChange}
-      isInCart={(productId) => Object.hasOwn(cart, productId)}
-      onAddToCart={addItemToCart}
     />
   );
 };
