@@ -1,6 +1,6 @@
 import type { FavouriteProduct } from '../../../types/FavouriteProduct';
 import { Typography } from '../../atoms/Typography/Typography';
-import { ProductCard } from '../../molecules/ProductCard/ProductCard';
+import { ProductCard } from '../ProductCard/ProductCard';
 
 type Props = {
   favouriteProducts: FavouriteProduct[];
@@ -23,11 +23,10 @@ export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
       : favouriteProducts.map((product) => {
           return (
             <ProductCard
-              className="h-110 col-span-4 md:col-span-6 md:h-126.5"
+              className="col-span-4 md:col-span-6 md:h-126.5"
               key={`${product.category}-${product.id}`}
               product={product}
-              handleSelectClick={() => {}}
-              isSelected={true}
+              cardHeight={440}
             />
           );
         })
