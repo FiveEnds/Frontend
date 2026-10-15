@@ -22,7 +22,7 @@ export const ShopByCategory = ({ categories }: Props) => {
         Shop by category
       </Typography>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-4">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-4 ">
         {categories.map((category) => (
           <CategoryCard
             key={category.to}
