@@ -37,7 +37,7 @@ export const ProductCard: React.FC<Props> = ({
   hasDiscount = true,
 }) => (
   <div
-    className={`p-8 flex flex-col gap-2 border border-elements transition-transform duration-300 ease-in-out hover:scale-105 ${className}`}
+    className={`p-8 flex flex-col gap-2 border border-elements transition-transform duration-300 ease-in-out hover:scale-105 hover:border-none ${className}`}
     style={{ height: cardHeight }}
   >
     <div className="flex-1 min-h-0 flex items-center justify-center w-full">
