@@ -35,7 +35,7 @@ export const IconNotification: React.FC<Props> = ({
         size-[14px]
         rounded-full 
         border 
-        border-white 
+        border-white
         bg-red
       "
       >

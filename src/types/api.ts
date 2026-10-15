@@ -1,4 +1,5 @@
-export type Category = 'phones' | 'tablets' | 'accessories';
+import type { Category } from './category';
+import type { Product } from './Product';
 
 export type ProductSummary = {
   id: number;
@@ -20,28 +21,6 @@ export type ProductDescriptionBlock = {
   text: string[];
 };
 
-export type ProductDetails = {
-  id: string;
-  category: Category;
-  namespaceId: string;
-  name: string;
-  capacityAvailable: string[];
-  capacity: string;
-  priceRegular: number;
-  priceDiscount: number;
-  colorsAvailable: string[];
-  color: string;
-  images: string[];
-  description: ProductDescriptionBlock[];
-  screen: string;
-  resolution: string;
-  processor: string;
-  ram: string;
-  camera?: string;
-  zoom?: string;
-  cell: string[];
-};
-
-export type Phone = ProductDetails & { category: 'phones' };
-export type Tablet = ProductDetails & { category: 'tablets' };
-export type Accessory = ProductDetails & { category: 'accessories' };
+export type Phone = Product & { category: 'phones' };
+export type Tablet = Product & { category: 'tablets' };
+export type Accessory = Product & { category: 'accessories' };

@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import { useState } from 'react';
+import type { Product } from '../../../types/Product';
 
 // import type { Product } from '../../../types/Product';
 // uncomment string upper
 
 type Props = {
-  product: object; //change type with Product when api will be ready
+  product: Product; //change type with Product when api will be ready
 };
 
 type ButtonProps = {
@@ -17,7 +18,7 @@ type ButtonProps = {
 const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
   <button
     className={cn(
-      'flex justify-center items-center min-w-0 w-full border border-elements p-[5%]',
+      'flex justify-center items-center min-w-0 w-full transform-gpu border border-elements p-[5%] hover-zoom',
       {
         'border-primary': currentPhoto === imageSrc,
       },
@@ -36,56 +37,22 @@ export const PhotoGallery: React.FC<Props> = ({ product }) => {
   const [currentPhoto, setCurrentPhoto] = useState<string>(product.images[0]);
 
   return (
-    <div
-      className="
-    grid grid-cols-subgrid
-    min-[1200px]:col-span-12
-
-    min-[640px]:max-[1200px]:col-span-7
-    min-[320px]:max-[640px]:col-span-4
-    "
-    >
-      <div
-        className="
-      order-1
-      min-[1200px]:col-span-2
-
-      min-[640px]:max-[1200px]:col-span-1
-      
-      min-[320px]:max-[640px]:col-span-4
-      min-[320px]:max-[640px]:order-2
-      "
-      >
-        <div
-          className={cn(
-            'flex flex-col gap-2 min-[1200px]:gap-4 min-[320px]:max-[640px]:flex-row',
-          )}
-        >
-          {product.images.map((image) => (
-            <Button
-              key={image}
-              imageSrc={image}
-              currentPhoto={currentPhoto}
-              setCurrentPhoto={setCurrentPhoto}
-            />
-          ))}
-        </div>
+    <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-12">
+      <div className="flex md:flex-col gap-2 md:gap-4 md:col-span-1 md:row-start-1 lg:col-span-2">
+        {product.images.map((image) => (
+          <Button
+            key={image}
+            imageSrc={image}
+            currentPhoto={currentPhoto}
+            setCurrentPhoto={setCurrentPhoto}
+          />
+        ))}
       </div>
-      <div
-        className="
-      min-w-0 w-full order-2 p-2
-      min-[1200px]:col-span-10
-
-      min-[640px]:max-[1200px]:col-span-6
-
-      min-[320px]:max-[640px]:col-span-4
-      min-[320px]:max-[640px]:order-1
-      "
-      >
+      <div className="col-span-full pb-4 md:pb-0 row-start-1 md:col-span-6 lg:col-span-10">
         <img
           src={currentPhoto}
           alt={product.name}
-          className="object-contain block w-full aspect-square"
+          className="object-contain block w-full aspect-square hover-zoom-small"
         />
       </div>
     </div>

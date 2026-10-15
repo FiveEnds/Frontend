@@ -7,9 +7,7 @@ export const HeaderLayout: React.FC = () => {
   return (
     <div>
       <Header />
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
     </div>
   );

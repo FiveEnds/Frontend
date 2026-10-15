@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-// import { DemoWork } from './DemoWork/DemoWork';
 import { HomePage } from './pages/HomePage';
 import { PageNotFound } from './pages/PageNotFound';
 import { PhonesPage } from './pages/PhonesPage';
@@ -12,6 +11,8 @@ import { useAppActions } from './store/store';
 import { getAccessories, getPhones, getTablets } from './services';
 import { useEffect } from 'react';
 import { HeaderLayout } from './components/templates/HeaderLayout';
+import { ProductItemPage } from './pages/ProductItemPage';
+import { CATEGORY } from './constants/category';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories } = useAppActions();
@@ -21,10 +22,6 @@ export const App: React.FC = () => {
     getTablets().then((data) => loadTablets(data));
     getAccessories().then((data) => loadAccessories(data));
   }, [loadAccessories, loadPhones, loadTablets]);
-
-  // const phones = useAppState((state) => state.phones);
-
-  // console.log(phones);
 
   return (
     <Routes>
@@ -41,12 +38,24 @@ export const App: React.FC = () => {
           element={<PhonesPage />}
         />
         <Route
+          path="phones/:productId"
+          element={<ProductItemPage category={CATEGORY.PHONES} />}
+        />
+        <Route
           path="tablets"
           element={<TabletsPage />}
         />
         <Route
+          path="tablets/:productId"
+          element={<ProductItemPage category={CATEGORY.TABLETS} />}
+        />
+        <Route
           path="accessories"
           element={<AccessoriesPage />}
+        />
+        <Route
+          path="accessories/:productId"
+          element={<ProductItemPage category={CATEGORY.ACCESSORIES} />}
         />
         <Route
           path="favourites"
@@ -73,7 +82,5 @@ export const App: React.FC = () => {
     </Routes>
   );
 };
-
-// return <DemoWork />;
 
 export default App;
