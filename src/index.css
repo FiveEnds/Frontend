@@ -47,3 +47,13 @@
   --breakpoint-md: 640px;
   --breakpoint-lg: 1200px;
 }
+
+@layer utilities {
+  .hover-zoom {
+    @apply hover:scale-110 transition-transform ease-in-out duration-300;
+  }
+
+  .hover-zoom-small {
+    @apply hover:scale-105 transition-transform ease-in-out duration-300;
+  }
+}

@@ -5,37 +5,17 @@ import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCaro
 import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
-import productsDataRaw from '../../public/api/products.json';
-import type { Products } from '../types/Product';
-
-const productsData: Products[] = productsDataRaw as Products[];
-{
-  /*Підготовка для завантаження з сайту  
-  const [productsData, setProductsData] = useState<Products[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setErrorMessage('');
-    getProducts()
-      .then(setProductsData)
-      .catch(() => setErrorMessage('Unable to load products'))
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  useEffect(() => {
-    if (error) {
-      const timeout = setTimeout(() => setError(''), 3000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [error]);
-
-   */
-}
+import { useAppState } from '../store/store';
 
 export const HomePage: React.FC = () => {
+  const phones = useAppState((state) => state.phones);
+  const tablets = useAppState((state) => state.tablets);
+  const accessories = useAppState((state) => state.accessories);
+
+  const productsData = useMemo(() => {
+    return [...phones, ...tablets, ...accessories];
+  }, [phones, tablets, accessories]);
+
   const [carouselParams, setCarouselParams] = useState({
     slides: 4,
     height: 506,
@@ -68,13 +48,19 @@ export const HomePage: React.FC = () => {
 
   const newProducts = useMemo(() => {
     return [...productsData].sort((a, b) => b.year - a.year);
-  }, []);
+  }, [productsData]);
 
   const hotPriceProducts = useMemo(() => {
     return [...productsData]
-      .filter((p) => p.fullPrice && p.price && p.price < p.fullPrice)
-      .sort((a, b) => b.fullPrice - b.price - (a.fullPrice - a.price));
-  }, []);
+      .filter(
+        (p) =>
+          p.priceRegular && p.priceDiscount && p.priceDiscount < p.priceRegular,
+      )
+      .sort(
+        (a, b) =>
+          b.priceRegular - b.priceDiscount - (a.priceRegular - a.priceDiscount),
+      );
+  }, [productsData]);
 
   return (
     <HomeLayout

@@ -1,25 +1,51 @@
 import { ProductCard } from '../components/organisms/ProductCard/ProductCard';
+import type { Product } from '../types/Product';
 
-const sampleRecommendedProduct = {
-  id: '2',
+const sampleRecommendedProduct: Product = {
+  id: 'apple-iphone-13-mini-256gb-pink',
   category: 'phones',
-  phoneId: 'apple-iphone-11-pro-max-64gb-gold',
-  itemId: 'apple-iphone-11-pro-max-64gb-gold',
-  name: 'Apple iPhone 11 Pro Max 64GB Gold',
-  fullPrice: 1100,
-  price: 999,
-  priceRegular: 1100,
-  priceDiscount: 999,
-  resolution: '1792x828',
-  processor: 'Apple A13 Bionic',
-  screen: '6.5" OLED',
-  capacity: '64GB',
-  color: 'gold',
+  namespaceId: 'apple-iphone-13-mini',
+  name: 'Apple iPhone 13 Mini 256GB Pink',
+  capacityAvailable: ['64GB', '128GB', '256GB'],
+  capacity: '256GB',
+  priceRegular: 1180,
+  priceDiscount: 1100,
+  colorsAvailable: ['midnight', 'white', 'blue', 'pink'],
+  color: 'pink',
+  images: [
+    'img/phones/apple-iphone-13-mini/pink/00.webp',
+    'img/phones/apple-iphone-13-mini/pink/01.webp',
+    'img/phones/apple-iphone-13-mini/pink/02.webp',
+    'img/phones/apple-iphone-13-mini/pink/03.webp',
+  ],
+  description: [
+    {
+      title: 'Your new superpower.',
+      text: [
+        'A15 Bionic, the fastest chip ever in a smartphone. Super Retina XDR display with ProMotion. Durable Ceramic Shield with 4x better drop performance. New Night mode on all cameras. It’s the ultimate iPhone, powered by the ultimate chip.',
+      ],
+    },
+    {
+      title: 'A15 Bionic chip. Super power. Mini sized.',
+      text: [
+        'The A15 Bionic chip is the fastest chip ever in a smartphone. It powers everything from photography to gaming. And the incredible Machine Learning accelerators allow you to experience augmented reality like never before.',
+      ],
+    },
+    {
+      title: 'Amazing Camera. No Pro Required.',
+      text: [
+        'iPhone 13 Mini takes stunning photos and videos with its advanced dual-camera system, with a new Night mode on all cameras. And Photographic Styles personalizes your photos in the moment for a beautiful look.',
+      ],
+    },
+  ],
+  screen: "5.4' Super Retina XDR",
+  resolution: '2532x1170',
+  processor: 'Apple A15 Bionic',
   ram: '4GB',
-  year: 2019,
-  image: 'img/phones/apple-iphone-11-pro-max/gold/00.jpg',
-  images: ['https://via.placeholder.com/200'],
-  namespaceId: 'apple-iphone-11-pro-max',
+  camera: '12 Mp + 12 Mp',
+  zoom: 'Optical, 2x; Digital, 5x',
+  cell: ['GSM', 'CDMA', 'HSPA', 'EVDO', 'LTE', '5G'],
+  year: 2020,
 };
 
 export const FavouritesPage: React.FC = () => {

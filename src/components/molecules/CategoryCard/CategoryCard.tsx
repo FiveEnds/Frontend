@@ -12,7 +12,7 @@ export const CategoryCard = ({ title, image, count, to }: Props) => {
   return (
     <Link
       to={to}
-      className="block min-w-0"
+      className="block min-w-0 transition-transform duration-300 ease-in-out hover:scale-105 hover:border-none"
     >
       <img
         src={image}
