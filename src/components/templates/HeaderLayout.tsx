@@ -5,9 +5,9 @@ import { Outlet } from 'react-router-dom';
 
 export const HeaderLayout: React.FC = () => {
   return (
-    <div className="app">
+    <div>
       <Header />
-      <main className="main-content">
+      <main>
         <Outlet />
       </main>
       <Footer />

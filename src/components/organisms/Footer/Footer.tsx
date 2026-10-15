@@ -10,18 +10,20 @@ export const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="w-full bg-white py-8">
-      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
-        <div className="mb-8 md:mb-0 w-[89px] h-[32px] ">
-          <FooterLogo />
+    <>
+      <footer className="bottom-0 w-full bg-white py-8 border-t border-elements">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between px-[24px] md:px-[32px] lg:px-[152]">
+          <div className="mb-8 md:mb-0 w-[89px] h-[32px] ">
+            <FooterLogo />
+          </div>
+          <div className="mb-8 md:mb-0">
+            <NavigationList />
+          </div>
+          <div className="w-full flex justify-center md:w-auto">
+            <ScrollToTopButton onClick={handleScrollTop} />
+          </div>
         </div>
-        <div className="mb-8 md:mb-0">
-          <NavigationList />
-        </div>
-        <div className="w-full flex justify-center md:w-auto">
-          <ScrollToTopButton onClick={handleScrollTop} />
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };

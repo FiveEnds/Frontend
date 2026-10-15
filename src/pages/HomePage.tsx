@@ -3,6 +3,7 @@ import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/P
 import { BANNERS } from '../constants/banners';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { SQUARE_BANNERS } from '../constants/squareBanners';
+import { ShopByCategory } from '../components/organisms/ShopByCategory';
 
 const productsData = [
   {
@@ -215,28 +216,28 @@ export const HomePage: React.FC = () => {
         </section>
 
         <section>
-          {/*третя частина Секція з 3 hspybvb папками/ видами товарів */}
-          <section>
-            <h3>Shop by category</h3>
-            <div>
-              {/*сітка грід для категорій */}
-              <div>
-                <a>{/*Категорія телефонів */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-              <div>
-                <a>{/*Категорія планшетів */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-              <div>
-                <a>{/*Категорія все інше */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-            </div>
-          </section>
+          <ShopByCategory
+            categories={[
+              {
+                title: 'Mobile phones',
+                image: '/img/banners/SquarePhones.png',
+                count: 95,
+                to: '/phones',
+              },
+              {
+                title: 'Tablets',
+                image: '/img/banners/SquareTablets.png',
+                count: 24,
+                to: '/tablets',
+              },
+              {
+                title: 'Accessories',
+                image: '/img/accessories/apple-watch-se/gold/00.webp',
+                count: 100,
+                to: '/accessories',
+              },
+            ]}
+          />
         </section>
 
         <section className="pb-12">
