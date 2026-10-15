@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { Accessory, Phone, Tablet } from '../types/api';
+import type { FavouriteProduct } from '../types/FavouriteProduct';
 import type { Product } from '../types/Product';
 
 type CartItemInfo = {
@@ -11,13 +12,14 @@ type StoreState = {
   phones: Phone[];
   tablets: Tablet[];
   accessories: Accessory[];
-  favorites: string[];
+  favorites: FavouriteProduct[];
   cart: Record<string, CartItemInfo>;
   selectedProduct: Product | null;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
     loadTablets: (tabletsToAdd: Tablet[]) => void;
     loadAccessories: (accessoriesToAdd: Accessory[]) => void;
+    toggleFavorite: (product: FavouriteProduct) => void;
     setProductItem: (itemToAdd: Product) => void;
     addItemToCart: (productToAdd: Product) => void;
     removeItemFromCart: (productIdToRemove: string) => void;
@@ -38,6 +40,25 @@ export const useAppState = create<StoreState>()((set, get) => ({
     loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
     loadAccessories: (accessoriesToAdd) =>
       set({ accessories: accessoriesToAdd }),
+    toggleFavorite: (product) =>
+      set((state) => ({
+        favorites:
+          (
+            state.favorites.some(
+              (favorite) =>
+                favorite.id === product.id &&
+                favorite.category === product.category,
+            )
+          ) ?
+            state.favorites.filter(
+              (favorite) =>
+                !(
+                  favorite.id === product.id &&
+                  favorite.category === product.category
+                ),
+            )
+          : [...state.favorites, product],
+      })),
     setProductItem: (productItem) => set({ selectedProduct: productItem }),
     addItemToCart: (productToAdd) => {
       const currentCart = get().cart;
