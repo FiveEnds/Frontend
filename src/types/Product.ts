@@ -1,16 +1,26 @@
+import type { ProductDescriptionBlock } from './api';
+import type { Category } from './category';
+
 export type Product = {
   id: string;
-  images: string[];
+  category: Category;
   namespaceId: string;
   name: string;
-  priceRegular: number;
-  priceDiscount?: number;
-  screen: string;
+  capacityAvailable: string[];
   capacity: string;
-  ram: string;
+  priceRegular: number;
+  priceDiscount: number;
+  colorsAvailable: string[];
+  color: string;
+  images: string[];
+  description: ProductDescriptionBlock[];
+  screen: string;
   resolution: string;
   processor: string;
-  [key: string]: unknown;
+  ram: string;
+  camera?: string;
+  zoom?: string;
+  cell: string[];
 };
 
 export type Products = {

@@ -9,19 +9,19 @@ import { ProductSelectActions } from '../../molecules/ProductSelectActions/Produ
 import { SelectCapacity } from '../../molecules/SelectCapacity/SelectCapacity';
 
 type Props = {
-  productColors: string[];
-  handleColorSelect: () => void;
-  selectedColor: string;
-  availableCapacities: string[];
-  selectedCapacity: string;
-  handleCapacitySelect: () => void;
-  currentPrice: number;
-  oldPrice?: number;
-  handleSelectClick: () => void;
-  isSelected: boolean;
-  isLiked: boolean;
-  handleLikeClick: () => void;
   product: Product;
+  isLiked: boolean;
+  isSelected: boolean;
+  handleColorSelect: (
+    selecteColor: string,
+    option: 'color' | 'capacity',
+  ) => void;
+  handleCapacitySelect: (
+    selectedCapacity: string,
+    option: 'color' | 'capacity',
+  ) => void;
+  handleAddToCart: () => void;
+  handleLikeClick: () => void;
 };
 
 function getSpecifications(product: Product): Spec[] {
@@ -34,18 +34,12 @@ function getSpecifications(product: Product): Spec[] {
 }
 
 export const ProductConfigurator: React.FC<Props> = ({
-  productColors,
   handleColorSelect,
-  selectedColor,
-  availableCapacities,
-  selectedCapacity,
   handleCapacitySelect,
-  currentPrice,
-  oldPrice = 0,
   handleLikeClick,
-  handleSelectClick,
-  isSelected,
+  handleAddToCart,
   isLiked,
+  isSelected,
   product,
 }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -63,30 +57,30 @@ export const ProductConfigurator: React.FC<Props> = ({
   return (
     <div>
       <AvailableColors
-        colors={productColors}
+        colors={product.colorsAvailable}
         handleClick={handleColorSelect}
-        isSelected={selectedColor}
+        isSelected={product.color}
         classNames="pb-6"
       />
       <div className="lg:w-[62.5%]">
         <div className="py-6 border-y border-elements">
           <SelectCapacity
-            availableCapacities={availableCapacities}
-            selectedCapacity={selectedCapacity}
+            availableCapacities={product.capacityAvailable}
+            selectedCapacity={product.capacity}
             handleClick={handleCapacitySelect}
           />
         </div>
         <div className="py-8">
           <div className="pb-4">
             <ProductPrice
-              currentPrice={currentPrice}
-              oldPrice={oldPrice}
+              currentPrice={product.priceDiscount}
+              oldPrice={product.priceRegular}
               currentPriceSize={isSmallScreen ? 'h1' : 'h2'}
             />
           </div>
           <ProductSelectActions
             handleLikeClick={handleLikeClick}
-            handleSelectClick={handleSelectClick}
+            handleSelectClick={handleAddToCart}
             isSelected={isSelected}
             isLiked={isLiked}
           />
