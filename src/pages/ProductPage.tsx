@@ -1,7 +1,5 @@
 import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
 import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
-import { Footer } from '../components/organisms/Footer/Footer';
-import { Header } from '../components/organisms/Header/Header';
 import { ProductCard } from '../components/organisms/ProductCard/ProductCard';
 
 const productsData = [
@@ -59,10 +57,6 @@ export const ProductPage: React.FC = () => {
 
   return (
     <>
-      <header>
-        <Header />
-        <aside></aside>
-      </header>
       <main>
         <section>
           <div>
@@ -189,9 +183,6 @@ export const ProductPage: React.FC = () => {
           </section>
         </section>
       </main>
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };
