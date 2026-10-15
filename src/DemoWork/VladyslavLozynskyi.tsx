@@ -43,7 +43,7 @@ export const VladyslavLozynskyi: React.FC = () => {
 
   // #region Cart Item
   const [quantity, setQuantity] = useState(1);
-   
+
   const [, setIsItemVisible] = useState(true);
   // #endregion
 
@@ -658,12 +658,12 @@ export const VladyslavLozynskyi: React.FC = () => {
           ['Capacity', '64GB'],
         ]}
       /> */}
-      <ProductsCarousel
+      {/* <ProductsCarousel
         title="Brand new models"
         products={products}
         displayedSlides={2}
         productCardHeight={440}
-      />
+      /> /*}
       {/* <PromoCarousel
         banners={BANNERS}
         squareBanners={SQUARE_BANNERS}

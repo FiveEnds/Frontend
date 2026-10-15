@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 import { BANNERS } from '../constants/banners';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
-import { Footer } from '../components/organisms/Footer/Footer';
 import { SQUARE_BANNERS } from '../constants/squareBanners';
+import { ShopByCategory } from '../components/organisms/ShopByCategory';
+import { HomeLayout } from '../components/templates/HomeLayout';
 
 const productsData = [
   {
@@ -197,69 +198,55 @@ export const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* <header className=" sticky top-0 z-50">
-        <Header />
-        <aside></aside>
-      </header> */}
-
-      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-8 py-6">
-        <section>
-          <PromoCarousel
-            banners={BANNERS}
-            squareBanners={SQUARE_BANNERS}
-          />
-        </section>
-
-        <section>
-          <ProductsCarousel
-            title="Brand new models"
-            products={brandNewProducts}
-            productCardHeight={carouselParams.height}
-            displayedSlides={carouselParams.slides}
-          />
-        </section>
-
-        <section>
-          {/*третя частина Секція з 3 hspybvb папками/ видами товарів */}
-          <section>
-            <h3>Shop by category</h3>
-            <div>
-              {/*сітка грід для категорій */}
-              <div>
-                <a>{/*Категорія телефонів */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-              <div>
-                <a>{/*Категорія планшетів */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-              <div>
-                <a>{/*Категорія все інше */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-            </div>
-          </section>
-        </section>
-
-        <section className="pb-12">
-          <ProductsCarousel
-            title="Hot prices"
-            products={
-              hotPriceProducts.length > 0 ? hotPriceProducts : productsData
-            }
-            productCardHeight={carouselParams.height}
-            displayedSlides={carouselParams.slides}
-          />
-        </section>
-      </main>
-
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    <HomeLayout
+      heroSlider={
+        <PromoCarousel
+          banners={BANNERS}
+          squareBanners={SQUARE_BANNERS}
+        />
+      }
+      brandNewCarousel={
+        <ProductsCarousel
+          title="Brand new models"
+          products={brandNewProducts}
+          productCardHeight={carouselParams.height}
+          displayedSlides={carouselParams.slides}
+        />
+      }
+      shopByCategory={
+        <ShopByCategory
+          categories={[
+            {
+              title: 'Mobile phones',
+              image: '/img/banners/SquarePhones.png',
+              count: 95,
+              to: '/phones',
+            },
+            {
+              title: 'Tablets',
+              image: '/img/banners/SquareTablets.png',
+              count: 24,
+              to: '/tablets',
+            },
+            {
+              title: 'Accessories',
+              image: '/img/accessories/apple-watch-se/gold/00.webp',
+              count: 100,
+              to: '/accessories',
+            },
+          ]}
+        />
+      }
+      hotPricesCarousel={
+        <ProductsCarousel
+          title="Hot prices"
+          products={
+            hotPriceProducts.length > 0 ? hotPriceProducts : productsData
+          }
+          productCardHeight={carouselParams.height}
+          displayedSlides={carouselParams.slides}
+        />
+      }
+    />
   );
 };

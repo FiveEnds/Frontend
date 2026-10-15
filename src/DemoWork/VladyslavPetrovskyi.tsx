@@ -2,7 +2,6 @@ import { Typography } from '../components/atoms/Typography/Typography';
 import { AccessoriesLayout } from '../components/templates/AccessoriesLayout';
 import { CardShopLayout } from '../components/templates/CardShopLayout';
 import { FavoritesLayout } from '../components/templates/FavoritesLayout';
-import { HomeLayout } from '../components/templates/HomeLayout';
 import { PhoneLayout } from '../components/templates/PhoneLayout';
 import { TabletsLayout } from '../components/templates/TabletsLayout';
 import { ProductPagelayout } from '../components/templates/ProductPageLayout';
@@ -23,7 +22,6 @@ export const VladyslavPetrovskyi = () => {
       <Typography level="h4">test6 and mobile</Typography>
       <Typography level="small">test7</Typography>
       <Typography level="uppercase">test8</Typography>
-      <HomeLayout />
       <AccessoriesLayout />
       <CardShopLayout />
       <FavoritesLayout />
