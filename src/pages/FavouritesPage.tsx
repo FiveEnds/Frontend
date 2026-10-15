@@ -1,5 +1,3 @@
-import { Footer } from '../components/organisms/Footer/Footer';
-import { Header } from '../components/organisms/Header/Header';
 import { ProductCard } from '../components/organisms/ProductCard/ProductCard';
 
 const sampleRecommendedProduct = {
@@ -27,10 +25,6 @@ const sampleRecommendedProduct = {
 export const FavouritesPage: React.FC = () => {
   return (
     <>
-      <header>
-        <Header />
-        <aside></aside>
-      </header>
       <main>
         <section>
           {/*favorites*/}
@@ -60,9 +54,6 @@ export const FavouritesPage: React.FC = () => {
           </div>
         </section>
       </main>
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };

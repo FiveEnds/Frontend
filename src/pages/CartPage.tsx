@@ -1,18 +1,11 @@
 import { useState } from 'react';
-import { Header } from '../components/organisms/Header/Header';
 import { CartItem } from '../components/molecules/CartItem';
-import { Footer } from '../components/organisms/Footer/Footer';
 
 export const CartPage: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
     <>
-      <header>
-        <Header />
-        <aside></aside>
-      </header>
-
       <main>
         <section>
           {/*Card shop*/}
@@ -40,10 +33,6 @@ export const CartPage: React.FC = () => {
           </div>
         </section>
       </main>
-
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 };
