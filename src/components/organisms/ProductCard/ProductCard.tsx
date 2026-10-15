@@ -29,13 +29,26 @@ export const ProductCard: React.FC<Props> = ({
   cardHeight,
   hasDiscount = true,
 }) => {
-  const { toggleFavorite, addItemToCart } = useAppActions();
+  const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
+
   const isLiked = useAppState((state) =>
-    state.favourites.some((favourite) => favourite.id === product.id),
+    state.favourites.some(
+      (favourite) =>
+        favourite.id === product.id && favourite.category === product.category,
+    ),
   );
+
   const isSelected = useAppState((state) =>
     Object.hasOwn(state.cart, product.id),
   );
+
+  const handleCartClick = () => {
+    if (isSelected) {
+      removeItemFromCart(product.id);
+    } else {
+      addItemToCart(product);
+    }
+  };
 
   return (
     <div
@@ -76,7 +89,7 @@ export const ProductCard: React.FC<Props> = ({
       }
       <ProductCardSpecs specifications={getSpecifications(product)} />
       <ProductSelectActions
-        handleSelectClick={() => addItemToCart(product)}
+        handleSelectClick={handleCartClick}
         handleLikeClick={() => toggleFavorite(product)}
         isSelected={isSelected}
         isLiked={isLiked}
