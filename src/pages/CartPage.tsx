@@ -27,6 +27,7 @@ const testPhone: Phone = {
   camera: '12 Mp + 12 Mp + 12 Mp',
   zoom: 'Digital, 5x',
   cell: ['LTE'],
+  year: 2015,
 };
 
 const testPhone2: Phone = {
@@ -76,6 +77,7 @@ const testPhone2: Phone = {
   camera: '12 Mp + 12 Mp + 12MP',
   zoom: 'Digital, 5x',
   cell: ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE'],
+  year: 2015,
 };
 
 export const CartPage: React.FC = () => {
