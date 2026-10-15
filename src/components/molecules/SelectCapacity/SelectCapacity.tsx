@@ -4,7 +4,7 @@ import { Typography } from '../../atoms/Typography/Typography';
 type Props = {
   availableCapacities: string[];
   selectedCapacity: string;
-  handleClick: () => void;
+  handleClick: (selectedCapacity: string, option: 'color' | 'capacity') => void;
 };
 
 export const SelectCapacity: React.FC<Props> = ({
@@ -23,7 +23,7 @@ export const SelectCapacity: React.FC<Props> = ({
       {availableCapacities.map((capacity) => (
         <ButtonSelect
           className="px-2 pt-[7px] pb-1"
-          handleClick={handleClick}
+          handleClick={() => handleClick(capacity, 'capacity')}
           isSelected={selectedCapacity === capacity}
           content={capacity}
         />
