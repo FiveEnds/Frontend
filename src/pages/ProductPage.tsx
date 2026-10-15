@@ -1,6 +1,5 @@
 import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
 import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
-import { ProductCard } from '../components/organisms/ProductCard/ProductCard';
 
 const productsData = [
   {
@@ -164,20 +163,7 @@ export const ProductPage: React.FC = () => {
             <div>
               <div>
                 {/* Щось схоче до слайдера? */}
-                <div className="flex gap-4 mt-4">
-                  <ProductCard
-                    product={product}
-                    cardHeight={506}
-                    isLiked={false}
-                    isSelected={false}
-                    handleLikeClick={() => {
-                      console.log('Like clicked');
-                    }}
-                    handleSelectClick={() => {
-                      console.log('Cart clicked');
-                    }}
-                  />
-                </div>
+                <div className="flex gap-4 mt-4"></div>
               </div>
             </div>
           </section>

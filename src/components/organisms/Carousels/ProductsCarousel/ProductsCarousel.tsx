@@ -12,7 +12,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
 import type { Product } from '../../../../types/Product';
-import { ProductCard } from '../../ProductCard/ProductCard';
+import { ProductCard } from '../../../molecules/ProductCard/ProductCard';
 
 type Props = {
   title: string;
