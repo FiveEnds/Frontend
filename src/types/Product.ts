@@ -22,3 +22,24 @@ export type Product = {
   zoom?: string;
   cell: string[];
 };
+
+export type Products = {
+  id: number;
+  category: string;
+  itemId: string;
+  name: string;
+  fullPrice: number;
+  price: number;
+  screen: string;
+  resolution?: string;
+  processor?: string;
+  capacity: string;
+  color: string;
+  ram: string;
+  year: number;
+  image: string;
+  phoneId?: string;
+  camera?: string;
+  zoom?: string;
+  cell?: string[];
+};

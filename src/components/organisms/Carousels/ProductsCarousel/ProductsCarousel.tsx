@@ -11,14 +11,15 @@ import { useAutoplay } from '../js/EmblaCarouselAutoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
-import type { Product } from '../../../../types/Product';
+import type { Products } from '../../../../types/Product';
 import { ProductCard } from '../../ProductCard/ProductCard';
 
 type Props = {
   title: string;
   displayedSlides?: number;
-  products: Product[];
+  products: Products[];
   productCardHeight: number;
+  hasDiscount?: boolean;
 };
 
 const OPTIONS: EmblaOptionsType = { loop: false, align: 'start' };
@@ -28,6 +29,7 @@ export const ProductsCarousel: React.FC<Props> = ({
   displayedSlides = 1,
   products,
   productCardHeight,
+  hasDiscount = true,
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
     Autoplay({ playOnInit: false }),
@@ -88,6 +90,7 @@ export const ProductsCarousel: React.FC<Props> = ({
                   className={'w-full'}
                   cardHeight={productCardHeight}
                   isLiked={like}
+                  hasDiscount={hasDiscount}
                 />
               </div>
             ))}

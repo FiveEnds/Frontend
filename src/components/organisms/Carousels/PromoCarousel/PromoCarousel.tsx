@@ -77,7 +77,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
     <>
       <Typography
         level="h1"
-        className="pb-8"
+        className="pb-8 pl-[16px] md:pl-[0px]"
       >
         Welcome to Nice Gadgets store!
       </Typography>
@@ -131,9 +131,11 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
       </div>
       <div className="flex justify-center items-center gap-2 mt-4">
         {scrollSnaps.map((_, index) => (
-          <div className="w-6 h-6 justify-center items-center md:flex hidden">
+          <div
+            key={index}
+            className="w-6 h-6 justify-center items-center md:flex hidden"
+          >
             <button
-              key={index}
               type="button"
               onClick={() => onDotButtonClick(index)}
               className={`h-1 transition-all duration-300 ${
