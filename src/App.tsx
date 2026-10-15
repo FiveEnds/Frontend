@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 // import { DemoWork } from './DemoWork/DemoWork';
-import { Header } from './components/organisms/Header/Header';
 import { HomePage } from './pages/HomePage';
 import { PageNotFound } from './pages/PageNotFound';
 import { PhonesPage } from './pages/PhonesPage';
@@ -12,6 +11,7 @@ import { CartPage } from './pages/CartPage';
 import { useAppActions } from './store/store';
 import { getAccessories, getPhones, getTablets } from './services';
 import { useEffect } from 'react';
+import { HeaderLayout } from './components/templates/HeaderLayout';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories } = useAppActions();
@@ -30,7 +30,7 @@ export const App: React.FC = () => {
     <Routes>
       <Route
         path="/"
-        element={<Header />}
+        element={<HeaderLayout />}
       >
         <Route
           index
