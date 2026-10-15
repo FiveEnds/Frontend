@@ -5,7 +5,7 @@ import { FavoritesLayout } from '../components/templates/FavoritesLayout';
 import { useAppActions, useAppState } from '../store/store';
 
 export const FavouritesPage: React.FC = () => {
-  const favouriteProducts = useAppState((state) => state.favorites);
+  const favouriteProducts = useAppState((state) => state.favourites);
   const { toggleFavorite } = useAppActions();
 
   return (

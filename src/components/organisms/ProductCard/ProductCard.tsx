@@ -30,10 +30,12 @@ export const ProductCard: React.FC<Props> = ({
   hasDiscount = true,
 }) => {
   const { toggleFavorite, addItemToCart } = useAppActions();
-  const favourites = useAppState((state) => state.favorites);
-  const isLiked = favourites.some((favourite) => favourite.id === product.id);
-  const cart = useAppState((state) => state.cart);
-  const isSelected = Object.hasOwn(cart, product.id);
+  const isLiked = useAppState((state) =>
+    state.favourites.some((favourite) => favourite.id === product.id),
+  );
+  const isSelected = useAppState((state) =>
+    Object.hasOwn(state.cart, product.id),
+  );
 
   return (
     <div

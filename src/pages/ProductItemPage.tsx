@@ -98,7 +98,9 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
   const product = useAppState((state) => state.selectedProduct);
   const cart = useAppState((state) => state.cart);
-  const favourites = useAppState((state) => state.favorites);
+  const isLiked = useAppState((state) =>
+    state.favourites.some((favourite) => favourite.id === product?.id),
+  );
 
   if (!product) {
     return <></>;
@@ -143,8 +145,6 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
     navigate(`/${product.category}/${newLink}`, { replace: true });
   };
-
-  const isLiked = favourites.some((favourite) => favourite.id === product.id);
 
   return (
     <ProductItemLayout

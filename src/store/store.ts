@@ -12,7 +12,7 @@ type StoreState = {
   phones: Phone[];
   tablets: Tablet[];
   accessories: Accessory[];
-  favorites: FavouriteProduct[];
+  favourites: FavouriteProduct[];
   cart: Record<string, CartItemInfo>;
   selectedProduct: Product | null;
   actions: {
@@ -31,7 +31,7 @@ export const useAppState = create<StoreState>()((set, get) => ({
   phones: [],
   tablets: [],
   accessories: [],
-  favorites: [],
+  favourites: [],
   cart: {},
   selectedProduct: null,
 
@@ -42,22 +42,22 @@ export const useAppState = create<StoreState>()((set, get) => ({
       set({ accessories: accessoriesToAdd }),
     toggleFavorite: (product) =>
       set((state) => ({
-        favorites:
+        favourites:
           (
-            state.favorites.some(
+            state.favourites.some(
               (favorite) =>
                 favorite.id === product.id &&
                 favorite.category === product.category,
             )
           ) ?
-            state.favorites.filter(
-              (favorite) =>
+            state.favourites.filter(
+              (favourite) =>
                 !(
-                  favorite.id === product.id &&
-                  favorite.category === product.category
+                  favourite.id === product.id &&
+                  favourite.category === product.category
                 ),
             )
-          : [...state.favorites, product],
+          : [...state.favourites, product],
       })),
     setProductItem: (productItem) => set({ selectedProduct: productItem }),
     addItemToCart: (productToAdd) => {
@@ -106,10 +106,6 @@ export const useAppState = create<StoreState>()((set, get) => ({
       set({ cart: currentCart });
     },
   },
-
-  // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  // removeAllBears: () => set({ bears: 0 }),
-  // updateBears: (newBears) => set({ bears: newBears }),
 }));
 
 export const useAppActions = () => useAppState((state) => state.actions);
