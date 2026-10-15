@@ -1,4 +1,3 @@
-import type { Product } from '../../../types/Product';
 import { Typography } from '../../atoms/Typography/Typography';
 import { ProductCardSpecs } from '../../molecules/ProductCardSpecs/ProductCardSpecs';
 import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
@@ -6,6 +5,7 @@ import { ProductSelectActions } from '../../molecules/ProductSelectActions/Produ
 import type { Spec } from '../../../types/Specifications';
 import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
+import type { Product } from '../../../types/Product';
 
 type Props = {
   product: Product;
@@ -48,13 +48,13 @@ export const ProductCard: React.FC<Props> = ({
         <img
           className="max-h-full max-w-full object-contain "
           src={product.images[0]}
-          alt={product.namespaceId}
+          alt={product.id}
         />
       </Link>
     </div>
     <Link
       to={{
-        pathname: `${product.category}/${product.id}`,
+        pathname: `/${product.category}/${product.id}`,
       }}
     >
       <Typography>{product.name}</Typography>
