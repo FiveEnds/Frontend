@@ -66,7 +66,8 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const { setProductItem, addItemToCart } = useAppActions();
+  const { setProductItem, addItemToCart, toggleFavorite } = useAppActions();
+
   const { productId } = useParams();
   const navigate = useNavigate();
 
@@ -97,6 +98,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
   const product = useAppState((state) => state.selectedProduct);
   const cart = useAppState((state) => state.cart);
+  const favourites = useAppState((state) => state.favorites);
 
   if (!product) {
     return <></>;
@@ -142,6 +144,8 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     navigate(`/${product.category}/${newLink}`, { replace: true });
   };
 
+  const isLiked = favourites.some((favourite) => favourite.id === product.id);
+
   return (
     <ProductItemLayout
       pageProductDetails={<ProductItemTopBar title={product.name} />}
@@ -157,8 +161,8 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
           handleColorSelect={handleCapacitySelect}
           handleCapacitySelect={handleCapacitySelect}
           handleAddToCart={() => handleAddItem(itemInCart)}
-          handleLikeClick={() => {}}
-          isLiked={false}
+          handleLikeClick={() => toggleFavorite(product)}
+          isLiked={isLiked}
           isSelected={itemInCart}
         />
       }
