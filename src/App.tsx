@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-// import { DemoWork } from './DemoWork/DemoWork';
 import { HomePage } from './pages/HomePage';
 import { PageNotFound } from './pages/PageNotFound';
 import { PhonesPage } from './pages/PhonesPage';
@@ -23,10 +22,6 @@ export const App: React.FC = () => {
     getTablets().then((data) => loadTablets(data));
     getAccessories().then((data) => loadAccessories(data));
   }, [loadAccessories, loadPhones, loadTablets]);
-
-  // const phones = useAppState((state) => state.phones);
-
-  // console.log(phones);
 
   return (
     <Routes>
@@ -87,7 +82,5 @@ export const App: React.FC = () => {
     </Routes>
   );
 };
-
-// return <DemoWork />;
 
 export default App;

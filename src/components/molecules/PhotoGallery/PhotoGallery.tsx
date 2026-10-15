@@ -18,7 +18,7 @@ type ButtonProps = {
 const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
   <button
     className={cn(
-      'flex justify-center items-center min-w-0 w-full border border-elements p-[5%]',
+      'flex justify-center items-center min-w-0 w-full transform-gpu border border-elements p-[5%] hover-zoom',
       {
         'border-primary': currentPhoto === imageSrc,
       },
@@ -52,7 +52,7 @@ export const PhotoGallery: React.FC<Props> = ({ product }) => {
         <img
           src={currentPhoto}
           alt={product.name}
-          className="object-contain block w-full aspect-square"
+          className="object-contain block w-full aspect-square hover-zoom-small"
         />
       </div>
     </div>
