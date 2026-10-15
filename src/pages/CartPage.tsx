@@ -18,8 +18,12 @@ export const CartPage: React.FC = () => {
       min-[1200px]:w-fit
 
       min-[640px]:max-[1200px]:grid-cols-[repeat(12,minmax(0,1fr))]
+      min-[640px]:max-[1200px]:px-6
+      min-[640px]:max-[1200px]:gap-x-4
 
       min-[320px]:max-[640px]:grid-cols-[repeat(4,minmax(0,1fr))]
+      min-[320px]:max-[640px]:px-4
+      min-[320px]:max-[640px]:gap-x-4
       "
       >
         <section className="col-span-full grid grid-cols-subgrid">
@@ -37,7 +41,16 @@ export const CartPage: React.FC = () => {
           {/* <div>
               <p>Your cart is empty</p>
             </div> */}
-          <div className="col-span-16 w-full flex flex-col gap-4">
+          <div
+            className="
+          w-full flex flex-col gap-4
+          min-[1200px]:col-span-16
+
+          min-[640px]:max-[1200px]:col-span-12
+
+          min-[320px]:max-[640px]:col-span-4
+          "
+          >
             <CartItem
               image="/img/phones/apple-iphone-11/purple/00.webp"
               title="Apple iPhone 11 128GB Purple"
@@ -67,7 +80,17 @@ export const CartPage: React.FC = () => {
               onQuantityChange={setQuantity}
             />
           </div>
-          <div className="col-span-8">
+          <div
+            className="
+          min-[1200px]:col-span-8
+          
+          min-[640px]:max-[1200px]:col-span-12
+          min-[640px]:max-[1200px]:mt-8
+
+          min-[320px]:max-[640px]:col-span-4
+          min-[320px]:max-[640px]:mt-8
+          "
+          >
             <Checkout />
           </div>
         </section>

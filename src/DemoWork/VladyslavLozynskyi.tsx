@@ -43,7 +43,7 @@ export const VladyslavLozynskyi: React.FC = () => {
 
   // #region Cart Item
   const [quantity, setQuantity] = useState(1);
-   
+
   const [, setIsItemVisible] = useState(true);
   // #endregion
 
