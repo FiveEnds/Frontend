@@ -6,9 +6,8 @@ import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
 import productsDataRaw from '../../public/api/products.json';
-import type { Products } from '../types/Product';
 
-const productsData: Products[] = productsDataRaw as Products[];
+const productsData: Product[] = productsDataRaw as Products[];
 {
   /*Підготовка для завантаження з сайту  
   const [productsData, setProductsData] = useState<Products[]>([]);
