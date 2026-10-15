@@ -10,17 +10,14 @@ type Props = {
 };
 
 export const ProductItemLayout: React.FC<Props> = ({
-  header,
   pageProductDetails,
   productGallery,
   productConfigurator,
   productAbout,
   techSpecs,
   productsCarousel,
-  footer,
 }) => (
   <>
-    {header}
     <div
       className="px-4 md:px-6 lg:px-8 max-w-[1200px] w-full m-auto grid grid-cols-4 md:grid-cols-12 gap-4
     lg:grid-cols-24 gap-y-0 mt-6"
@@ -38,12 +35,6 @@ export const ProductItemLayout: React.FC<Props> = ({
       <div className="col-span-full mb-14 lg:col-span-11">{techSpecs}</div>
 
       <div className="col-span-full">{productsCarousel}</div>
-    </div>
-
-    <div className="border-t border-elements mt-12 md:mt-16 lg:mt-[81px]">
-      <div className="px-4 md:px-6 lg:px-8 max-w-[1200px] w-full m-auto">
-        {footer}
-      </div>
     </div>
   </>
 );

@@ -1,4 +1,4 @@
-export type Category = 'phones' | 'tablets' | 'accessories';
+import type { Category } from './category';
 
 export type ProductSummary = {
   id: number;

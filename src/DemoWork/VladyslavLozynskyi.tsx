@@ -21,6 +21,7 @@ import { Header } from '../components/organisms/Header/Header';
 import { CartLayout } from '../components/templates/CartLayout/CartLayout';
 import { CartItem } from '../components/molecules/CartItem';
 import { Checkout } from '../components/molecules/Checkout/Checkout';
+// import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
 // import { useState } from 'react';
 // import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 // import { BANNERS } from '../constants/banners';
@@ -663,7 +664,7 @@ export const VladyslavLozynskyi: React.FC = () => {
         products={products}
         displayedSlides={2}
         productCardHeight={440}
-      /> /*}
+      /> */}
       {/* <PromoCarousel
         banners={BANNERS}
         squareBanners={SQUARE_BANNERS}
@@ -766,7 +767,7 @@ export const VladyslavLozynskyi: React.FC = () => {
           />
         }
         footer={<Footer />}
-      /> */}
+      />  */}
       <CartLayout
         header={<Header />}
         pageTopPart={<div className="bg-amber-300">hello</div>}
