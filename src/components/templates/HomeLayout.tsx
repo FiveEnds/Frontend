@@ -1,10 +1,10 @@
 import React from 'react';
 
 type HomeLayoutProps = {
-  heroSlider: React.ReactNode; // Перша частина: Секція з слайдером
-  brandNewCarousel: React.ReactNode; // Друга частина: "Brand new models" з карток + кнопки
-  shopByCategory: React.ReactNode; // Третя частина: "Shop by category"
-  hotPricesCarousel: React.ReactNode; // Четверта частина: "Hot prices" зі знижками
+  heroSlider: React.ReactNode;
+  brandNewCarousel: React.ReactNode;
+  shopByCategory: React.ReactNode;
+  hotPricesCarousel: React.ReactNode;
 };
 
 export const HomeLayout: React.FC<HomeLayoutProps> = ({
@@ -14,8 +14,8 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({
   hotPricesCarousel,
 }) => (
   <div className="min-h-screen flex flex-col">
-    <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-8 py-6">
-      <div className="px-4 md:px-6 lg:px-8 max-w-[1200px] w-full m-auto flex flex-col gap-12 md:gap-16 lg:gap-20 mt-6 mb-16">
+    <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-8 pt-[56px]">
+      <div className="max-w-[1200px] w-full flex flex-col gap-12 md:gap-16 lg:gap-20">
         <section>{heroSlider}</section>
 
         <section className="w-full">{brandNewCarousel}</section>
