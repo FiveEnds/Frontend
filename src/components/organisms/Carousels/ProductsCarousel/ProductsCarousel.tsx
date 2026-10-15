@@ -1,7 +1,7 @@
 import type { EmblaOptionsType } from 'embla-carousel';
 import { Typography } from '../../../atoms/Typography/Typography';
 // Change this line to import your local component file (adjust the relative path if needed):
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/base.css';
 import '../css/sandbox.css';
 import '../css/embla.css';
@@ -44,9 +44,6 @@ export const ProductsCarousel: React.FC<Props> = ({
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  const [like, setLike] = useState(false);
-  const [select, setSelect] = useState(false);
-
   return (
     <>
       <div className="flex justify-between pb-6">
@@ -84,12 +81,8 @@ export const ProductsCarousel: React.FC<Props> = ({
               >
                 <ProductCard
                   product={product}
-                  isSelected={select}
-                  handleSelectClick={() => setSelect((current) => !current)}
-                  handleLikeClick={() => setLike((current) => !current)}
                   className={'w-full'}
                   cardHeight={productCardHeight}
-                  isLiked={like}
                   hasDiscount={hasDiscount}
                 />
               </div>
