@@ -5,7 +5,7 @@ import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCaro
 import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
-import productsDataRaw from '../api/products.json';
+import productsDataRaw from '../../public/api/products.json';
 import type { Products } from '../types/Product';
 
 const productsData: Products[] = productsDataRaw as Products[];
