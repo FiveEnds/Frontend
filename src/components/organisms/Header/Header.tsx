@@ -5,7 +5,6 @@ import { HeadLogo } from '../../atoms/Logos/HeadLogo';
 import { NavigationTopList } from '../../molecules/Navigation/NavigationTopList';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { useCallback, useState } from 'react';
-import { Outlet } from 'react-router-dom';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
 export const Header: React.FC = () => {
@@ -52,9 +51,7 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      {isMenuOpen ?
-        <BurgerMenu />
-      : <Outlet />}
+      {isMenuOpen && <BurgerMenu />}
     </>
   );
 };

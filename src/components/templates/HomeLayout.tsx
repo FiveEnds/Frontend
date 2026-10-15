@@ -1,81 +1,29 @@
-export const HomeLayout = () => (
-  <>
-    <header>
-      {/*хідер яку треба доробити з ссилками на сторінки і кнопки добавити змінні від стейту* */}
-      <aside>{/*наша компонента бургер меню */}</aside>
-    </header>
+import React from 'react';
 
-    <main>
-      {/*мейн контент ще в опрацюванні* */}
-      <div>
-        <section>{/*перша частина Секція з слаййдером */}</section>
+type HomeLayoutProps = {
+  heroSlider: React.ReactNode; // Перша частина: Секція з слайдером
+  brandNewCarousel: React.ReactNode; // Друга частина: "Brand new models" з карток + кнопки
+  shopByCategory: React.ReactNode; // Третя частина: "Shop by category"
+  hotPricesCarousel: React.ReactNode; // Четверта частина: "Hot prices" зі знижками
+};
 
-        <section>
-          {/*друга частина Секція з 3 картами телефонів 2 2ма кнопками */}
-          <section>
-            <div>
-              <h2>Brand new models</h2>
-              <div>
-                <button></button>
-                {/*Кнопка лайд вліво*/}
-                <button></button>
-                {/*Кнопка лайд вправо*/}
-              </div>
-            </div>
-            <div>
-              {/*Контейнер слайдер сєтки по 1,5-4 картки*/}
-              <div></div>
-            </div>
-          </section>
-        </section>
-        {/*------------------------------------------*/}
-        {/*------------------------------------------*/}
-        <section>
-          {/*третя частина Секція з 3 hspybvb папками/ видами товарів */}
-          <section>
-            <h3>Shop by category</h3>
-            <div>
-              {/*сітка грід для категорій */}
-              <div>
-                <a>{/*Категорія телефонів */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-              <div>
-                <a>{/*Категорія планшетів */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-              <div>
-                <a>{/*Категорія все інше */}</a>
-                <p>124 models</p>
-                {/*якийсь калькулятор скільки там речей в категорії*/}
-              </div>
-            </div>
-          </section>
-        </section>
-        {/*------------------------------------------*/}
-        {/*------------------------------------------*/}
-        <section>
-          {/*четверта частина Секція з 3 картами телефонів 2 2ма кнопками З СКИДКАМИ*/}
-          <section>
-            <div>
-              <h2>Hot prices</h2>
-              <div>
-                <button></button>
-                {/*Кнопка лайд вліво*/}
-                <button></button>
-                {/*Кнопка лайд вправо*/}
-              </div>
-            </div>
-            <div>
-              {/*Контейнер слайдер сєтки по 1,5-4 картки*/}
-              <div></div>
-            </div>
-          </section>
-        </section>
+export const HomeLayout: React.FC<HomeLayoutProps> = ({
+  heroSlider,
+  brandNewCarousel,
+  shopByCategory,
+  hotPricesCarousel,
+}) => (
+  <div className="min-h-screen flex flex-col">
+    <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-8 py-6">
+      <div className="px-4 md:px-6 lg:px-8 max-w-[1200px] w-full m-auto flex flex-col gap-12 md:gap-16 lg:gap-20 mt-6 mb-16">
+        <section>{heroSlider}</section>
+
+        <section className="w-full">{brandNewCarousel}</section>
+
+        <section className="w-full">{shopByCategory}</section>
+
+        <section className="w-full">{hotPricesCarousel}</section>
       </div>
     </main>
-    <footer></footer>
-  </>
+  </div>
 );

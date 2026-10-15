@@ -4,6 +4,7 @@ import { BANNERS } from '../constants/banners';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
+import { HomeLayout } from '../components/templates/HomeLayout';
 
 const productsData = [
   {
@@ -197,60 +198,55 @@ export const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-8 py-6">
-        <section>
-          <PromoCarousel
-            banners={BANNERS}
-            squareBanners={SQUARE_BANNERS}
-          />
-        </section>
-
-        <section>
-          <ProductsCarousel
-            title="Brand new models"
-            products={brandNewProducts}
-            productCardHeight={carouselParams.height}
-            displayedSlides={carouselParams.slides}
-          />
-        </section>
-
-        <section>
-          <ShopByCategory
-            categories={[
-              {
-                title: 'Mobile phones',
-                image: '/img/banners/SquarePhones.png',
-                count: 95,
-                to: '/phones',
-              },
-              {
-                title: 'Tablets',
-                image: '/img/banners/SquareTablets.png',
-                count: 24,
-                to: '/tablets',
-              },
-              {
-                title: 'Accessories',
-                image: '/img/accessories/apple-watch-se/gold/00.webp',
-                count: 100,
-                to: '/accessories',
-              },
-            ]}
-          />
-        </section>
-
-        <section className="pb-12">
-          <ProductsCarousel
-            title="Hot prices"
-            products={
-              hotPriceProducts.length > 0 ? hotPriceProducts : productsData
-            }
-            productCardHeight={carouselParams.height}
-            displayedSlides={carouselParams.slides}
-          />
-        </section>
-      </main>
-    </div>
+    <HomeLayout
+      heroSlider={
+        <PromoCarousel
+          banners={BANNERS}
+          squareBanners={SQUARE_BANNERS}
+        />
+      }
+      brandNewCarousel={
+        <ProductsCarousel
+          title="Brand new models"
+          products={brandNewProducts}
+          productCardHeight={carouselParams.height}
+          displayedSlides={carouselParams.slides}
+        />
+      }
+      shopByCategory={
+        <ShopByCategory
+          categories={[
+            {
+              title: 'Mobile phones',
+              image: '/img/banners/SquarePhones.png',
+              count: 95,
+              to: '/phones',
+            },
+            {
+              title: 'Tablets',
+              image: '/img/banners/SquareTablets.png',
+              count: 24,
+              to: '/tablets',
+            },
+            {
+              title: 'Accessories',
+              image: '/img/accessories/apple-watch-se/gold/00.webp',
+              count: 100,
+              to: '/accessories',
+            },
+          ]}
+        />
+      }
+      hotPricesCarousel={
+        <ProductsCarousel
+          title="Hot prices"
+          products={
+            hotPriceProducts.length > 0 ? hotPriceProducts : productsData
+          }
+          productCardHeight={carouselParams.height}
+          displayedSlides={carouselParams.slides}
+        />
+      }
+    />
   );
 };
