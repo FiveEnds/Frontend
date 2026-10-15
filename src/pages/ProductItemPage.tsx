@@ -91,7 +91,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     if (product) {
       setProductItem(product);
     } else {
-      // navigate('/*', { replace: true });
+      navigate('/*', { replace: true });
     }
   }, [productId, products, setProductItem, navigate]);
 
