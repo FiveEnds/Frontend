@@ -41,30 +41,27 @@ export const App: React.FC = () => {
         <Route
           path="phones"
           element={<PhonesPage />}
-        >
-          <Route
-            path=":ProductId"
-            element={<ProductItemPage category={CATEGORY.PHONES} />}
-          />
-        </Route>
+        />
+        <Route
+          path="phones/:productId"
+          element={<ProductItemPage category={CATEGORY.PHONES} />}
+        />
         <Route
           path="tablets"
           element={<TabletsPage />}
-        >
-          <Route
-            path=":ProductId"
-            element={<ProductItemPage category={CATEGORY.TABLETS} />}
-          />
-        </Route>
+        />
+        <Route
+          path="tablets/:productId"
+          element={<ProductItemPage category={CATEGORY.TABLETS} />}
+        />
         <Route
           path="accessories"
           element={<AccessoriesPage />}
-        >
-          <Route
-            path=":ProductId"
-            element={<ProductItemPage category={CATEGORY.ACCESSORIES} />}
-          />
-        </Route>
+        />
+        <Route
+          path="accessories/:productId"
+          element={<ProductItemPage category={CATEGORY.ACCESSORIES} />}
+        />
         <Route
           path="favourites"
           element={<FavouritesPage />}

@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import type { Accessory, Phone, Tablet } from '../types/api';
-
-type ProductItem = Phone | Tablet | Accessory;
+import type { Product } from '../types/Product';
 
 type StoreState = {
   phones: Phone[];
@@ -9,12 +8,12 @@ type StoreState = {
   accessories: Accessory[];
   favorites: string[];
   cart: string[];
-  selectedProduct: ProductItem | null;
+  selectedProduct: Product | null;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
     loadTablets: (tabletsToAdd: Tablet[]) => void;
     loadAccessories: (accessoriesToAdd: Accessory[]) => void;
-    setProductItem: (itemToAdd: ProductItem) => void;
+    setProductItem: (itemToAdd: Tablet | Phone | Accessory) => void;
   };
 };
 
@@ -27,12 +26,11 @@ export const useAppState = create<StoreState>()((set) => ({
   selectedProduct: null,
 
   actions: {
-    loadPhones: (phonesToAdd: Phone[]) => set({ phones: phonesToAdd }),
-    loadTablets: (tabletsToAdd: Tablet[]) => set({ tablets: tabletsToAdd }),
-    loadAccessories: (accessoriesToAdd: Accessory[]) =>
+    loadPhones: (phonesToAdd) => set({ phones: phonesToAdd }),
+    loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
+    loadAccessories: (accessoriesToAdd) =>
       set({ accessories: accessoriesToAdd }),
-    setProductItem: (productItem: ProductItem) =>
-      set({ selectedProduct: productItem }),
+    setProductItem: (productItem) => set({ selectedProduct: productItem }),
   },
 
   // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),

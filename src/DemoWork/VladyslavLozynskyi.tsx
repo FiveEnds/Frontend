@@ -21,6 +21,7 @@ import { Header } from '../components/organisms/Header/Header';
 import { CartLayout } from '../components/templates/CartLayout/CartLayout';
 import { CartItem } from '../components/molecules/CartItem';
 import { Checkout } from '../components/molecules/Checkout/Checkout';
+// import { ProductConfigurator } from '../components/organisms/ProductConfigurator/ProductConfigurator';
 // import { ProductAbout } from '../components/molecules/ProductAbout/ProductAbout';
 // import { useState } from 'react';
 // import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
@@ -707,7 +708,7 @@ export const VladyslavLozynskyi: React.FC = () => {
       /> */}
 
       {/* <div className="pb-50">,</div> */}
-      {/* <ProductItemLayout
+      {/*<ProductItemLayout
         header={<Header />}
         pageProductDetails={<div className="bg-black">hello</div>}
         productGallery={<div className="bg-yellow">gallery</div>}
