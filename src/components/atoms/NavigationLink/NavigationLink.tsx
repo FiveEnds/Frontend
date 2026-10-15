@@ -1,6 +1,7 @@
 import type React from 'react';
 import { Typography } from '../Typography/Typography';
 import { NavLink } from 'react-router-dom';
+import cn from 'classnames';
 
 type NavLinkProps = {
   href: string;
@@ -18,9 +19,10 @@ export const NavigationLink: React.FC<NavLinkProps> = ({
   const typographyElement = (isActive = false) => (
     <Typography
       level="uppercase"
-      className={`transition-colors 
-        ${isActive ? 'text-primary' : 'text-secondary group-hover:text-primary'}
-      ${classNames}`}
+      className={cn('transition-colors', classNames, {
+        'text-primary': isActive,
+        'text-secondary group-hover:text-primary': !isActive,
+      })}
     >
       {children}
     </Typography>

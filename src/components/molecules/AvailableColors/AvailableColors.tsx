@@ -3,9 +3,11 @@ import { ButtonColor } from '../../atoms/Buttons/ButtonColor';
 import { Typography } from '../../atoms/Typography/Typography';
 import cn from 'classnames';
 
+type ClickOptions = 'color' | 'capacity';
+
 type Props = {
   colors: string[];
-  handleClick: (color: string, option: 'color' | 'capacity') => void;
+  handleClick: (color: string, option: ClickOptions) => void;
   isSelected: string;
   classNames?: string;
 };
@@ -17,7 +19,7 @@ export const AvailableColors: React.FC<Props> = ({
   classNames,
 }) => {
   return (
-    <div className={`flex flex-col gap-2 ${classNames}`}>
+    <div className={cn('flex flex-col gap-2', classNames)}>
       <div className="flex justify-between">
         <Typography
           level="small"

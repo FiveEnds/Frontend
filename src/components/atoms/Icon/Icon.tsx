@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { ICONS } from '../../../constants/icons';
 
 type Props = {
   src: string;
@@ -6,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-const RED_HEART_URL = '/icons/heart-filled.svg';
+const RED_HEART_URL = ICONS.HEART_FILLED;
 
 export const Icon: React.FC<Props> = ({ src, isDisabled, className }) => {
   const isRedHeart = src === RED_HEART_URL;

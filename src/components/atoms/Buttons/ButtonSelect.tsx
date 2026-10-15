@@ -22,13 +22,10 @@ export const ButtonSelect: React.FC<Props> = ({
 }) => (
   <button
     type="button"
-    className={classNames(
-      `flex justify-center items-center text-center border transition-all duration-400 ease-in-out ${className}`,
-      {
-        [variant.default]: !isSelected,
-        [variant.selected]: isSelected,
-      },
-    )}
+    className={classNames(`flex-center text-center border  ${className}`, {
+      [variant.default]: !isSelected,
+      [variant.selected]: isSelected,
+    })}
     onClick={handleClick}
   >
     <Typography

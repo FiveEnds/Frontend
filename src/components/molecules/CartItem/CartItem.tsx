@@ -69,7 +69,7 @@ export const CartItem: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-between md:shrink-0 md:gap-6">
+      <div className="flex-center md:shrink-0 md:gap-6">
         <div className="flex items-center gap-3">
           <ButtonIcon
             className="grid size-8 place-items-center"

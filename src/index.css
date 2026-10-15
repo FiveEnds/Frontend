@@ -56,4 +56,12 @@
   .hover-zoom-small {
     @apply hover:scale-105 transition-transform ease-in-out duration-300;
   }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .button-transition {
+    @apply transition-all duration-400 ease-in-out;
+  }
 }

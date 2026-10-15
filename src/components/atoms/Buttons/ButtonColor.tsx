@@ -22,7 +22,7 @@ export const ButtonColor: React.FC<Props> = ({
     className={classNames(
       `w-7.5 h-7.5 rounded-full border-2 border-white
       ring-1
-      transition-all duration-300 ease-in-out
+      button-transition
       ${className}`,
       {
         [variant.selected]: isSelected,

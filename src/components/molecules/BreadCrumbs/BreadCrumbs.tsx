@@ -20,7 +20,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
     cart: 'Cart',
   };
 
-  if (!customItems && pathnames.length === 0) {
+  if (!customItems && !pathnames.length) {
     return null;
   }
 

@@ -13,12 +13,7 @@ export const IconNotification: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <span
-      className={cn(
-        'relative flex items-center justify-center w-[28px] h-[28px]',
-        className,
-      )}
-    >
+    <span className={cn('relative flex-center w-7 h-7', className)}>
       <Icon
         src={src}
         className="size-full"
@@ -27,9 +22,7 @@ export const IconNotification: React.FC<Props> = ({
       <span
         className="
         absolute
-        flex
-        items-center
-        justify-center
+        flex-center
         top-0
         right-0
         size-[14px]

@@ -21,7 +21,7 @@ export const Typography: React.FC<TypographyProps> = ({
         <h1
           className={classNames(
             'font-bold font-mont tracking-[-0.01em]',
-            'text-[32px] leading-[41px] md:text-[48px] md:leading-[56px]',
+            'text-8 leading-[41px] md:text-12 md:leading-14',
             className,
             textColor,
           )}
@@ -34,7 +34,7 @@ export const Typography: React.FC<TypographyProps> = ({
         <h2
           className={classNames(
             'font-bold font-mont tracking-normal md:tracking-[-0.01em]',
-            'text-[22px] leading-[31px] md:text-[32px] md:leading-[41px]',
+            'text-[22px] leading-[31px] md:text-8 md:leading-[41px]',
             className,
             textColor,
           )}
@@ -47,7 +47,7 @@ export const Typography: React.FC<TypographyProps> = ({
         <h3
           className={classNames(
             'font-semibold font-mont tracking-normal md:font-bold',
-            'text-[20px] leading-[26px] md:text-[22px] md:leading-[31px] flex justify-between',
+            'text-5 leading-[26px] md:text-[22px] md:leading-[31px] flex justify-between',
             className,
             textColor,
           )}
@@ -60,7 +60,7 @@ export const Typography: React.FC<TypographyProps> = ({
         <h4
           className={classNames(
             'font-semibold font-mont tracking-normal',
-            'text-[16px] leading-[20px] md:text-[20px] md:leading-[26px]',
+            'text-4 leading-5 md:text-5 md:leading-[26px]',
             className,
             textColor,
           )}
@@ -72,7 +72,7 @@ export const Typography: React.FC<TypographyProps> = ({
       return (
         <span
           className={classNames(
-            'font-bold font-mont uppercase tracking-[0.04em] text-[12px] leading-[11px]',
+            'font-bold font-mont uppercase tracking-[0.04em] text-3 leading-[11px]',
             className,
             textColor,
           )}
@@ -96,7 +96,7 @@ export const Typography: React.FC<TypographyProps> = ({
       return (
         <span
           className={classNames(
-            'font-semibold font-mont text-[12px] leading-[15px] tracking-normal',
+            'font-semibold font-mont text-3 leading-[15px] tracking-normal',
             className,
             textColor,
           )}

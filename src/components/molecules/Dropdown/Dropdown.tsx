@@ -10,8 +10,10 @@ type Props = {
   onChange: (value: string) => void;
 };
 
+type Directions = 'down' | 'up';
+
 const triggerClassName =
-  'flex h-10 w-full items-center justify-between border border-elements bg-white px-3 text-left text-primary hover:border-secondary focus-visible:border-primary focus-visible:outline-none';
+  'flex-center h-10 w-full border border-elements bg-white px-3 text-left text-primary hover:border-secondary focus-visible:border-primary focus-visible:outline-none';
 
 const menuClassName =
   'absolute top-full z-10 mt-0.5 w-full overflow-y-auto border border-elements bg-white py-1 shadow-sm';
@@ -40,7 +42,7 @@ export const Dropdown: React.FC<Props> = ({
     }
   };
 
-  const openMenu = (direction: 'down' | 'up' = 'down') => {
+  const openMenu = (direction: Directions = 'down') => {
     if (!options.length) return;
 
     const selectedIndex = options.indexOf(value);
@@ -155,7 +157,7 @@ export const Dropdown: React.FC<Props> = ({
 
       <button
         ref={triggerRef}
-        disabled={options.length === 0}
+        disabled={!options.length}
         aria-label={label ?? 'Dropdown'}
         aria-expanded={isOpen}
         aria-haspopup="listbox"

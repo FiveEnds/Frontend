@@ -23,15 +23,11 @@ export const ButtonIcon: React.FC<Props> = ({
 }) => (
   <button
     type="button"
-    className={classNames(
-      'border flex justify-center items-center transition-all duration-400 ease-in-out',
-      className,
-      {
-        'disabled:border-elements': isDisabled,
-        'enabled:hover:border-primary border-icons': !isSelected && !isDisabled,
-        [variant.selected]: isSelected && !isDisabled,
-      },
-    )}
+    className={classNames('border flex-center button-transition', className, {
+      'disabled:border-elements': isDisabled,
+      'enabled:hover:border-primary border-icons': !isSelected && !isDisabled,
+      [variant.selected]: isSelected && !isDisabled,
+    })}
     onClick={handleClick}
     disabled={isDisabled}
   >

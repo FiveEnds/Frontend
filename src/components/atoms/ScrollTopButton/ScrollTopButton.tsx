@@ -11,7 +11,7 @@ export const ScrollToTopButton: React.FC<ScrollTopButtonProps> = ({
   onClick,
 }) => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex-center">
       <Typography
         level="uppercase"
         className="mr-4 text-secondary group-hover:text-primary transition-colors"
