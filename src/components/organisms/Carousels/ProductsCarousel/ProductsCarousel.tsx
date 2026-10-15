@@ -11,8 +11,8 @@ import { useAutoplay } from '../js/EmblaCarouselAutoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
-import type { Product } from '../../../../types/Product';
 import { ProductCard } from '../../ProductCard/ProductCard';
+import type { Product } from '../../../../types/Product';
 
 type Props = {
   title: string;

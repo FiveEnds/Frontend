@@ -22,7 +22,7 @@ export const SelectCapacity: React.FC<Props> = ({
     <div className="flex gap-2">
       {availableCapacities.map((capacity) => (
         <ButtonSelect
-          className="px-2 pt-[7px] pb-1"
+          className="px-2 pt-[7px] pb-1 hover-zoom-small transform-gpu"
           handleClick={() => handleClick(capacity, 'capacity')}
           isSelected={selectedCapacity === capacity}
           content={capacity}
