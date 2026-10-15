@@ -16,7 +16,7 @@ export const ButtonBack: React.FC = () => {
 
   return (
     <button onClick={handleBack}>
-      <div className="flex gap-1 items-center ">
+      <div className="flex gap-1 items-center hover:scale-110 origin-left transition-transform duration-300 ease-in-out">
         <Icon src={ICONS.ARROW.LEFT} />
         <Typography
           level="small"
