@@ -45,6 +45,7 @@ export const CartPage: React.FC = () => {
             className="
           w-full flex flex-col gap-4
           min-[1200px]:col-span-16
+          min-[1200px]: last:mb-20
 
           min-[640px]:max-[1200px]:col-span-12
 
@@ -83,12 +84,15 @@ export const CartPage: React.FC = () => {
           <div
             className="
           min-[1200px]:col-span-8
+          min-[1200px]:mb-20
           
           min-[640px]:max-[1200px]:col-span-12
           min-[640px]:max-[1200px]:mt-8
+          min-[640px]:max-[1200px]:mb-16
 
           min-[320px]:max-[640px]:col-span-4
           min-[320px]:max-[640px]:mt-8
+          min-[320px]:max-[640px]:mb-14
           "
           >
             <Checkout />
