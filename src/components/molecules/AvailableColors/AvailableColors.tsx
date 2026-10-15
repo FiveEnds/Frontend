@@ -4,7 +4,7 @@ import { Typography } from '../../atoms/Typography/Typography';
 
 type Props = {
   colors: string[];
-  handleClick: () => void;
+  handleClick: (color: string, option: 'color' | 'capacity') => void;
   isSelected: string;
   classNames?: string;
 };
@@ -39,7 +39,7 @@ export const AvailableColors: React.FC<Props> = ({
               COLOR_CLASS_MAP[color as keyof typeof COLOR_CLASS_MAP] ||
               'bg-gray-100'
             }
-            handleClick={handleClick}
+            handleClick={() => handleClick(color, 'color')}
             isSelected={isSelected === color}
           />
         ))}

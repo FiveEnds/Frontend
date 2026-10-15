@@ -12,9 +12,15 @@ type Props = {
   product: Product;
   isLiked: boolean;
   isSelected: boolean;
-  handleColorSelect: () => void;
-  handleCapacitySelect: () => void;
-  handleSelectClick: () => void;
+  handleColorSelect: (
+    selecteColor: string,
+    option: 'color' | 'capacity',
+  ) => void;
+  handleCapacitySelect: (
+    selectedCapacity: string,
+    option: 'color' | 'capacity',
+  ) => void;
+  handleAddToCart: () => void;
   handleLikeClick: () => void;
 };
 
@@ -31,7 +37,7 @@ export const ProductConfigurator: React.FC<Props> = ({
   handleColorSelect,
   handleCapacitySelect,
   handleLikeClick,
-  handleSelectClick,
+  handleAddToCart,
   isLiked,
   isSelected,
   product,
@@ -74,7 +80,7 @@ export const ProductConfigurator: React.FC<Props> = ({
           </div>
           <ProductSelectActions
             handleLikeClick={handleLikeClick}
-            handleSelectClick={handleSelectClick}
+            handleSelectClick={handleAddToCart}
             isSelected={isSelected}
             isLiked={isLiked}
           />
