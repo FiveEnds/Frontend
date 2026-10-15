@@ -43,10 +43,10 @@ export const ProductCard: React.FC<Props> = ({
     <div className="flex-1 min-h-0 flex items-center justify-center w-full">
       <Link
         to={`/${product.category}/${product.id}`}
-        className="flex justify-center w-full h-full"
+        className="flex justify-center w-full h-full overflow-hidden"
       >
         <img
-          className="max-h-full max-w-full object-contain"
+          className="max-h-full max-w-full object-contain transition-transform duration-300 ease-in-out hover:scale-105"
           src={product.image}
           alt={product.itemId}
         />
