@@ -6,7 +6,8 @@ export const BurgerMenu: React.FC = () => (
     className="
     flex flex-col justify-between items-center 
     absolute z-50 top-12 pt-6 right-0 bottom-0 left-0 bg-white 
-    md:hidden"
+    md:hidden
+    dark:bg-spacegray"
   >
     <NavigationTopList direction="column" />
     <NavigationButtons

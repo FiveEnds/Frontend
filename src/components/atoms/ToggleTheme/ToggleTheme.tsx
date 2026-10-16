@@ -27,7 +27,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-elements dark:bg-spacegray text-primary dark:text-white transition-colors cursor-pointer"
+      className=" w-full h-[47px] lg:w-[64px] lg:h-[61px] flex items-center justify-center p-2 rounded-lg bg-elements dark:bg-spacegray text-primary dark:text-white transition-colors cursor-pointer"
       aria-label="Toggle Theme"
     >
       {isDark ? '☀️' : '🌙'}
