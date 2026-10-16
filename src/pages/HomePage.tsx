@@ -85,19 +85,19 @@ export const HomePage: React.FC = () => {
             {
               title: 'Mobile phones',
               image: '/img/banners/SquarePhones.png',
-              count: 95,
+              count: phones.length,
               to: '/phones',
             },
             {
               title: 'Tablets',
               image: '/img/banners/SquareTablets.png',
-              count: 24,
+              count: tablets.length,
               to: '/tablets',
             },
             {
               title: 'Accessories',
               image: '/img/accessories/apple-watch-se/gold/00.webp',
-              count: 100,
+              count: accessories.length,
               to: '/accessories',
             },
           ]}

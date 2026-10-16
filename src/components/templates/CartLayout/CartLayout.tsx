@@ -23,7 +23,7 @@ export const CartLayout: React.FC<Props> = ({
       <div className="col-span-full mb-8 lg:mb-0 lg:col-span-16">
         {productSelectedItems}
       </div>
-      <div className="col-span-full lg:col-span-8">{productCart}</div>
+      <div className="col-span-full lg:col-span-8 ">{productCart}</div>
     </div>
 
     <div className="border-t border-elements mt-12 md:mt-16 lg:mt-20">
