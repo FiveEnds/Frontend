@@ -13,7 +13,7 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
   return (
     <nav className={CN('flex items-center', classNames)}>
       <NavLink
-        to="/favorites"
+        to="/favourites"
         className="w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements hover:bg-gray-50 transition-colors"
       >
         <ButtonIcon

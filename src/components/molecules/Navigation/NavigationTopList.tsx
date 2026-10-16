@@ -24,7 +24,7 @@ export const NavigationTopList: React.FC<NavigationListProps> = ({
         return (
           <div
             key={item.href}
-            className={`relative flex items-center ${isColumn ? 'h-[27px]' : 'h-[48px] lg:h-[64px]'}`}
+            className={`hover-zoom-small relative flex items-center ${isColumn ? 'h-[27px]' : 'h-[48px] lg:h-[64px]'}`}
           >
             <NavigationLink href={item.href}>{item.label}</NavigationLink>
           </div>

@@ -1,59 +1,29 @@
-import { ProductCard } from '../components/organisms/ProductCard/ProductCard';
-
-const sampleRecommendedProduct = {
-  id: '2',
-  category: 'phones',
-  phoneId: 'apple-iphone-11-pro-max-64gb-gold',
-  itemId: 'apple-iphone-11-pro-max-64gb-gold',
-  name: 'Apple iPhone 11 Pro Max 64GB Gold',
-  fullPrice: 1100,
-  price: 999,
-  priceRegular: 1100,
-  priceDiscount: 999,
-  resolution: '1792x828',
-  processor: 'Apple A13 Bionic',
-  screen: '6.5" OLED',
-  capacity: '64GB',
-  color: 'gold',
-  ram: '4GB',
-  year: 2019,
-  image: 'img/phones/apple-iphone-11-pro-max/gold/00.jpg',
-  images: ['https://via.placeholder.com/200'],
-  namespaceId: 'apple-iphone-11-pro-max',
-};
+import { Breadcrumbs } from '../components/molecules/BreadCrumbs/BreadCrumbs';
+import { HeadingWithCount } from '../components/molecules/HeadingWithCount';
+import { FavouriteProducts } from '../components/organisms/FavouriteProducts/FavouriteProducts';
+import { FavoritesLayout } from '../components/templates/FavoritesLayout';
+import { useAppActions, useAppState } from '../store/store';
 
 export const FavouritesPage: React.FC = () => {
+  const favouriteProducts = useAppState((state) => state.favourites);
+  const { toggleFavorite } = useAppActions();
+
   return (
-    <>
-      <main>
-        <section>
-          {/*favorites*/}
-          <div>
-            <a></a> {/*ССилка з картинки на дім*/}
-            {/* <img></img>  стрілка*/}
-            <span></span> {/*Hана категорія*/}
-          </div>
-          <div>
-            <h1>Favourites</h1>
-            <p>0 items</p> {/*Думаю або пусто або те що було вибрано*/}
-          </div>
-          <p>Your favourites is empty</p>{' '}
-          <div>
-            <ProductCard
-              product={sampleRecommendedProduct}
-              cardHeight={506}
-              isLiked={false}
-              isSelected={false}
-              handleLikeClick={() => {
-                console.log('Like clicked');
-              }}
-              handleSelectClick={() => {
-                console.log('Cart clicked');
-              }}
-            />
-          </div>
-        </section>
-      </main>
-    </>
+    <FavoritesLayout
+      breadCrumbs={<Breadcrumbs />}
+      headingWithCount={
+        <HeadingWithCount
+          title="Favourites"
+          itemsCount={favouriteProducts.length}
+          countLabel="items"
+        />
+      }
+      products={
+        <FavouriteProducts
+          favouriteProducts={favouriteProducts}
+          toggleFavorite={toggleFavorite}
+        />
+      }
+    />
   );
 };
