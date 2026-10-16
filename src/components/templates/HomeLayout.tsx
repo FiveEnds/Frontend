@@ -13,20 +13,22 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({
   shopByCategory,
   hotPricesCarousel,
 }) => (
-  <div className="min-h-screen flex flex-col items-center">
-    <main className="flex-1 max-w-[1200px] w-full mx-[16px] md:px-[32px] pt-[24px] md:pt-[56px] lg:pt-[56px] lg:pb-[80px] pb-[64px]">
-      <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 ">
-        <section>{heroSlider}</section>
+  <div className="min-h-screen flex flex-col items-center w-full">
+    <main className="w-full max-w-[1200px] pt-6 md:pt-10 lg:pt-14 pb-16 lg:pb-20">
+      <div className="grid grid-cols-4 md:grid-cols-12 lg:grid-cols-24 gap-4 w-full">
+        <section className="col-span-4 md:col-span-12 lg:col-span-24 w-full">
+          {heroSlider}
+        </section>
 
-        <section className="w-full mx-[16px] md:mx-[0px] ld:mx-[0px]">
+        <section className="col-span-4 md:col-span-12 lg:col-span-24 mt-8 md:mt-12 lg:mt-16 w-full">
           {brandNewCarousel}
         </section>
 
-        <section className="w-full mx-[16px] md:mx-[0px] ld:mx-[0px]">
+        <section className="px-4 md:px-6 lg:px-8 col-span-4 md:col-span-12 lg:col-span-24 mt-8 md:mt-12 lg:mt-16">
           {shopByCategory}
         </section>
 
-        <section className="w-full mx-[16px] md:mx-[0px] ld:mx-[0px]">
+        <section className="col-span-4 md:col-span-12 lg:col-span-24 mt-8 md:mt-12 lg:mt-16 w-full">
           {hotPricesCarousel}
         </section>
       </div>

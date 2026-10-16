@@ -47,7 +47,12 @@ export const ProductsCarousel: React.FC<Props> = ({
   return (
     <>
       <div className="flex justify-between pb-6">
-        <Typography level="h2">{title}</Typography>
+        <Typography
+          level="h2"
+          className="px-4 md:px-6 lg:px-8"
+        >
+          {title}
+        </Typography>
         <div className="flex gap-4">
           <ButtonIcon
             className="w-8 h-8"
