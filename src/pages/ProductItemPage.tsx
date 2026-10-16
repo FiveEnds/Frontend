@@ -66,7 +66,8 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const { setProductItem, addItemToCart, toggleFavorite } = useAppActions();
+  const { setProductItem, addItemToCart, toggleFavorite, removeItemFromCart } =
+    useAppActions();
 
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -106,12 +107,12 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     return <></>;
   }
 
-  const handleAddItem = (isAdded: boolean) => {
-    if (isAdded) {
-      return;
+  const handleCartClick = () => {
+    if (itemInCart) {
+      removeItemFromCart(product.id);
+    } else {
+      addItemToCart(product);
     }
-
-    addItemToCart(product);
   };
 
   const itemInCart = Object.hasOwn(cart, product.id);
@@ -160,7 +161,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
           product={product}
           handleColorSelect={handleCapacitySelect}
           handleCapacitySelect={handleCapacitySelect}
-          handleAddToCart={() => handleAddItem(itemInCart)}
+          handleAddToCart={handleCartClick}
           handleLikeClick={() => toggleFavorite(product)}
           isLiked={isLiked}
           isSelected={itemInCart}
