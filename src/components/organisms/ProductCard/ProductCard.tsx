@@ -7,6 +7,7 @@ import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../../types/Product';
 import { useAppActions, useAppState } from '../../../store/store';
+import { getScreenLabel } from '../../../utils/formatScreen';
 
 type Props = {
   product: Product;
@@ -17,7 +18,7 @@ type Props = {
 
 function getSpecifications(product: Product): Spec[] {
   return [
-    [SPECIFICATIONS.SCREEN, product.screen],
+    [SPECIFICATIONS.SCREEN, getScreenLabel(product.screen)],
     [SPECIFICATIONS.CAPACITY, product.capacity],
     [SPECIFICATIONS.RAM, product.ram],
   ];
@@ -74,19 +75,22 @@ export const ProductCard: React.FC<Props> = ({
       >
         <Typography>{product.name}</Typography>
       </Link>
-      {(
-        hasDiscount &&
-        product.priceRegular &&
-        product.priceRegular > product.priceDiscount
-      ) ?
-        <ProductPrice
-          currentPrice={product.priceDiscount}
-          oldPrice={product.priceRegular}
-        />
-      : <ProductPrice
-          currentPrice={product.priceRegular || product.priceDiscount}
-        />
-      }
+      <div className="border-b border-elements pb-2">
+        {(
+          hasDiscount &&
+          product.priceRegular &&
+          product.priceRegular > product.priceDiscount
+        ) ?
+          <ProductPrice
+            currentPrice={product.priceDiscount}
+            oldPrice={product.priceRegular}
+          />
+        : <ProductPrice
+            currentPrice={product.priceRegular || product.priceDiscount}
+          />
+        }
+      </div>
+
       <ProductCardSpecs specifications={getSpecifications(product)} />
       <ProductSelectActions
         handleSelectClick={handleCartClick}
