@@ -6,7 +6,9 @@ import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
 import { useAppState } from '../store/store';
-
+{
+  /*_*/
+}
 export const HomePage: React.FC = () => {
   const phones = useAppState((state) => state.phones);
   const tablets = useAppState((state) => state.tablets);
