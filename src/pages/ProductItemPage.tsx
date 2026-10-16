@@ -103,7 +103,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
   const shuffleProducts = useMemo(() => {
     if (!product) {
-      return <></>;
+      return [];
     }
 
     return getProducts(products, product.id) as Product[];
