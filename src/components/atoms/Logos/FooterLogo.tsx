@@ -7,7 +7,12 @@ export const FooterLogo = () => {
       <img
         src="/img/Logo.svg"
         alt="Nice Gadgets"
-        className="w-22.25 h-8 object-contain "
+        className="w-22.25 h-8 object-contain dark:hidden"
+      />
+      <img
+        src="/img/Logo-dark.svg"
+        alt="Nice Gadgets"
+        className="w-22.25 h-8 object-contain hidden dark:block"
       />
     </a>
   );

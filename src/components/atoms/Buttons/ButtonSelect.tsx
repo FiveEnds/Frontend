@@ -33,7 +33,7 @@ export const ButtonSelect: React.FC<Props> = ({
   >
     <Typography
       level="button"
-      textColor="inherit"
+      className="inherit"
     >
       {content}
     </Typography>

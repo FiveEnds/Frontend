@@ -68,7 +68,7 @@ export const Pagination = ({
             >
               <Typography
                 level="body"
-                textColor="inherit"
+                className="inherit"
               >
                 {page}
               </Typography>

@@ -26,7 +26,7 @@ export const HeadingWithCount = ({
       <Typography level={titleLevel}>{title}</Typography>
       <Typography
         level="body"
-        textColor="text-secondary"
+        className="text-secondary"
       >
         {itemsCount} {countLabel}
       </Typography>
