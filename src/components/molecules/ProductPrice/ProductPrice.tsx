@@ -22,7 +22,7 @@ export const ProductPrice: React.FC<Props> = ({
         >
           <span className="relative inline-block text-secondary">
             ${oldPrice}
-            <span className="absolute inset-x-0 top-11/26 h-[1px] bg-secondary mix-blend-color-dodge" />
+            <span className="absolute inset-x-0 top-[48%] h-[1px] bg-secondary mix-blend-color-dodge" />
           </span>
         </Typography>
       </div>
