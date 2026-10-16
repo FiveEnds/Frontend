@@ -7,6 +7,7 @@ type Props = {
   className?: string;
   handleClick: () => void;
   isSelected: boolean;
+  onSelected: string;
 };
 
 const variant = {
@@ -20,6 +21,7 @@ export const ButtonCart: React.FC<Props> = ({
   className,
   handleClick,
   isSelected,
+  onSelected,
 }) => (
   <button
     type="button"
@@ -36,7 +38,7 @@ export const ButtonCart: React.FC<Props> = ({
       level="button"
       textColor="inherit"
     >
-      {content}
+      {isSelected ? onSelected : content}
     </Typography>
   </button>
 );
