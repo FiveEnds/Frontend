@@ -13,7 +13,7 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({
   shopByCategory,
   hotPricesCarousel,
 }) => (
-  <div className="min-h-screen flex flex-col items-center w-full">
+  <div className="min-h-screen flex flex-col items-center w-full overflow-x-hidden">
     <main className="w-full max-w-[1200px] pt-6 md:pt-10 lg:pt-14 pb-16 lg:pb-20">
       <div className="grid grid-cols-4 md:grid-cols-12 lg:grid-cols-24 gap-4 w-full">
         <section className="col-span-4 md:col-span-12 lg:col-span-24 w-full">
