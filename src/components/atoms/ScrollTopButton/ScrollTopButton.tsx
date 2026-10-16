@@ -14,7 +14,7 @@ export const ScrollToTopButton: React.FC<ScrollTopButtonProps> = ({
     <button
       type="button"
       onClick={onClick}
-      className="group flex items-center justify-center cursor-pointer bg-transparent border-none p-0"
+      className="group flex items-center justify-center md:justify-start cursor-pointer bg-transparent border-none p-0 w-full md:w-auto"
     >
       <Typography
         level="uppercase"

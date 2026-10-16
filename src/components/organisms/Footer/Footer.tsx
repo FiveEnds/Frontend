@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
           <div className="mb-8 md:mb-0">
             <NavigationList />
           </div>
-          <div className="w-full flex justify-between items-center md:w-auto md:justify-start">
+          <div className="w-full flex justify-between items-center md:w-auto md:justify-start gap-[16px]">
             <ScrollToTopButton onClick={handleScrollTop} />
           </div>
         </div>

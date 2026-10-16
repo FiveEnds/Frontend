@@ -77,7 +77,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
     <>
       <Typography
         level="h1"
-        className="px-4 md:px-6 lg:px-8 pb-6 md:pb-8"
+        className="px-4 md:px-0 lg:px-0 pb-6 md:pb-8"
       >
         Welcome to Nice Gadgets store!
       </Typography>
