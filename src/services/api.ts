@@ -1,18 +1,19 @@
-import type { Accessory, Phone, ProductSummary, Tablet } from '../types/api';
+import type { Accessory, Phone, Tablet } from '../types/api';
+import { supabase } from './supabase';
 
-const API_URL = './api';
+type ProductTable = 'phones' | 'tablets' | 'accessories';
 
-function load<T>(file: string): Promise<T> {
-  return fetch(`${API_URL}/${file}.json`).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to load ${file}.json: ${response.status}`);
-    }
+async function getProductsFromTable<T>(table: ProductTable): Promise<T[]> {
+  const { data, error } = await supabase.from(table).select('*');
 
-    return response.json() as Promise<T>;
-  });
+  if (error) {
+    throw new Error(`Failed to load ${table}: ${error.message}`);
+  }
+
+  return data as T[];
 }
 
-export const getProducts = () => load<ProductSummary[]>('products');
-export const getPhones = () => load<Phone[]>('phones');
-export const getTablets = () => load<Tablet[]>('tablets');
-export const getAccessories = () => load<Accessory[]>('accessories');
+export const getPhones = () => getProductsFromTable<Phone>('phones');
+export const getTablets = () => getProductsFromTable<Tablet>('tablets');
+export const getAccessories = () =>
+  getProductsFromTable<Accessory>('accessories');
