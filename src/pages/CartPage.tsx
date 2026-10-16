@@ -1,9 +1,8 @@
 import { CartItem } from '../components/molecules/CartItem';
-import { Icon } from '../components/atoms/Icon/Icon';
-import { ICONS } from '../constants/icons';
 import { Typography } from '../components/atoms/Typography/Typography';
 import { Checkout } from '../components/molecules/Checkout/Checkout';
 import { useAppState, useAppActions } from '../store/store';
+import { ButtonBack } from '../components/atoms/Buttons/ButtonBack';
 
 export const CartPage: React.FC = () => {
   const localCart = useAppState((state) => state.cart);
@@ -45,17 +44,13 @@ export const CartPage: React.FC = () => {
       "
       >
         <section className="col-span-full grid grid-cols-subgrid">
-          <button
-            className="col-span-1 flex items-center whitespace-nowrap w-max mt-10"
-            onClick={() => console.log(Object.values(localCart))}
-          >
-            <Icon src={ICONS.ARROW.LEFT} />
-            <Typography level="small">Back</Typography>
-          </button>
+          <span className="col-span-1 flex items-center w-max mt-10 mb-4 min-[320px]:max-[640px]:my-6">
+            <ButtonBack />
+          </span>
 
           <Typography
             level="h1"
-            className="col-span-full mt-4 mb-8"
+            className="col-span-full mb-8"
           >
             Card
           </Typography>
