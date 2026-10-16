@@ -5,9 +5,11 @@ import { Outlet } from 'react-router-dom';
 
 export const HeaderLayout: React.FC = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-white dark:bg-spacegray text-primary dark:text-white transition-colors">
       <Header />
-      <Outlet />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

@@ -19,5 +19,15 @@
       type="module"
       src="/src/index.tsx"
     ></script>
+    <script>
+      // Швидка перевірка теми до завантаження React
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </body>
 </html>
