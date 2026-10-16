@@ -57,15 +57,14 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
                 {isLast ?
                   <Typography
                     level="body"
-                    textColor="text-secondary"
+                    className="text-secondary"
                   >
                     {label}
                   </Typography>
                 : <Link to={to}>
                     <Typography
                       level="body"
-                      textColor="text-primary"
-                      className="hover:underline"
+                      className="hover:underline text-primary"
                     >
                       {label}
                     </Typography>

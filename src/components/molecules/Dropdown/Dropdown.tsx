@@ -146,8 +146,7 @@ export const Dropdown: React.FC<Props> = ({
       {label && (
         <Typography
           level="small"
-          className="mb-1 block"
-          textColor="text-secondary"
+          className="mb-1 block text-secondary"
         >
           {label}
         </Typography>
@@ -193,7 +192,7 @@ export const Dropdown: React.FC<Props> = ({
             >
               <Typography
                 level="body"
-                textColor="text-secondary group-hover:text-primary group-focus-visible:text-primary"
+                className="text-secondary group-hover:text-primary group-focus-visible:text-primary"
               >
                 {option}
               </Typography>

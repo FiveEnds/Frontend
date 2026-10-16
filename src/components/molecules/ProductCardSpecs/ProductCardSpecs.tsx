@@ -13,7 +13,9 @@ export const ProductCardSpecs: React.FC<Props> = ({ specifications }) => (
           className="flex justify-between"
           key={specName}
         >
-          <Typography className="text-secondary">{specName}</Typography>
+          <Typography className="text-secondary dark:text-secondary">
+            {specName}
+          </Typography>
           <Typography className="text-end">{specValue}</Typography>
         </div>
       ))}

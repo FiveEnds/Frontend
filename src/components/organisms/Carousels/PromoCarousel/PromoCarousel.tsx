@@ -137,8 +137,8 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
             onClick={() => onDotButtonClick(index)}
             className={`h-1 transition-all duration-300 rounded-sm ${
               index === selectedIndex ?
-                'w-[14px] bg-primary'
-              : 'w-[14px] bg-elements hover:bg-secondary'
+                'w-[14px] bg-primary dark:bg-white'
+              : 'w-[14px] bg-elements hover:bg-secondary dark:bg-elements'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

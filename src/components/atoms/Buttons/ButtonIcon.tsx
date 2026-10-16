@@ -24,11 +24,13 @@ export const ButtonIcon: React.FC<Props> = ({
   <button
     type="button"
     className={classNames(
-      'border flex justify-center items-center transition-all duration-400 ease-in-out',
+      'border flex justify-center items-center transition-all duration-400 ease-in-out dark:border-elements dark:hover:bg-icons',
       className,
       {
-        'disabled:border-elements': isDisabled,
-        'enabled:hover:border-primary border-icons': !isSelected && !isDisabled,
+        'disabled:border-elements dark:disabled:border-elements dark:bg-primary':
+          isDisabled,
+        'enabled:hover:border-primary border-icons dark:bg-surface-2-dark':
+          !isSelected && !isDisabled,
         [variant.selected]: isSelected && !isDisabled,
       },
     )}
