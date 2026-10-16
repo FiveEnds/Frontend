@@ -53,15 +53,15 @@ export const ProductsCarousel: React.FC<Props> = ({
         >
           {title}
         </Typography>
-        <div className="flex gap-4 -mr-[4px] md:-mr-[20px] lg:-mr-[1px]">
+        <div className="flex gap-4 -mr-[4px] md:-mr-[0px] lg:-mr-[1px]">
           <ButtonIcon
-            className="w-8 h-8"
+            className="w-8 h-8 cursor-pointer"
             handleClick={() => onAutoplayButtonClick(onPrevButtonClick)}
             isDisabled={prevBtnDisabled}
             src={ICONS.ARROW.LEFT}
           />
           <ButtonIcon
-            className="w-8 h-8"
+            className="w-8 h-8 cursor-pointer"
             handleClick={() => onAutoplayButtonClick(onNextButtonClick)}
             isDisabled={nextBtnDisabled}
             src={ICONS.ARROW.RIGHT}
@@ -78,10 +78,10 @@ export const ProductsCarousel: React.FC<Props> = ({
           className="embla__viewport"
           ref={emblaRef}
         >
-          <div className="embla__container">
+          <div className="embla__container cursor-pointer">
             {products.map((product) => (
               <div
-                className="embla__slide"
+                className="embla__slide "
                 key={product.id}
               >
                 <ProductCard
