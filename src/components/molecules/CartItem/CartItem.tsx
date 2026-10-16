@@ -27,7 +27,7 @@ export const CartItem: React.FC<Props> = ({
   const isMinQuantity = quantity <= 1;
 
   return (
-    <article className="flex min-h-40 w-full flex-col gap-4 bg-white p-4 md:min-h-32 md:flex-row md:items-center md:gap-6 md:p-6 border border-elements">
+    <article className="flex min-h-40 w-full flex-col gap-4 bg-white p-4 md:min-h-32 md:flex-row md:items-center md:gap-6 md:p-6 border border-elements  dark:bg-spacegray">
       <div className="flex min-w-0 items-center md:flex-1">
         <button
           aria-label={`Remove ${title} from cart`}

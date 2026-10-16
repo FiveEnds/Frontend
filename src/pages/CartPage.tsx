@@ -198,6 +198,7 @@ export const CartPage: React.FC = () => {
               min-[640px]:max-[1200px]:col-span-12
 
               min-[320px]:max-[640px]:col-span-4
+              
             "
             >
               {Object.values(localCart).map((item) => (

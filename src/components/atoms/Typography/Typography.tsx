@@ -13,7 +13,7 @@ export const Typography: React.FC<TypographyProps> = ({
   level = 'body',
   children,
   className,
-  textColor = 'text-primary',
+  textColor = 'text-primary dark:text-white',
 }) => {
   switch (level) {
     case 'h1':
