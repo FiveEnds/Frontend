@@ -6,12 +6,14 @@ type NavLinkProps = {
   href: string;
   children: React.ReactNode;
   classNames?: string;
+  handleClickLink?: () => void;
 };
 
 export const NavigationLink: React.FC<NavLinkProps> = ({
   href,
   children,
   classNames,
+  handleClickLink,
 }) => {
   const isExternal = href.startsWith('http') || href.startsWith('//');
 
@@ -43,6 +45,7 @@ export const NavigationLink: React.FC<NavLinkProps> = ({
       to={href}
       end
       className="group relative flex h-full items-center"
+      onClick={handleClickLink}
     >
       {({ isActive }) => (
         <>

@@ -30,6 +30,7 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       <NavLink
         to="/favourites"
         className={variant.default}
+        onClick={onClick}
       >
         {({ isActive }) => (
           <>
@@ -54,6 +55,7 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       <NavLink
         to="/bag"
         className={`${variant.default} border-l`}
+        onClick={onClick}
       >
         {({ isActive }) => (
           <>
