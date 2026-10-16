@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { Accessory, Phone, Tablet } from '../types/api';
+import type { FavouriteProduct } from '../types/FavouriteProduct';
 import type { Product } from '../types/Product';
 
 type CartItemInfo = {
@@ -11,13 +12,14 @@ type StoreState = {
   phones: Phone[];
   tablets: Tablet[];
   accessories: Accessory[];
-  favorites: string[];
+  favourites: FavouriteProduct[];
   cart: Record<string, CartItemInfo>;
   selectedProduct: Product | null;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
     loadTablets: (tabletsToAdd: Tablet[]) => void;
     loadAccessories: (accessoriesToAdd: Accessory[]) => void;
+    toggleFavorite: (product: FavouriteProduct) => void;
     setProductItem: (itemToAdd: Product) => void;
     addItemToCart: (productToAdd: Product) => void;
     removeItemFromCart: (productIdToRemove: string) => void;
@@ -29,7 +31,7 @@ export const useAppState = create<StoreState>()((set, get) => ({
   phones: [],
   tablets: [],
   accessories: [],
-  favorites: [],
+  favourites: [],
   cart: {},
   selectedProduct: null,
 
@@ -38,6 +40,25 @@ export const useAppState = create<StoreState>()((set, get) => ({
     loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
     loadAccessories: (accessoriesToAdd) =>
       set({ accessories: accessoriesToAdd }),
+    toggleFavorite: (product) =>
+      set((state) => ({
+        favourites:
+          (
+            state.favourites.some(
+              (favorite) =>
+                favorite.id === product.id &&
+                favorite.category === product.category,
+            )
+          ) ?
+            state.favourites.filter(
+              (favourite) =>
+                !(
+                  favourite.id === product.id &&
+                  favourite.category === product.category
+                ),
+            )
+          : [...state.favourites, product],
+      })),
     setProductItem: (productItem) => set({ selectedProduct: productItem }),
     addItemToCart: (productToAdd) => {
       const currentCart = get().cart;
@@ -85,10 +106,6 @@ export const useAppState = create<StoreState>()((set, get) => ({
       set({ cart: currentCart });
     },
   },
-
-  // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  // removeAllBears: () => set({ bears: 0 }),
-  // updateBears: (newBears) => set({ bears: newBears }),
 }));
 
 export const useAppActions = () => useAppState((state) => state.actions);

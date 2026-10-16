@@ -19,11 +19,11 @@ export const ProductSelectActions: React.FC<Props> = ({
     <ButtonCart
       handleClick={handleSelectClick}
       isSelected={isSelected}
-      className="flex-1 h-10"
+      className="flex-1 h-10 hover-zoom-small"
       content="Add to cart"
     />
     <ButtonIcon
-      className={'w-10 h-10 flex items-center justify-center'}
+      className={'w-10 h-10 flex items-center justify-center hover-zoom-small'}
       isSelected={isLiked}
       handleClick={handleLikeClick}
       src={isLiked ? ICONS.HEART_FILLED : ICONS.HEART_EMPTY}

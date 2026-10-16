@@ -1,11 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-// import { DemoWork } from './DemoWork/DemoWork';
 import { HomePage } from './pages/HomePage';
 import { PageNotFound } from './pages/PageNotFound';
-import { PhonesPage } from './pages/PhonesPage';
-import { AccessoriesPage } from './pages/AccessoriesPage';
-import { TabletsPage } from './pages/TabletsPage';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
 import { useAppActions } from './store/store';
@@ -14,6 +10,7 @@ import { useEffect } from 'react';
 import { HeaderLayout } from './components/templates/HeaderLayout';
 import { ProductItemPage } from './pages/ProductItemPage';
 import { CATEGORY } from './constants/category';
+import { CatalogPage } from './pages/CatalogPage';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories } = useAppActions();
@@ -23,10 +20,6 @@ export const App: React.FC = () => {
     getTablets().then((data) => loadTablets(data));
     getAccessories().then((data) => loadAccessories(data));
   }, [loadAccessories, loadPhones, loadTablets]);
-
-  // const phones = useAppState((state) => state.phones);
-
-  // console.log(phones);
 
   return (
     <Routes>
@@ -40,7 +33,7 @@ export const App: React.FC = () => {
         />
         <Route
           path="phones"
-          element={<PhonesPage />}
+          element={<CatalogPage category={CATEGORY.PHONES} />}
         />
         <Route
           path="phones/:productId"
@@ -48,7 +41,7 @@ export const App: React.FC = () => {
         />
         <Route
           path="tablets"
-          element={<TabletsPage />}
+          element={<CatalogPage category={CATEGORY.TABLETS} />}
         />
         <Route
           path="tablets/:productId"
@@ -56,7 +49,7 @@ export const App: React.FC = () => {
         />
         <Route
           path="accessories"
-          element={<AccessoriesPage />}
+          element={<CatalogPage category={CATEGORY.ACCESSORIES} />}
         />
         <Route
           path="accessories/:productId"
@@ -87,7 +80,5 @@ export const App: React.FC = () => {
     </Routes>
   );
 };
-
-// return <DemoWork />;
 
 export default App;

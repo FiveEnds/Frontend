@@ -1,7 +1,7 @@
 import type { EmblaOptionsType } from 'embla-carousel';
 import { Typography } from '../../../atoms/Typography/Typography';
 // Change this line to import your local component file (adjust the relative path if needed):
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/base.css';
 import '../css/sandbox.css';
 import '../css/embla.css';
@@ -11,13 +11,13 @@ import { useAutoplay } from '../js/EmblaCarouselAutoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
-import type { Products } from '../../../../types/Product';
 import { ProductCard } from '../../ProductCard/ProductCard';
+import type { Product } from '../../../../types/Product';
 
 type Props = {
   title: string;
   displayedSlides?: number;
-  products: Products[];
+  products: Product[];
   productCardHeight: number;
   hasDiscount?: boolean;
 };
@@ -43,9 +43,6 @@ export const ProductsCarousel: React.FC<Props> = ({
     onPrevButtonClick,
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
-
-  const [like, setLike] = useState(false);
-  const [select, setSelect] = useState(false);
 
   return (
     <>
@@ -84,12 +81,8 @@ export const ProductsCarousel: React.FC<Props> = ({
               >
                 <ProductCard
                   product={product}
-                  isSelected={select}
-                  handleSelectClick={() => setSelect((current) => !current)}
-                  handleLikeClick={() => setLike((current) => !current)}
                   className={'w-full'}
                   cardHeight={productCardHeight}
-                  isLiked={like}
                   hasDiscount={hasDiscount}
                 />
               </div>
