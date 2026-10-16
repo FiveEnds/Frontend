@@ -19,7 +19,7 @@ export const ButtonBack: React.FC = () => {
       onClick={handleBack}
       className="group"
     >
-      <div className="flex gap-1 items-center hover:scale-110 origin-left transition-transform duration-300 ease-in-out group-hover:scale-110">
+      <div className="flex gap-1 items-center hover:scale-110 hover:cursor-pointer origin-left transition-transform duration-300 ease-in-out group-hover:scale-110">
         <Icon
           src={ICONS.ARROW.LEFT}
           isDisabled={true}
