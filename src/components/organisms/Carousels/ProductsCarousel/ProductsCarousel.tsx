@@ -13,6 +13,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
 import { ProductCard } from '../../ProductCard/ProductCard';
 import type { Product } from '../../../../types/Product';
+import cn from 'classnames';
 
 type Props = {
   title: string;
@@ -55,13 +56,17 @@ export const ProductsCarousel: React.FC<Props> = ({
         </Typography>
         <div className="flex gap-4">
           <ButtonIcon
-            className="w-8 h-8"
+            className={cn('w-8 h-8 ', {
+              'dark:bg-surface-2-dark': !prevBtnDisabled,
+            })}
             handleClick={() => onAutoplayButtonClick(onPrevButtonClick)}
             isDisabled={prevBtnDisabled}
             src={ICONS.ARROW.LEFT}
           />
           <ButtonIcon
-            className="w-8 h-8"
+            className={cn('w-8 h-8 ', {
+              'dark:bg-surface-2-dark': !nextBtnDisabled,
+            })}
             handleClick={() => onAutoplayButtonClick(onNextButtonClick)}
             isDisabled={nextBtnDisabled}
             src={ICONS.ARROW.RIGHT}

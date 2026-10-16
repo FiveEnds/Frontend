@@ -73,6 +73,7 @@
   --color-surface-2-dark: #323542;
   --color-surface-1-dark: #161827;
   --color-accent-dark: #905bff;
+  --color-accent-hover-dark: #a378ff;
 }
 
 @layer utilities {

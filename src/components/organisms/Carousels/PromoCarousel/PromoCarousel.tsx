@@ -83,7 +83,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
       </Typography>
       <div className="grid grid-cols-[auto_1fr_auto] md:gap-[19px] lg:gap-[16px]">
         <ButtonIcon
-          className="w-8 h-full hidden md:block"
+          className="w-8 h-full hidden md:block dark:bg-surface-2-dark"
           handleClick={() => onAutoplayButtonClick(onPrevButtonClick)}
           isDisabled={prevBtnDisabled}
           src={ICONS.ARROW.LEFT}
@@ -123,7 +123,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
           </div>
         </div>
         <ButtonIcon
-          className="w-8 h-full hidden md:block"
+          className="w-8 h-full hidden md:block dark:bg-surface-2-dark"
           handleClick={() => onAutoplayButtonClick(onNextButtonClick)}
           isDisabled={nextBtnDisabled}
           src={ICONS.ARROW.RIGHT}

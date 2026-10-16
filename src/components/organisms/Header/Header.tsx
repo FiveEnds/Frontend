@@ -50,9 +50,9 @@ export const Header: React.FC = () => {
                 onClick={handleRedirect}
               />
             </div>
-            <div className="flex md:hidden items-center h-full">
+            <div className="flex md:hidden items-center h-full group">
               <ButtonIcon
-                className="w-[48px] h-full border-b-0 border-t-0 border-r-0 border-l-elements"
+                className="w-[48px] h-full border-b-0 border-t-0 border-r-0 border-l-elements dark:group-hover:bg-icons"
                 src={isMenuOpen ? ICONS.CLOSE : ICONS.MENU}
                 handleClick={menuToggle}
               />

@@ -23,11 +23,11 @@ export const ButtonBack: React.FC = () => {
         <Icon
           src={ICONS.ARROW.LEFT}
           isDisabled={true}
-          className="group-hover:bg-primary transition-colors duration-300"
+          className="group-hover:bg-primary dark:bg-white dark:group-hover:bg-accent-dark transition-colors duration-300"
         />
         <Typography
           level="small"
-          className="text-secondary group-hover:text-primary duration-300"
+          className="text-secondary dark:text-white group-hover:text-primary duration-300 dark:group-hover:text-accent-dark"
         >
           Back
         </Typography>

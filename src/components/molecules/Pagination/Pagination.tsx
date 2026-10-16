@@ -38,7 +38,13 @@ export const Pagination = ({
       <button
         type="button"
         aria-label="Pervious page"
-        className={arrowButtonClass}
+        className={cn(
+          {
+            'dark:bg-surface-2-dark': currentPage !== 1,
+            'dark:hover:border-elements': currentPage === 1,
+          },
+          arrowButtonClass,
+        )}
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
@@ -61,8 +67,8 @@ export const Pagination = ({
               className={cn(
                 'flex h-8 w-8 items-center justify-center border text-center transition-colors',
                 isCurrentPage ?
-                  'border-primary bg-primary text-white'
-                : 'border-elements text-black hover:border-primary',
+                  'border-primary bg-primary text-white dark:bg-accent-dark'
+                : 'border-elements text-black hover:border-primary dark:bg-surface-1-dark dark:text-white dark:hover:bg-elements',
               )}
               onClick={() => onPageChange(page)}
             >
@@ -80,7 +86,13 @@ export const Pagination = ({
       <button
         type="button"
         aria-label="Next page"
-        className={arrowButtonClass}
+        className={cn(
+          {
+            'dark:bg-surface-2-dark': currentPage !== totalPages,
+            'dark:hover:border-elements': currentPage === totalPages,
+          },
+          arrowButtonClass,
+        )}
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
