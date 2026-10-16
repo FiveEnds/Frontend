@@ -9,28 +9,49 @@ type Props = {
   classNames?: string;
 };
 
+const variant = {
+  default:
+    'relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements hover:bg-gray-50 transition-colors',
+};
+
 export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
   return (
     <nav className={CN('flex items-center', classNames)}>
       <NavLink
         to="/favourites"
-        className="w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements hover:bg-gray-50 transition-colors"
+        className={variant.default}
       >
-        <ButtonIcon
-          className="border-none cursor-pointer"
-          src={ICONS.HEART_EMPTY}
-          handleClick={onClick}
-        />
+        {({ isActive }) => (
+          <>
+            <ButtonIcon
+              className="border-none cursor-pointer"
+              src={ICONS.HEART_EMPTY}
+              handleClick={onClick}
+            />
+
+            {isActive && (
+              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+            )}
+          </>
+        )}
       </NavLink>
       <NavLink
         to="/bag"
-        className="w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center border-l border-elements hover:bg-gray-50 transition-colors"
+        className={`${variant.default} border-l`}
       >
-        <ButtonIcon
-          className="border-none cursor-pointer"
-          src={ICONS.BAG}
-          handleClick={onClick}
-        />
+        {({ isActive }) => (
+          <>
+            <ButtonIcon
+              className="border-none cursor-pointer"
+              src={ICONS.BAG}
+              handleClick={onClick}
+            />
+
+            {isActive && (
+              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+            )}
+          </>
+        )}
       </NavLink>
     </nav>
   );
