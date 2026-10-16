@@ -12,7 +12,7 @@ type Props = {
 
 const variant = {
   default:
-    'bg-primary border-primary text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
+    'bg-primary dark:bg-accent-dark border-primary text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
   selected: 'bg-transparent border-green text-green',
 };
 
@@ -36,7 +36,7 @@ export const ButtonCart: React.FC<Props> = ({
   >
     <Typography
       level="button"
-      textColor="inherit"
+      className="inherit"
     >
       {isSelected ? onSelected : content}
     </Typography>
