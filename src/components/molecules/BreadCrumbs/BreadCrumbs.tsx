@@ -16,7 +16,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
     phones: 'Phones',
     tablets: 'Tablets',
     accessories: 'Accessories',
-    favorites: 'Favorites',
+    favourites: 'Favourites',
     cart: 'Cart',
   };
 

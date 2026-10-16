@@ -2,10 +2,12 @@ import { NavigationLink } from '../../atoms/NavigationLink/NavigationLink';
 
 type NavigationListProps = {
   direction?: 'row' | 'column';
+  handleClickLink?: () => void;
 };
 
 export const NavigationTopList: React.FC<NavigationListProps> = ({
   direction = 'row',
+  handleClickLink,
 }) => {
   const navItems = [
     { href: '/', label: 'Home' },
@@ -26,7 +28,12 @@ export const NavigationTopList: React.FC<NavigationListProps> = ({
             key={item.href}
             className={`hover-zoom-small relative flex items-center ${isColumn ? 'h-[27px]' : 'h-[48px] lg:h-[64px]'}`}
           >
-            <NavigationLink href={item.href}>{item.label}</NavigationLink>
+            <NavigationLink
+              href={item.href}
+              handleClickLink={handleClickLink}
+            >
+              {item.label}
+            </NavigationLink>
           </div>
         );
       })}
