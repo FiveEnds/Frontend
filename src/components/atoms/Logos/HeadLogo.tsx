@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 
-export const HeadLogo = () => {
+type Props = {
+  onClick: () => void;
+};
+
+export const HeadLogo: React.FC<Props> = ({ onClick }) => {
   return (
     <Link
       to="/"
-      className="cursor-pointer w-[64px] h-[22px] lg:w-[80px] lg:h-[28px] block shrink-0"
+      className="cursor-pointer w-16 h-5.5 lg:w-20 lg:h-7 block shrink-0"
+      onClick={onClick}
     >
       <img
         src="/img/Logo.svg"

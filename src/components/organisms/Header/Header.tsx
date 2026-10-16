@@ -34,7 +34,6 @@ export const Header: React.FC = () => {
 
   const handleClickLink = () => {
     setIsMenuOpen(false);
-    console.log('click');
   };
 
   const menuToggle = () => {
@@ -65,7 +64,7 @@ export const Header: React.FC = () => {
       >
         <div className="h-full mx-auto flex items-center justify-between">
           <div className="flex items-center gap-[32px] lg:gap-[48px]">
-            <HeadLogo />
+            <HeadLogo onClick={handleClickLink} />
             <div className="hidden md:flex items-center gap-[32px] lg:gap-[64px] dark:text-white">
               <NavigationTopList />
             </div>
@@ -76,7 +75,7 @@ export const Header: React.FC = () => {
             </div>
             <div className="hidden md:flex items-center h-full ">
               <NavigationButtons
-                classNames="w-[128px] md:w-24"
+                classNames="md:w-24 lg:w-[128px]"
                 onClick={handleClickLink}
               />
             </div>

@@ -20,13 +20,13 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       <NavLink
         to="/favourites"
         className={variant.default}
+        onClick={onClick}
       >
         {({ isActive }) => (
           <>
             <ButtonIcon
               className="border-none cursor-pointer"
               src={ICONS.HEART_EMPTY}
-              handleClick={onClick}
             />
 
             {isActive && (
@@ -38,13 +38,13 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       <NavLink
         to="/bag"
         className={`${variant.default} border-l`}
+        onClick={onClick}
       >
         {({ isActive }) => (
           <>
             <ButtonIcon
               className="border-none cursor-pointer"
               src={ICONS.BAG}
-              handleClick={onClick}
             />
 
             {isActive && (

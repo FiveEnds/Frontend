@@ -4,7 +4,7 @@ import { Icon } from '../Icon/Icon';
 
 type Props = {
   className?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
   isDisabled?: boolean;
   isSelected?: boolean;
   src: string;
