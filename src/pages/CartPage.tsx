@@ -51,7 +51,7 @@ export const CartPage: React.FC = () => {
             level="h1"
             className="col-span-full mb-8"
           >
-            Card
+            Cart
           </Typography>
           {Object.values(localCart).length === 0 ?
             <div
