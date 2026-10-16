@@ -23,6 +23,7 @@ export const SelectCapacity: React.FC<Props> = ({
     <div className="flex gap-2">
       {availableCapacities.map((capacity) => (
         <ButtonSelect
+          key={capacity}
           className={cn('px-2 pt-[7px] pb-1 hover-zoom-small transform-gpu', {
             'dark:bg-white dark:text-primary': selectedCapacity === capacity,
             'dark:text-white dark:hover:bg-elements':

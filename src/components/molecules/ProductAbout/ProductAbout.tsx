@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '../../atoms/Typography/Typography';
 
 type DescriptionPart = {
@@ -18,7 +19,7 @@ export const ProductAbout: React.FC<Props> = ({ description }) => (
       About
     </Typography>
     {description.map(({ title, text }) => (
-      <>
+      <React.Fragment key={title}>
         <Typography
           level="h4"
           className="pt-[32px]"
@@ -27,13 +28,14 @@ export const ProductAbout: React.FC<Props> = ({ description }) => (
         </Typography>
         {text.map((textPart) => (
           <Typography
+            key={textPart}
             level="body"
             className="pt-[16px] text-secondary"
           >
             {textPart}
           </Typography>
         ))}
-      </>
+      </React.Fragment>
     ))}
   </div>
 );
