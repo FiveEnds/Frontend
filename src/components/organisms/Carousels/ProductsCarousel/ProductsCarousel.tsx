@@ -46,10 +46,10 @@ export const ProductsCarousel: React.FC<Props> = ({
 
   return (
     <>
-      <div className="flex justify-between pb-6">
+      <div className="flex items-center justify-between gap-4 pb-6">
         <Typography
           level="h2"
-          className="px-4 md:px-6 lg:px-8"
+          className="min-w-0 break-words"
         >
           {title}
         </Typography>
@@ -69,7 +69,7 @@ export const ProductsCarousel: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className="embla -mr-4 md:-mr-6 lg:-mr-4"
+        className="embla"
         style={
           { '--slide-size': `${100 / displayedSlides}%` } as React.CSSProperties
         }
