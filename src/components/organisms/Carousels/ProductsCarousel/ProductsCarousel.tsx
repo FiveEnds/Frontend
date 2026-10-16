@@ -14,6 +14,7 @@ import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
 import { ProductCard } from '../../ProductCard/ProductCard';
 import type { Product } from '../../../../types/Product';
 import cn from 'classnames';
+import { useAppState } from '../../../../store/store';
 
 type Props = {
   title: string;
@@ -32,6 +33,9 @@ export const ProductsCarousel: React.FC<Props> = ({
   productCardHeight,
   hasDiscount = true,
 }) => {
+  const cart = useAppState((state) => state.cart);
+  const favourites = useAppState((state) => state.favourites);
+
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
     Autoplay({ playOnInit: false }),
   ]);
@@ -94,6 +98,10 @@ export const ProductsCarousel: React.FC<Props> = ({
                   className={'w-full'}
                   cardHeight={productCardHeight}
                   hasDiscount={hasDiscount}
+                  isLiked={favourites.some(
+                    (favourite) => favourite.id === product.id,
+                  )}
+                  isSelected={Object.hasOwn(cart, product.id)}
                 />
               </div>
             ))}

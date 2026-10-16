@@ -6,7 +6,7 @@ import type { Spec } from '../../../types/Specifications';
 import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../../types/Product';
-import { useAppActions, useAppState } from '../../../store/store';
+import { useAppActions } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
 
 type Props = {
@@ -14,6 +14,8 @@ type Props = {
   className?: string;
   cardHeight: number;
   hasDiscount?: boolean;
+  isLiked: boolean;
+  isSelected: boolean;
 };
 
 function getSpecifications(product: Product): Spec[] {
@@ -29,19 +31,10 @@ export const ProductCard: React.FC<Props> = ({
   className = '',
   cardHeight,
   hasDiscount = true,
+  isLiked,
+  isSelected,
 }) => {
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
-
-  const isLiked = useAppState((state) =>
-    state.favourites.some(
-      (favourite) =>
-        favourite.id === product.id && favourite.category === product.category,
-    ),
-  );
-
-  const isSelected = useAppState((state) =>
-    Object.hasOwn(state.cart, product.id),
-  );
 
   const handleCartClick = () => {
     if (isSelected) {
