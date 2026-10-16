@@ -10,7 +10,7 @@ export const NavigationList = () => {
     },
   ];
   return (
-    <nav className="flex flex-col md:flex-row items-start md:items-center gap-[4px] md:gap-[16px] lg:gap-[103px] ">
+    <nav className="flex flex-col md:flex-row items-start md:items-center gap-[16px] md:gap-[13.5px] lg:gap-[106px] ">
       {navItems.map((item) => (
         <NavigationLink
           key={item.label}
