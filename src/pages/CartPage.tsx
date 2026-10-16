@@ -7,7 +7,6 @@ import { ButtonBack } from '../components/atoms/Buttons/ButtonBack';
 export const CartPage: React.FC = () => {
   const localCart = useAppState((state) => state.cart);
 
-  console.log('Current cart:', localCart);
   const { addItemToCart, removeItemFromCart, decreaseAmountFromCart } =
     useAppActions();
 
