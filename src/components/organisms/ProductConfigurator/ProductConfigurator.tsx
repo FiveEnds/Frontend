@@ -7,6 +7,7 @@ import { ProductCardSpecs } from '../../molecules/ProductCardSpecs/ProductCardSp
 import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
 import { ProductSelectActions } from '../../molecules/ProductSelectActions/ProductSelectActions';
 import { SelectCapacity } from '../../molecules/SelectCapacity/SelectCapacity';
+import { getScreenLabel } from '../../../utils/formatScreen';
 
 type Props = {
   product: Product;
@@ -26,7 +27,7 @@ type Props = {
 
 function getSpecifications(product: Product): Spec[] {
   return [
-    [SPECIFICATIONS.SCREEN, product.screen],
+    [SPECIFICATIONS.SCREEN, getScreenLabel(product.screen)],
     [SPECIFICATIONS.RESOLUTION, product.resolution],
     [SPECIFICATIONS.PROCESSOR, product.processor],
     [SPECIFICATIONS.RAM, product.ram],

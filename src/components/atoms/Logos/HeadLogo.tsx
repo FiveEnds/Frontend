@@ -14,7 +14,12 @@ export const HeadLogo: React.FC<Props> = ({ onClick }) => {
       <img
         src="/img/Logo.svg"
         alt="Nice Gadgets"
-        className="w-full h-full object-contain"
+        className="w-full h-full object-contain dark:hidden"
+      />
+      <img
+        src="/img/Logo-dark.svg"
+        alt="Nice Gadgets"
+        className="w-full h-full object-contain hidden dark:block"
       />
     </Link>
   );

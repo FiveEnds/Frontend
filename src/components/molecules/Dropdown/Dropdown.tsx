@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Typography } from '../../atoms/Typography/Typography';
 import { Icon } from '../../atoms/Icon/Icon';
 import { ICONS } from '../../../constants/icons';
+import cn from 'classnames';
 
 type Props = {
   label?: string;
@@ -146,8 +147,7 @@ export const Dropdown: React.FC<Props> = ({
       {label && (
         <Typography
           level="small"
-          className="mb-1 block"
-          textColor="text-secondary"
+          className="mb-1 block text-secondary"
         >
           {label}
         </Typography>
@@ -159,21 +159,23 @@ export const Dropdown: React.FC<Props> = ({
         aria-label={label ?? 'Dropdown'}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
-        className={triggerClassName}
+        className={cn('dark:bg-icons', triggerClassName, {
+          'dark:border-accent-dark dark:hover:border-accent-dark': isOpen,
+        })}
         onClick={() => (isOpen ? closeMenu() : openMenu())}
         type="button"
       >
         <Typography level="button">{value || 'Select an option'}</Typography>
         <Icon
           src={isOpen ? ICONS.ARROW.UP : ICONS.ARROW.DOWN}
-          className="size-4"
+          className="size-4 dark:bg-secondary"
           isDisabled
         />
       </button>
 
       {isOpen && (
         <div
-          className={`${menuClassName} ${options.length > 4 ? 'max-h-36' : ''}`}
+          className={`${menuClassName} ${options.length > 4 ? 'max-h-36' : ''} dark:bg-primary`}
           role="listbox"
         >
           {options.map((option, index) => (
@@ -183,8 +185,10 @@ export const Dropdown: React.FC<Props> = ({
               }}
               aria-selected={value === option}
               className={`${optionClassName} ${
-                activeIndex === index ? 'bg-hover-bg' : ''
-              }`}
+                activeIndex === index ?
+                  'bg-hover-bg dark:bg-surface-2-dark'
+                : 'dark:bg-primary'
+              } dark:hover:bg-surface-2-dark group`}
               tabIndex={-1}
               key={option}
               onClick={() => selectedOption(option)}
@@ -193,7 +197,7 @@ export const Dropdown: React.FC<Props> = ({
             >
               <Typography
                 level="body"
-                textColor="text-secondary group-hover:text-primary group-focus-visible:text-primary"
+                className="text-secondary group-hover:text-primary group-focus-visible:text-primary dark:group-hover:text-white"
               >
                 {option}
               </Typography>

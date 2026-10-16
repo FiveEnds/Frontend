@@ -17,16 +17,9 @@ export const NavigationLink: React.FC<NavLinkProps> = ({
 }) => {
   const isExternal = href.startsWith('http') || href.startsWith('//');
 
-  const typographyElement = (isActive = false) => (
-    <Typography
-      level="uppercase"
-      className={`transition-colors 
-        ${isActive ? 'text-primary' : 'text-secondary group-hover:text-primary'}
-      ${classNames}`}
-    >
-      {children}
-    </Typography>
-  );
+  // const typographyElement = (isActive = false) => (
+
+  // );
 
   if (isExternal) {
     return (
@@ -36,7 +29,13 @@ export const NavigationLink: React.FC<NavLinkProps> = ({
         rel="noopener noreferrer"
         className="group relative flex h-full items-center"
       >
-        {typographyElement(false)}
+        <Typography
+          level="uppercase"
+          className={`transition-colors }
+      ${classNames}`}
+        >
+          {children}
+        </Typography>
       </a>
     );
   }
@@ -50,9 +49,16 @@ export const NavigationLink: React.FC<NavLinkProps> = ({
     >
       {({ isActive }) => (
         <>
-          {typographyElement(isActive)}
+          <Typography
+            level="uppercase"
+            className={`transition-colors 
+              ${isActive ? 'text-primary dark:text-white' : 'text-secondary group-hover:text-primary dark:group-hover:text-accent-dark'}
+              ${classNames}`}
+          >
+            {children}
+          </Typography>
           {isActive && (
-            <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+            <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary dark:bg-white" />
           )}
         </>
       )}

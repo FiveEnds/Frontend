@@ -32,10 +32,16 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
             to="/"
             className="flex items-center"
           >
-            <img
-              src={ICONS.HOME}
-              alt="Home"
-              className="w-4 h-4"
+            <span
+              aria-hidden="true"
+              className="inline-block w-4 h-4 bg-current bg-no-repeat bg-center"
+              style={{
+                maskImage: `url(${ICONS.HOME})`,
+                WebkitMaskImage: `url(${ICONS.HOME})`,
+                maskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                maskSize: 'contain',
+              }}
             />
           </Link>
         </li>
@@ -57,15 +63,14 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
                 {isLast ?
                   <Typography
                     level="body"
-                    textColor="text-secondary"
+                    className="text-secondary dark:text-secondary"
                   >
                     {label}
                   </Typography>
                 : <Link to={to}>
                     <Typography
                       level="body"
-                      textColor="text-primary"
-                      className="hover:underline"
+                      className="hover:underline text-primary dark:text-white"
                     >
                       {label}
                     </Typography>

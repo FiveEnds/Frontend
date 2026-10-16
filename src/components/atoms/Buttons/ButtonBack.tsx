@@ -15,12 +15,19 @@ export const ButtonBack: React.FC = () => {
   };
 
   return (
-    <button onClick={handleBack}>
-      <div className="flex gap-1 items-center hover:scale-110 origin-left transition-transform duration-300 ease-in-out">
-        <Icon src={ICONS.ARROW.LEFT} />
+    <button
+      onClick={handleBack}
+      className="group"
+    >
+      <div className="flex gap-1 items-center hover:scale-110 hover:cursor-pointer origin-left transition-transform duration-300 ease-in-out group-hover:scale-110">
+        <Icon
+          src={ICONS.ARROW.LEFT}
+          isDisabled={true}
+          className="group-hover:bg-primary dark:bg-white dark:group-hover:bg-accent-dark transition-colors duration-300"
+        />
         <Typography
           level="small"
-          className="text-secondary justify-self-center"
+          className="text-secondary dark:text-white group-hover:text-primary duration-300 dark:group-hover:text-accent-dark"
         >
           Back
         </Typography>

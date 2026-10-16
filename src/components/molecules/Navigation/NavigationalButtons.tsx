@@ -3,6 +3,8 @@ import { ICONS } from '../../../constants/icons';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import CN from 'classnames';
 import { NavLink } from 'react-router-dom';
+import { useAppState } from '../../../store/store';
+import { IconNotification } from '../IconNotification/IconNotification';
 
 type Props = {
   onClick: () => void;
@@ -11,10 +13,18 @@ type Props = {
 
 const variant = {
   default:
-    'relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements hover:bg-gray-50 transition-colors',
+    'group relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements dark:border-surface-2-dark hover:bg-gray-50 transition-colors dark:hover:bg-icons',
 };
 
 export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
+  const hasFavourites = useAppState((state) => state.favourites.length);
+  const hasCartItems = useAppState((state) =>
+    Object.values(state.cart).reduce(
+      (count, item) => item.amountAdded + count,
+      0,
+    ),
+  );
+
   return (
     <nav className={CN('flex items-center', classNames)}>
       <NavLink
@@ -24,13 +34,20 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       >
         {({ isActive }) => (
           <>
-            <ButtonIcon
-              className="border-none cursor-pointer"
-              src={ICONS.HEART_EMPTY}
-            />
+            {hasFavourites ?
+              <IconNotification
+                src={ICONS.HEART_EMPTY}
+                notification={hasFavourites}
+              />
+            : <ButtonIcon
+                className="border-none cursor-pointer dark:bg-primary dark:group-hover:bg-icons transition-colors"
+                src={ICONS.HEART_EMPTY}
+                handleClick={onClick}
+              />
+            }
 
             {isActive && (
-              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary dark:bg-white" />
             )}
           </>
         )}
@@ -42,13 +59,20 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       >
         {({ isActive }) => (
           <>
-            <ButtonIcon
-              className="border-none cursor-pointer"
-              src={ICONS.BAG}
-            />
+            {hasCartItems ?
+              <IconNotification
+                src={ICONS.BAG}
+                notification={hasCartItems}
+              />
+            : <ButtonIcon
+                className="border-none cursor-pointer"
+                src={ICONS.BAG}
+                handleClick={onClick}
+              />
+            }
 
             {isActive && (
-              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary dark:bg-white" />
             )}
           </>
         )}

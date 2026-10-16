@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
     <>
       <header
         className={classNames(
-          'top-0 z-50 w-full border-b border-elements h-12 lg:h-16 bg-white pl-[16px] lg:pl-[24px]  dark:bg-spacegray',
+          'top-0 z-50 w-full border-b border-elements h-12 lg:h-16 bg-white pl-[16px] lg:pl-[24px]  dark:border-surface-2-dark dark:bg-primary',
           {
             fixed: isMenuOpen,
             sticky: !isMenuOpen,
@@ -79,9 +79,9 @@ export const Header: React.FC = () => {
                 onClick={handleClickLink}
               />
             </div>
-            <div className="flex md:hidden items-center h-full">
+            <div className="flex md:hidden items-center h-full group">
               <ButtonIcon
-                className="w-[48px] h-full border-b-0 border-t-0 border-r-0 border-l-elements"
+                className="w-[48px] h-full border-b-0 border-t-0 border-r-0 border-l-elements dark:group-hover:bg-icons"
                 src={isMenuOpen ? ICONS.CLOSE : ICONS.MENU}
                 handleClick={menuToggle}
               />

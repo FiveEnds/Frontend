@@ -17,7 +17,7 @@ export const ShopByCategory = ({ categories }: Props) => {
     <section>
       <Typography
         level="h2"
-        className="mb-6"
+        className="mb-6 "
       >
         Shop by category
       </Typography>

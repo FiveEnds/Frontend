@@ -4,6 +4,7 @@ import { Icon } from '../../atoms/Icon/Icon';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { ICONS } from '../../../constants/icons';
 import { ProductLink } from '../../atoms/ProductLink/ProductLink';
+import cn from 'classnames';
 
 type Props = {
   image: string;
@@ -27,7 +28,7 @@ export const CartItem: React.FC<Props> = ({
   const isMinQuantity = quantity <= 1;
 
   return (
-    <article className="flex min-h-40 w-full flex-col gap-4 bg-white p-4 md:min-h-32 md:flex-row md:items-center md:gap-6 md:p-6 border border-elements  dark:bg-spacegray">
+    <article className="dark:bg-surface-1-dark dark:border-none flex min-h-40 w-full flex-col gap-4 bg-white p-4 md:min-h-32 md:flex-row md:items-center md:gap-6 md:p-6 border border-elements">
       <div className="flex min-w-0 items-center md:flex-1">
         <button
           aria-label={`Remove ${title} from cart`}
@@ -72,7 +73,10 @@ export const CartItem: React.FC<Props> = ({
       <div className="flex items-center justify-between md:shrink-0 md:gap-6">
         <div className="flex items-center gap-3">
           <ButtonIcon
-            className="grid size-8 place-items-center"
+            className={cn('grid size-8 place-items-center ', {
+              'dark:bg-surface-1-dark': isMinQuantity,
+              'dark:bg-surface-2-dark': !isMinQuantity,
+            })}
             handleClick={() => onQuantityChange(quantity - 1)}
             isDisabled={isMinQuantity}
             src={ICONS.MINUS}
@@ -86,7 +90,7 @@ export const CartItem: React.FC<Props> = ({
           </Typography>
 
           <ButtonIcon
-            className="grid size-8 place-items-center"
+            className="grid size-8 place-items-center dark:bg-surface-2-dark"
             handleClick={() => onQuantityChange(quantity + 1)}
             src={ICONS.PLUS}
           />
