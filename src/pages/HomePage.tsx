@@ -26,7 +26,7 @@ export const HomePage: React.FC = () => {
       const width = window.innerWidth;
       if (width < 640) {
         setCarouselParams({
-          slides: 1.3,
+          slides: 1.4,
           height: 439,
         });
       } else if (width < 1200) {

@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-elements h-12 lg:h-16 bg-white pl-[16px] lg:pl-[24px]  dark:bg-spacegray">
+      <header className="sticky top-0 z-50 w-full border-b border-elements h-12 lg:h-16 bg-white pl-[16px] lg:pl-[24px] ">
         <div className="h-full mx-auto flex items-center justify-between">
           <div className="flex items-center gap-[32px] lg:gap-[48px]">
             <HeadLogo />

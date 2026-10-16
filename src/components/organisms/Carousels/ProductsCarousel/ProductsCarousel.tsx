@@ -53,7 +53,7 @@ export const ProductsCarousel: React.FC<Props> = ({
         >
           {title}
         </Typography>
-        <div className="flex gap-4">
+        <div className="flex gap-4 -mr-[4px] md:-mr-[20px] lg:-mr-[1px]">
           <ButtonIcon
             className="w-8 h-8"
             handleClick={() => onAutoplayButtonClick(onPrevButtonClick)}
@@ -69,7 +69,7 @@ export const ProductsCarousel: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className="embla"
+        className="embla -mr-[16px] md:-mr-[24px] lg:-mr-[18px]"
         style={
           { '--slide-size': `${100 / displayedSlides}%` } as React.CSSProperties
         }
