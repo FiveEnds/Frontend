@@ -21,8 +21,6 @@ function getProducts(products: Product[], productId: string) {
   const splitId = productId.split('-');
   const sliceProductId = splitId.slice(0, splitId.length - 2).join('-');
 
-  console.log(products);
-
   return shuffle(
     products.filter((product) => {
       const splitProductId = product.id.split('-');
@@ -97,11 +95,19 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     }
   }, [productId, products, setProductItem, navigate]);
 
-  const product = useAppState((state) => state.selectedProduct);
+  const product = useAppState((state) => state.selectedProduct as Product);
   const cart = useAppState((state) => state.cart);
   const isLiked = useAppState((state) =>
     state.favourites.some((favourite) => favourite.id === product?.id),
   );
+
+  const shuffleProducts = useMemo(() => {
+    if (!product) {
+      return [];
+    }
+
+    return getProducts(products, product.id) as Product[];
+  }, [product, products]);
 
   if (!product) {
     return <></>;
@@ -124,8 +130,6 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     const newLink = productId
       ?.split('-')
       .map((part) => {
-        console.log('here', part.toLowerCase(), product.capacity.toLowerCase());
-
         if (
           option === 'capacity' &&
           part.toLowerCase() === product.capacity.toLowerCase()
@@ -146,11 +150,6 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
     navigate(`/${product.category}/${newLink}`, { replace: true });
   };
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const shuffleProducts = useMemo(() => {
-    return getProducts(products, product.id) as Product[];
-  }, [product.id, products]);
 
   return (
     <ProductItemLayout
