@@ -18,11 +18,11 @@ export const ProductPrice: React.FC<Props> = ({
         <Typography level={currentPriceSize}>${currentPrice}</Typography>
         <Typography
           level="h3"
-          className="flex items-center"
+          className="flex items-center text-secondary relative isolate"
         >
           <span className="relative inline-block text-secondary">
             ${oldPrice}
-            <span className="absolute inset-x-0 top-11/26 h-[1px] bg-secondary mix-blend-color-dodge" />
+            <span className="absolute inset-x-0 top-11/23 h-[1px]  bg-secondary mix-blend-color-dodge"></span>
           </span>
         </Typography>
       </div>

@@ -3,6 +3,8 @@ import { ICONS } from '../../../constants/icons';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import CN from 'classnames';
 import { NavLink } from 'react-router-dom';
+import { useAppState } from '../../../store/store';
+import { IconNotification } from '../IconNotification/IconNotification';
 
 type Props = {
   onClick: () => void;
@@ -15,6 +17,14 @@ const variant = {
 };
 
 export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
+  const hasFavourites = useAppState((state) => state.favourites.length);
+  const hasCartItems = useAppState((state) =>
+    Object.values(state.cart).reduce(
+      (count, item) => item.amountAdded + count,
+      0,
+    ),
+  );
+
   return (
     <nav className={CN('flex items-center', classNames)}>
       <NavLink
@@ -23,11 +33,17 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       >
         {({ isActive }) => (
           <>
-            <ButtonIcon
-              className="border-none cursor-pointer"
-              src={ICONS.HEART_EMPTY}
-              handleClick={onClick}
-            />
+            {hasFavourites ?
+              <IconNotification
+                src={ICONS.HEART_EMPTY}
+                notification={hasFavourites}
+              />
+            : <ButtonIcon
+                className="border-none cursor-pointer"
+                src={ICONS.HEART_EMPTY}
+                handleClick={onClick}
+              />
+            }
 
             {isActive && (
               <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
@@ -41,11 +57,17 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       >
         {({ isActive }) => (
           <>
-            <ButtonIcon
-              className="border-none cursor-pointer"
-              src={ICONS.BAG}
-              handleClick={onClick}
-            />
+            {hasCartItems ?
+              <IconNotification
+                src={ICONS.BAG}
+                notification={hasCartItems}
+              />
+            : <ButtonIcon
+                className="border-none cursor-pointer"
+                src={ICONS.BAG}
+                handleClick={onClick}
+              />
+            }
 
             {isActive && (
               <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
