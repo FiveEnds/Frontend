@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#0f1121"
+    />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -13,14 +18,13 @@
     />
     <title>broskies-project-frontend</title>
   </head>
-  <body>
+  <body class="bg-white dark:bg-primary text-primary dark:text-white">
     <div id="root"></div>
     <script
       type="module"
       src="/src/index.tsx"
     ></script>
     <script>
-      // Швидка перевірка теми до завантаження React
       const storedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia(
         '(prefers-color-scheme: dark)',
