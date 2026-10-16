@@ -16,9 +16,9 @@ export const Icon: React.FC<Props> = ({ src, isDisabled, className }) => {
       className={cn(
         'inline-block w-4 h-4 bg-no-repeat bg-center bg-fit justify-center',
         {
-          'bg-red': isRedHeart,
-          'bg-primary dark:bg-white': !isDisabled,
-          'bg-icons dark:bg-icons': isDisabled,
+          'bg-red dark:bg-red': isRedHeart,
+          'bg-primary dark:bg-white': !isDisabled && !isRedHeart,
+          'bg-icons dark:bg-icons-dark': isDisabled,
         },
         className,
       )}

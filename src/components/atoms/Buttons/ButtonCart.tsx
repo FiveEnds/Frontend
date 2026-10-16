@@ -12,8 +12,9 @@ type Props = {
 
 const variant = {
   default:
-    'bg-primary dark:bg-accent-dark border-primary text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
-  selected: 'bg-transparent border-green text-green',
+    'bg-primary dark:bg-accent-dark border-primary text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)] dark:hover:bg-accent-hover-dark',
+  selected:
+    'bg-transparent border-green text-green dark:bg-surface-2-dark dark:text-white border-none',
 };
 
 export const ButtonCart: React.FC<Props> = ({

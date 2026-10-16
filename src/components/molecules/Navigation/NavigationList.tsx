@@ -14,7 +14,7 @@ export const NavigationList = () => {
       {navItems.map((item) => (
         <NavigationLink
           key={item.label}
-          classNames="hover-zoom-small dark:hover:text-accent-dark text-secondary group-hover:text-primary"
+          classNames="hover-zoom-small dark:hover:text-accent-dark text-secondary dark:text-white group-hover:text-primary"
           href={item.href}
         >
           {item.label}

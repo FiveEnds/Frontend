@@ -13,7 +13,7 @@ type Props = {
 
 const variant = {
   default:
-    'relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements hover:bg-gray-50 transition-colors',
+    'group relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements dark:border-surface-2-dark hover:bg-gray-50 transition-colors dark:hover:bg-icons',
 };
 
 export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
@@ -39,14 +39,14 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
                 notification={hasFavourites}
               />
             : <ButtonIcon
-                className="border-none cursor-pointer"
+                className="border-none cursor-pointer dark:bg-primary dark:group-hover:bg-icons transition-colors"
                 src={ICONS.HEART_EMPTY}
                 handleClick={onClick}
               />
             }
 
             {isActive && (
-              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary dark:bg-white" />
             )}
           </>
         )}
@@ -70,7 +70,7 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
             }
 
             {isActive && (
-              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary" />
+              <span className="absolute bottom-0 left-0 h-[3px] w-full bg-primary dark:bg-white" />
             )}
           </>
         )}

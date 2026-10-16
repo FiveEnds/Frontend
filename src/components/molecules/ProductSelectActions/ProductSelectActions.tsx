@@ -1,6 +1,7 @@
 import { ICONS } from '../../../constants/icons';
 import { ButtonCart } from '../../atoms/Buttons/ButtonCart';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
+import cn from 'classnames';
 
 type Props = {
   handleSelectClick: () => void;
@@ -24,9 +25,13 @@ export const ProductSelectActions: React.FC<Props> = ({
       onSelected="Added to cart"
     />
     <ButtonIcon
-      className={
-        'w-10 h-10 flex items-center justify-center hover-zoom-small cursor-pointer'
-      }
+      className={cn(
+        'w-10 h-10 flex items-center justify-center hover-zoom-small cursor-pointer',
+        {
+          'dark:bg-surface-2-dark': !isLiked,
+          'dark:bg-primary': isLiked,
+        },
+      )}
       isSelected={isLiked}
       handleClick={handleLikeClick}
       src={isLiked ? ICONS.HEART_FILLED : ICONS.HEART_EMPTY}

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppActions, useAppState } from '../store/store';
 import type { Category } from '../types/category';
 import type { Product } from '../types/Product';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
 import { ProductItemTopBar } from '../components/molecules/ProductItemTopBar/ProductItemTopBar';
 import { PhotoGallery } from '../components/molecules/PhotoGallery/PhotoGallery';
@@ -147,6 +147,11 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     navigate(`/${product.category}/${newLink}`, { replace: true });
   };
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const shuffleProducts = useMemo(() => {
+    return getProducts(products, product.id) as Product[];
+  }, [product.id, products]);
+
   return (
     <ProductItemLayout
       pageProductDetails={<ProductItemTopBar title={product.name} />}
@@ -176,7 +181,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       productsCarousel={
         <ProductsCarousel
           title="You may also like"
-          products={getProducts(products, product.id) as Product[]}
+          products={shuffleProducts}
           productCardHeight={carouselParams.height}
           displayedSlides={carouselParams.slides}
         />

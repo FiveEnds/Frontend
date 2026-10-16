@@ -73,6 +73,7 @@
   --color-surface-2-dark: #323542;
   --color-surface-1-dark: #161827;
   --color-accent-dark: #905bff;
+  --color-accent-hover-dark: #a378ff;
 }
 
 @layer utilities {
@@ -82,5 +83,30 @@
 
   .hover-zoom-small {
     @apply hover:scale-105 transition-transform ease-in-out duration-300;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  /* Force light theme background on both canvas elements */
+  html,
+  body {
+    background-color: var(--color-white) !important;
+    color: var(--color-primary);
+    min-height: 100vh;
+  }
+
+  /* Force dark theme background on both canvas elements */
+  html.dark,
+  html.dark body {
+    background-color: var(--color-primary) !important;
+    color: var(--color-white);
   }
 }

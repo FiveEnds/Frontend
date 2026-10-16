@@ -20,7 +20,7 @@ const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
     className={cn(
       'flex justify-center items-center min-w-0 w-full transform-gpu border border-elements p-[5%] hover-zoom',
       {
-        'border-primary': currentPhoto === imageSrc,
+        'border-primary dark:border-white': currentPhoto === imageSrc,
       },
     )}
     onClick={() => setCurrentPhoto(imageSrc)}

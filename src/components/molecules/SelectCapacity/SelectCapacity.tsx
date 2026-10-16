@@ -1,5 +1,6 @@
 import { ButtonSelect } from '../../atoms/Buttons/ButtonSelect';
 import { Typography } from '../../atoms/Typography/Typography';
+import cn from 'classnames';
 
 type Props = {
   availableCapacities: string[];
@@ -22,7 +23,11 @@ export const SelectCapacity: React.FC<Props> = ({
     <div className="flex gap-2">
       {availableCapacities.map((capacity) => (
         <ButtonSelect
-          className="px-2 pt-[7px] pb-1 hover-zoom-small transform-gpu"
+          className={cn('px-2 pt-[7px] pb-1 hover-zoom-small transform-gpu', {
+            'dark:bg-white dark:text-primary': selectedCapacity === capacity,
+            'dark:text-white dark:hover:bg-elements':
+              selectedCapacity !== capacity,
+          })}
           handleClick={() => handleClick(capacity, 'capacity')}
           isSelected={selectedCapacity === capacity}
           content={capacity}
