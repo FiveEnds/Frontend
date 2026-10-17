@@ -89,7 +89,11 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      {isMenuOpen && <BurgerMenu handleClickLink={handleClickLink} />}
+      {isMenuOpen && <div className="w-full h-12"></div>}
+      <BurgerMenu
+        handleClickLink={handleClickLink}
+        isOpen={isMenuOpen}
+      />
     </>
   );
 };
