@@ -24,7 +24,7 @@ export const ButtonIcon: React.FC<Props> = ({
   <button
     type="button"
     className={classNames(
-      'border flex justify-center items-center',
+      'border flex justify-center items-center cursor-pointer',
       {
         'disabled:border-elements dark:disabled:border-elements': isDisabled,
         'enabled:hover:border-primary border-icons': !isSelected && !isDisabled,
