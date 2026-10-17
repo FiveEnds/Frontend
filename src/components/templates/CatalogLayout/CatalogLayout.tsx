@@ -66,11 +66,11 @@ export const CatalogLayout = ({
       {products.map((product) => (
         <div
           key={product.id}
-          className="col-span-4 min-w-0 md:col-span-4 lg:col-span-6"
+          className="col-span-4 min-w-0 sm:col-span-2 md:col-span-6 em:col-span-4 lg:col-span-6"
         >
           <ProductCard
+            className="h-110 md:h-126.5"
             product={product}
-            cardHeight={506}
           />
         </div>
       ))}

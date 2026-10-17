@@ -12,7 +12,7 @@ import { getScreenLabel } from '../../../utils/formatScreen';
 type Props = {
   product: Product;
   className?: string;
-  cardHeight: number;
+  cardHeight?: number;
   hasDiscount?: boolean;
 };
 
