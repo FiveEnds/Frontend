@@ -12,6 +12,7 @@ import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTech
 import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { shuffle } from '../utils/shuffle';
+import { getLimitedProducts } from '../utils/limitedProducts';
 
 type Props = {
   category: Category;
@@ -21,15 +22,18 @@ function getProducts(products: Product[], productId: string) {
   const splitId = productId.split('-');
   const sliceProductId = splitId.slice(0, splitId.length - 2).join('-');
 
-  return shuffle(
-    products.filter((product) => {
-      const splitProductId = product.id.split('-');
-      const sliceCurrentProductId = splitProductId
-        .slice(0, splitProductId.length - 2)
-        .join('-');
+  return getLimitedProducts(
+    shuffle(
+      products.filter((product) => {
+        const splitProductId = product.id.split('-');
+        const sliceCurrentProductId = splitProductId
+          .slice(0, splitProductId.length - 2)
+          .join('-');
 
-      return sliceProductId !== sliceCurrentProductId;
-    }),
+        return sliceProductId !== sliceCurrentProductId;
+      }),
+    ) as Product[],
+    true,
   );
 }
 
@@ -106,7 +110,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       return [];
     }
 
-    return getProducts(products, product.id) as Product[];
+    return getProducts(products, product.id);
   }, [product, products]);
 
   if (!product) {
