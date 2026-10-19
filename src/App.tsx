@@ -35,7 +35,12 @@ export const App: React.FC = () => {
         />
         <Route
           path="phones"
-          element={<CatalogPage category={CATEGORY.PHONES} />}
+          element={
+            <CatalogPage
+              key={CATEGORY.PHONES}
+              category={CATEGORY.PHONES}
+            />
+          }
         />
         <Route
           path="phones/:productId"
@@ -43,7 +48,12 @@ export const App: React.FC = () => {
         />
         <Route
           path="tablets"
-          element={<CatalogPage category={CATEGORY.TABLETS} />}
+          element={
+            <CatalogPage
+              key={CATEGORY.TABLETS}
+              category={CATEGORY.TABLETS}
+            />
+          }
         />
         <Route
           path="tablets/:productId"
@@ -51,7 +61,12 @@ export const App: React.FC = () => {
         />
         <Route
           path="accessories"
-          element={<CatalogPage category={CATEGORY.ACCESSORIES} />}
+          element={
+            <CatalogPage
+              key={CATEGORY.ACCESSORIES}
+              category={CATEGORY.ACCESSORIES}
+            />
+          }
         />
         <Route
           path="accessories/:productId"

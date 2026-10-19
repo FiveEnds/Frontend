@@ -6,6 +6,7 @@ import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
 import { useAppState } from '../store/store';
+import { BREAKPOINTS } from '../constants/breakpoints';
 
 export const HomePage: React.FC = () => {
   const phones = useAppState((state) => state.phones);
@@ -24,12 +25,12 @@ export const HomePage: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 640) {
+      if (width < BREAKPOINTS.md) {
         setCarouselParams({
           slides: 1.4,
           height: 439,
         });
-      } else if (width < 1200) {
+      } else if (width < BREAKPOINTS.lg) {
         setCarouselParams({
           slides: 2.5,
           height: 512,
