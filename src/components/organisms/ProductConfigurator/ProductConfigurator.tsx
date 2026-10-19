@@ -8,6 +8,8 @@ import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
 import { ProductSelectActions } from '../../molecules/ProductSelectActions/ProductSelectActions';
 import { SelectCapacity } from '../../molecules/SelectCapacity/SelectCapacity';
 import { getScreenLabel } from '../../../utils/formatScreen';
+import { ProductRating } from '../../atoms/ProductRating/ProductRating';
+import { Typography } from '../../atoms/Typography/Typography';
 
 type Props = {
   product: Product;
@@ -57,11 +59,22 @@ export const ProductConfigurator: React.FC<Props> = ({
 
   return (
     <div>
+      <div className="flex flex-col gap-2 lg:w-[62.5%]">
+        <Typography
+          level="small"
+          className="text-secondary "
+        >
+          Rating
+        </Typography>
+        <div className="border-b border-elements pb-6 ">
+          <ProductRating product={product} />
+        </div>
+      </div>
       <AvailableColors
         colors={product.colorsAvailable}
         handleClick={handleColorSelect}
         isSelected={product.color}
-        classNames="pb-6"
+        classNames="py-6"
       />
       <div className="lg:w-[62.5%]">
         <div className="py-6 border-y border-elements">
