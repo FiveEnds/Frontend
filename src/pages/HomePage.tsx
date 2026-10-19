@@ -6,6 +6,7 @@ import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
 import { useAppState } from '../store/store';
+import { getLimitedProducts } from '../utils/limitedProducts';
 
 export const HomePage: React.FC = () => {
   const phones = useAppState((state) => state.phones);
@@ -47,11 +48,13 @@ export const HomePage: React.FC = () => {
   }, []);
 
   const newProducts = useMemo(() => {
-    return [...productsData].sort((a, b) => b.year - a.year);
+    return getLimitedProducts(
+      [...productsData].sort((a, b) => b.year - a.year),
+    );
   }, [productsData]);
 
   const hotPriceProducts = useMemo(() => {
-    return [...productsData]
+    const allHotProducts = [...productsData]
       .filter(
         (p) =>
           p.priceRegular && p.priceDiscount && p.priceDiscount < p.priceRegular,
@@ -60,6 +63,8 @@ export const HomePage: React.FC = () => {
         (a, b) =>
           b.priceRegular - b.priceDiscount - (a.priceRegular - a.priceDiscount),
       );
+
+    return getLimitedProducts(allHotProducts);
   }, [productsData]);
 
   return (
