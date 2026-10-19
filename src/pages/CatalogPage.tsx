@@ -175,12 +175,19 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
     });
   };
 
-  const handlePageChange = (page: number) => {
-    updateSearchParams({
-      from: String(page),
-      to: String(page),
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handlePageChange = (page: number, preserveRange = false) => {
+    if (preserveRange && from < to) {
+      updateSearchParams({ to: String(page) });
+    } else {
+      updateSearchParams({
+        from: String(page),
+        to: String(page),
+      });
+    }
+
+    document
+      .getElementById('catalog-controls')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
