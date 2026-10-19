@@ -116,3 +116,26 @@
     cursor: pointer;
   }
 }
+
+@keyframes d-splash-loader {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.animate-splash-dot {
+  animation: d-splash-loader 3s ease-in-out infinite;
+}

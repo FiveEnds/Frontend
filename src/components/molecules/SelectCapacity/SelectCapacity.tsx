@@ -5,7 +5,7 @@ import cn from 'classnames';
 type Props = {
   availableCapacities: string[];
   selectedCapacity: string;
-  handleClick: (selectedCapacity: string, option: 'color' | 'capacity') => void;
+  handleClick: (selectedCapacity: string) => void;
 };
 
 export const SelectCapacity: React.FC<Props> = ({
@@ -29,7 +29,7 @@ export const SelectCapacity: React.FC<Props> = ({
             'dark:text-white dark:hover:bg-elements':
               selectedCapacity !== capacity,
           })}
-          handleClick={() => handleClick(capacity, 'capacity')}
+          handleClick={() => handleClick(capacity)}
           isSelected={selectedCapacity === capacity}
           content={capacity}
         />

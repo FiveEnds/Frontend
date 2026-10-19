@@ -12,6 +12,7 @@ import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTech
 import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { shuffle } from '../utils/shuffle';
+import { getLimitedProducts } from '../utils/limitedProducts';
 
 type Props = {
   category: Category;
@@ -21,15 +22,18 @@ function getProducts(products: Product[], productId: string) {
   const splitId = productId.split('-');
   const sliceProductId = splitId.slice(0, splitId.length - 2).join('-');
 
-  return shuffle(
-    products.filter((product) => {
-      const splitProductId = product.id.split('-');
-      const sliceCurrentProductId = splitProductId
-        .slice(0, splitProductId.length - 2)
-        .join('-');
+  return getLimitedProducts(
+    shuffle(
+      products.filter((product) => {
+        const splitProductId = product.id.split('-');
+        const sliceCurrentProductId = splitProductId
+          .slice(0, splitProductId.length - 2)
+          .join('-');
 
-      return sliceProductId !== sliceCurrentProductId;
-    }),
+        return sliceProductId !== sliceCurrentProductId;
+      }),
+    ) as Product[],
+    true,
   );
 }
 
@@ -106,7 +110,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       return [];
     }
 
-    return getProducts(products, product.id) as Product[];
+    return getProducts(products, product.id);
   }, [product, products]);
 
   if (!product) {
@@ -123,24 +127,24 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
   const itemInCart = Object.hasOwn(cart, product.id);
 
-  const handleCapacitySelect = (
-    selectedValue: string,
-    option: 'color' | 'capacity',
-  ) => {
+  const handleColorSelect = (selectedValue: string) => {
+    const newLink =
+      products.find(
+        (currentProduct) =>
+          currentProduct.namespaceId === product.namespaceId &&
+          currentProduct.color === selectedValue,
+      )?.id || '*';
+
+    console.log(products, product, selectedValue);
+
+    navigate(`/${product.category}/${newLink}`, { replace: true });
+  };
+
+  const handleCapacitySelect = (selectedValue: string) => {
     const newLink = productId
       ?.split('-')
       .map((part) => {
-        if (
-          option === 'capacity' &&
-          part.toLowerCase() === product.capacity.toLowerCase()
-        ) {
-          return selectedValue.toLowerCase();
-        }
-
-        if (
-          option === 'color' &&
-          part.toLowerCase() === product.color.toLowerCase()
-        ) {
+        if (part.toLowerCase() === product.capacity.toLowerCase()) {
           return selectedValue.toLowerCase();
         }
 
@@ -163,7 +167,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       productConfigurator={
         <ProductConfigurator
           product={product}
-          handleColorSelect={handleCapacitySelect}
+          handleColorSelect={handleColorSelect}
           handleCapacitySelect={handleCapacitySelect}
           handleAddToCart={handleCartClick}
           handleLikeClick={() => toggleFavorite(product)}
