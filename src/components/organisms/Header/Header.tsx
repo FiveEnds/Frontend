@@ -70,7 +70,7 @@ export const Header: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center h-full">
-            <div className="mr-4">
+            <div className="border-l border-b border-elements">
               <ThemeToggle />
             </div>
             <div className="hidden md:flex items-center h-full ">
@@ -81,7 +81,7 @@ export const Header: React.FC = () => {
             </div>
             <div className="flex md:hidden items-center h-full group">
               <ButtonIcon
-                className="w-[48px] h-full border-b-0 border-t-0 border-r-0 border-l-elements dark:group-hover:bg-icons"
+                className="w-[48px] h-full border-b-0 hover:border-none pl-px border-t-0 border-r-0 hover:bg-elements border-l-elements dark:group-hover:bg-icons"
                 src={isMenuOpen ? ICONS.CLOSE : ICONS.MENU}
                 handleClick={menuToggle}
               />

@@ -13,7 +13,7 @@ type Props = {
 
 const variant = {
   default:
-    'group relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements dark:border-surface-2-dark hover:bg-gray-50 transition-colors dark:hover:bg-icons',
+    'group relative w-[50%] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center md:border-l border-elements dark:border-surface-2-dark hover:bg-elements transition-colors dark:hover:bg-icons',
 };
 
 export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
