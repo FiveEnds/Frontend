@@ -13,13 +13,15 @@ import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
 
 export const App: React.FC = () => {
-  const { loadPhones, loadTablets, loadAccessories } = useAppActions();
+  const { loadPhones, loadTablets, loadAccessories, fetchRatings } =
+    useAppActions();
 
   useEffect(() => {
     getPhones().then((data) => loadPhones(data));
     getTablets().then((data) => loadTablets(data));
     getAccessories().then((data) => loadAccessories(data));
-  }, [loadAccessories, loadPhones, loadTablets]);
+    fetchRatings();
+  }, [loadAccessories, loadPhones, loadTablets, fetchRatings]);
 
   return (
     <Routes>
