@@ -15,14 +15,8 @@ type Props = {
   product: Product;
   isLiked: boolean;
   isSelected: boolean;
-  handleColorSelect: (
-    selecteColor: string,
-    option: 'color' | 'capacity',
-  ) => void;
-  handleCapacitySelect: (
-    selectedCapacity: string,
-    option: 'color' | 'capacity',
-  ) => void;
+  handleColorSelect: (selecteColor: string) => void;
+  handleCapacitySelect: (selectedCapacity: string) => void;
   handleAddToCart: () => void;
   handleLikeClick: () => void;
 };

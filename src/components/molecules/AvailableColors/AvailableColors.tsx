@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 type Props = {
   colors: string[];
-  handleClick: (color: string, option: 'color' | 'capacity') => void;
+  handleClick: (color: string) => void;
   isSelected: string;
   classNames?: string;
 };
@@ -41,7 +41,7 @@ export const AvailableColors: React.FC<Props> = ({
               COLOR_CLASS_MAP[color as keyof typeof COLOR_CLASS_MAP] ||
                 'bg-gray-100',
             )}
-            handleClick={() => handleClick(color, 'color')}
+            handleClick={() => handleClick(color)}
             isSelected={isSelected === color}
           />
         ))}

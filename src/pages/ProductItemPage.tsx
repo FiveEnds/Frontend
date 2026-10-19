@@ -127,24 +127,24 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
   const itemInCart = Object.hasOwn(cart, product.id);
 
-  const handleCapacitySelect = (
-    selectedValue: string,
-    option: 'color' | 'capacity',
-  ) => {
+  const handleColorSelect = (selectedValue: string) => {
+    const newLink =
+      products.find(
+        (currentProduct) =>
+          currentProduct.namespaceId === product.namespaceId &&
+          currentProduct.color === selectedValue,
+      )?.id || '*';
+
+    console.log(products, product, selectedValue);
+
+    navigate(`/${product.category}/${newLink}`, { replace: true });
+  };
+
+  const handleCapacitySelect = (selectedValue: string) => {
     const newLink = productId
       ?.split('-')
       .map((part) => {
-        if (
-          option === 'capacity' &&
-          part.toLowerCase() === product.capacity.toLowerCase()
-        ) {
-          return selectedValue.toLowerCase();
-        }
-
-        if (
-          option === 'color' &&
-          part.toLowerCase() === product.color.toLowerCase()
-        ) {
+        if (part.toLowerCase() === product.capacity.toLowerCase()) {
           return selectedValue.toLowerCase();
         }
 
@@ -167,7 +167,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       productConfigurator={
         <ProductConfigurator
           product={product}
-          handleColorSelect={handleCapacitySelect}
+          handleColorSelect={handleColorSelect}
           handleCapacitySelect={handleCapacitySelect}
           handleAddToCart={handleCartClick}
           handleLikeClick={() => toggleFavorite(product)}
