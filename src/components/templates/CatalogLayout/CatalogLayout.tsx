@@ -1,9 +1,15 @@
+import type { CatalogFilters, FilterOptions } from '../../../types/Catalog';
 import type { Product } from '../../../types/Product';
+import { Typography } from '../../atoms/Typography/Typography';
 import { Breadcrumbs } from '../../molecules/BreadCrumbs/BreadCrumbs';
+import { CatalogFilterBar } from '../../molecules/CatalogFilterBar/CatalogFilterBar';
 import { Dropdown } from '../../molecules/Dropdown';
 import { HeadingWithCount } from '../../molecules/HeadingWithCount';
 import { Pagination } from '../../molecules/Pagination';
 import { ProductCard } from '../../organisms/ProductCard/ProductCard';
+
+const loadMoreButtonClass =
+  'flex h-12 w-full max-w-[380px] items-center justify-center rounded-sm border border-elements bg-white text-primary transition-colors hover:border-primary dark:bg-surface-2-dark dark:text-white';
 
 export type CatalogLayoutProps = {
   title: string;
@@ -12,12 +18,14 @@ export type CatalogLayoutProps = {
   sortOptions: string[];
   sortBy: string;
   onSortChange: (value: string) => void;
-  itemsOptions: string[];
-  itemsPerPage: string;
-  onItemsPerPageChange: (value: string) => void;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  canLoadMore: boolean;
+  onLoadMore: () => void;
+  filters: CatalogFilters;
+  filterOptions: FilterOptions;
+  onFiltersChange: (filters: CatalogFilters) => void;
 };
 
 export const CatalogLayout = ({
@@ -27,12 +35,14 @@ export const CatalogLayout = ({
   sortOptions,
   sortBy,
   onSortChange,
-  itemsOptions,
-  itemsPerPage,
-  onItemsPerPageChange,
   currentPage,
   totalPages,
   onPageChange,
+  canLoadMore,
+  onLoadMore,
+  filters,
+  filterOptions,
+  onFiltersChange,
 }: CatalogLayoutProps) => (
   <div className="mx-auto w-full max-w-300 px-4 pt-6 pb-20 md:px-6 lg:px-8">
     <Breadcrumbs />
@@ -44,19 +54,23 @@ export const CatalogLayout = ({
       />
     </div>
 
-    <div className="mt-8 grid max-w-[320px] grid-cols-2 gap-4">
-      <Dropdown
-        label="Sort by"
-        options={sortOptions}
-        value={sortBy}
-        onChange={onSortChange}
-      />
-      <Dropdown
-        label="Items on page"
-        options={itemsOptions}
-        value={itemsPerPage}
-        onChange={onItemsPerPageChange}
-      />
+    <div className="mt-8 grid grid-cols-1 items-end gap-4 sm:grid-cols-2">
+      <div className="w-full">
+        <Dropdown
+          label="Sort by"
+          options={sortOptions}
+          value={sortBy}
+          onChange={onSortChange}
+        />
+      </div>
+
+      <div className="w-full">
+        <CatalogFilterBar
+          filters={filters}
+          filterOptions={filterOptions}
+          onFiltersChange={onFiltersChange}
+        />
+      </div>
     </div>
 
     <section
@@ -76,10 +90,23 @@ export const CatalogLayout = ({
       ))}
     </section>
 
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={onPageChange}
-    />
+    {(canLoadMore || totalPages > 1) && (
+      <div className="mt-5 flex flex-col items-center gap-5">
+        {canLoadMore && (
+          <button
+            type="button"
+            onClick={onLoadMore}
+            className={loadMoreButtonClass}
+          >
+            <Typography level="button">Show more</Typography>
+          </button>
+        )}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
+      </div>
+    )}
   </div>
 );

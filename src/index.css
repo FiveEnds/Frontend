@@ -111,6 +111,10 @@
     background-color: var(--color-primary) !important;
     color: var(--color-white);
   }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @keyframes d-splash-loader {
