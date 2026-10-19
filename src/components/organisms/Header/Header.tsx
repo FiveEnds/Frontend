@@ -70,7 +70,7 @@ export const Header: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center h-full">
-            <div className="mr-4">
+            <div className="border-l border-b border-elements">
               <ThemeToggle />
             </div>
             <div className="hidden md:flex items-center h-full ">
