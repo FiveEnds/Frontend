@@ -38,7 +38,7 @@ export const CartItem: React.FC<Props> = ({
         >
           <Icon
             src={ICONS.CLOSE}
-            className="size-4 group-hover:bg-primary"
+            className="size-4 group-hover:bg-primary hover:cursor-pointer"
             isDisabled
           />
         </button>
@@ -73,9 +73,10 @@ export const CartItem: React.FC<Props> = ({
       <div className="flex items-center justify-between md:shrink-0 md:gap-6">
         <div className="flex items-center gap-3">
           <ButtonIcon
-            className={cn('grid size-8 place-items-center ', {
+            className={cn('grid size-8 place-items-center', {
               'dark:bg-surface-1-dark': isMinQuantity,
               'dark:bg-surface-2-dark': !isMinQuantity,
+              'hover:cursor-pointer': !isMinQuantity,
             })}
             handleClick={() => onQuantityChange(quantity - 1)}
             isDisabled={isMinQuantity}
@@ -90,7 +91,9 @@ export const CartItem: React.FC<Props> = ({
           </Typography>
 
           <ButtonIcon
-            className="grid size-8 place-items-center dark:bg-surface-2-dark"
+            className={cn(
+              'grid size-8 place-items-center dark:bg-surface-2-dark hover:cursor-pointer',
+            )}
             handleClick={() => onQuantityChange(quantity + 1)}
             src={ICONS.PLUS}
           />
