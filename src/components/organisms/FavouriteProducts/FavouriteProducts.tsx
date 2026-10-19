@@ -23,10 +23,9 @@ export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
       : favouriteProducts.map((product) => {
           return (
             <ProductCard
-              className="col-span-4 md:col-span-6 md:h-126.5"
+              className="col-span-4 h-110 sm:col-span-2 md:col-span-6 md:h-126.5 em:col-span-4 lg:col-span-6"
               key={`${product.category}-${product.id}`}
               product={product}
-              cardHeight={440}
             />
           );
         })
