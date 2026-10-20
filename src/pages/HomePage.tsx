@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { PromoCarousel } from '../components/organisms/Carousels/PromoCarousel/PromoCarousel';
 import { BANNERS } from '../constants/banners';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
@@ -6,8 +6,24 @@ import { SQUARE_BANNERS } from '../constants/squareBanners';
 import { ShopByCategory } from '../components/organisms/ShopByCategory';
 import { HomeLayout } from '../components/templates/HomeLayout';
 import { useAppState } from '../store/store';
-import { BREAKPOINTS } from '../constants/breakpoints';
 import { getLimitedProducts } from '../utils/limitedProducts';
+import type { CarouselConfig } from '../types/carouselConfig';
+import { useCarouselParams } from '../hooks/useCarouselParams';
+
+const carouselConfig: CarouselConfig = {
+  mobile: {
+    slides: 1.4,
+    height: 439,
+  },
+  tablet: {
+    slides: 2.5,
+    height: 512,
+  },
+  desktop: {
+    slides: 4,
+    height: 506,
+  },
+};
 
 export const HomePage: React.FC = () => {
   const phones = useAppState((state) => state.phones);
@@ -18,35 +34,7 @@ export const HomePage: React.FC = () => {
     return [...phones, ...tablets, ...accessories];
   }, [phones, tablets, accessories]);
 
-  const [carouselParams, setCarouselParams] = useState({
-    slides: 4,
-    height: 506,
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < BREAKPOINTS.md) {
-        setCarouselParams({
-          slides: 1.4,
-          height: 439,
-        });
-      } else if (width < BREAKPOINTS.lg) {
-        setCarouselParams({
-          slides: 2.5,
-          height: 512,
-        });
-      } else {
-        setCarouselParams({
-          slides: 4,
-          height: 506,
-        });
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const carouselParams = useCarouselParams(carouselConfig);
 
   const newProducts = useMemo(() => {
     return getLimitedProducts(

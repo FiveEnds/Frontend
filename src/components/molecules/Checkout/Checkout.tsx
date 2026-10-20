@@ -21,7 +21,7 @@ export const Checkout: React.FC<Props> = ({ sum = 0, amount = 0 }) => {
       <ButtonSelect
         content="Checkout"
         className="h-12 w-full bg-primary hover:cursor-pointer text-white items-center justify-center flex hover-zoom-small hover:border-primary dark:bg-accent-dark dark:border-none dark:hover:bg-accent-hover-dark"
-        handleClick={() => console.log('Checkout')}
+        handleClick={() => {}}
         isSelected={true}
       />
     </div>
