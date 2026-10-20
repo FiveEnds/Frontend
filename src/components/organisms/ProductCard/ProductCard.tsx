@@ -6,7 +6,7 @@ import type { Spec } from '../../../types/Specifications';
 import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../../types/Product';
-import { useAppActions } from '../../../store/store';
+import { useAppActions, useAppState } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
 import { ProductRating } from '../../atoms/ProductRating/ProductRating';
 import { useProductInfo } from '../../../hooks/useProductInfo';

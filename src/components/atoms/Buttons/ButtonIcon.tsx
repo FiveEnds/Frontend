@@ -78,7 +78,10 @@ export const ButtonIcon: React.FC<Props> = ({
       onClick={handleClick}
       disabled={isDisabled}
     >
-      <motion.span animate={controls}>
+      <motion.span
+        animate={controls}
+        className="flex justify-center items-center"
+      >
         <Icon
           isDisabled={isDisabled}
           src={src}
