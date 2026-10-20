@@ -6,15 +6,17 @@ import type { Spec } from '../../../types/Specifications';
 import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../../types/Product';
-import { useAppActions, useAppState } from '../../../store/store';
+import { useAppActions } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
+import { ProductRating } from '../../atoms/ProductRating/ProductRating';
+import { useProductInfo } from '../../../hooks/useProductInfo';
 
 import { useRef } from 'react';
 
 type Props = {
   product: Product;
   className?: string;
-  cardHeight: number;
+  cardHeight?: number;
   hasDiscount?: boolean;
 };
 
@@ -33,17 +35,7 @@ export const ProductCard: React.FC<Props> = ({
   hasDiscount = true,
 }) => {
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
-
-  const isLiked = useAppState((state) =>
-    state.favourites.some(
-      (favourite) =>
-        favourite.id === product.id && favourite.category === product.category,
-    ),
-  );
-
-  const isSelected = useAppState((state) =>
-    Object.hasOwn(state.cart, product.id),
-  );
+  const { isLiked, isFavourite } = useProductInfo(product.id);
 
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -61,7 +53,7 @@ export const ProductCard: React.FC<Props> = ({
     const imageRect = getImageRect();
     const cartElement = document.querySelector('[data-cart-target="true"]');
 
-    if (isSelected) {
+    if (isFavourite) {
       removeItemFromCart(product.id);
     } else {
       addItemToCart(product);
@@ -91,7 +83,7 @@ export const ProductCard: React.FC<Props> = ({
 
   return (
     <div
-      className={`p-8 flex flex-col gap-2 border dark:bg-surface-1-dark border-elements dark:border-surface-1-dark transition-transform duration-300 ease-in-out hover:scale-105 hover:border-none ${className}`}
+      className={`p-8 flex flex-col gap-2 border dark:bg-surface-1-dark border-elements dark:border-surface-1-dark transition-transform duration-300 ease-in-out hover:scale-105 hover:border-transparent ${className}`}
       style={{ height: cardHeight }}
     >
       <div className="flex-1 min-h-0 flex items-center justify-center w-full">
@@ -114,6 +106,9 @@ export const ProductCard: React.FC<Props> = ({
       >
         <Typography>{product.name}</Typography>
       </Link>
+      <div className="mt-1 mb-1">
+        <ProductRating product={product} />
+      </div>
       <div className="border-b border-elements pb-2">
         {(
           hasDiscount &&
@@ -134,7 +129,7 @@ export const ProductCard: React.FC<Props> = ({
       <ProductSelectActions
         handleSelectClick={handleCartClick}
         handleLikeClick={() => toggleFavorite(product)}
-        isSelected={isSelected}
+        isSelected={isFavourite}
         isLiked={isLiked}
       />
     </div>

@@ -9,8 +9,10 @@ type Props = {
   onPageChange: (page: number) => void;
 };
 
+type PageItem = number | 'start-ellipsis' | 'end-ellipsis';
+
 const arrowButtonClass =
-  'flex h-9 w-9 items-center justify-center border border-elements hover:border-primary disabled:cursor-not-allowed disabled:opacity-40';
+  'flex h-8 w-5 sm:w-6 items-center justify-center rounded-sm border border-elements bg-white hover:border-primary hover:bg-elements hover-zoom-small dark:bg-surface-2-dark dark:hover:bg-elements';
 
 export const Pagination = ({
   currentPage,
@@ -21,87 +23,103 @@ export const Pagination = ({
     return null;
   }
 
-  const visiblePageCount = Math.min(4, totalPages);
-  const firstVisiblePage = Math.min(
-    Math.max(currentPage - 1, 1),
-    totalPages - visiblePageCount + 1,
-  );
-  const pageNumbers = Array.from(
-    { length: visiblePageCount },
-    (_, index) => firstVisiblePage + index,
-  );
+  let pageItems: PageItem[];
+
+  if (totalPages <= 5) {
+    pageItems = Array.from({ length: totalPages }, (_, index) => index + 1);
+  } else if (currentPage <= 3) {
+    pageItems = [1, 2, 3, 4, 'end-ellipsis', totalPages];
+  } else if (currentPage >= totalPages - 2) {
+    pageItems = [
+      1,
+      'start-ellipsis',
+      totalPages - 3,
+      totalPages - 2,
+      totalPages - 1,
+      totalPages,
+    ];
+  } else {
+    pageItems = [
+      1,
+      'start-ellipsis',
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      'end-ellipsis',
+      totalPages,
+    ];
+  }
   return (
     <nav
       aria-label="Pagination"
-      className="mt-10 flex justify-center gap-4"
+      className="mx-auto grid w-full max-w-95 grid-cols-[20px_1fr_20px] items-center gap-2 sm:grid-cols-[24px_1fr_24px]"
     >
-      <button
-        type="button"
-        aria-label="Pervious page"
-        className={cn(
-          {
-            'dark:bg-surface-2-dark': currentPage !== 1,
-            'dark:hover:border-elements': currentPage === 1,
-          },
-          arrowButtonClass,
-        )}
-        disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
-      >
-        <Icon
-          src={ICONS.ARROW.LEFT}
-          className="size-4"
-          isDisabled={currentPage === 1}
-        />
-      </button>
+      {currentPage > 1 ?
+        <button
+          type="button"
+          aria-label="Previous page"
+          className={arrowButtonClass}
+          onClick={() => onPageChange(currentPage - 1)}
+        >
+          <Icon
+            src={ICONS.ARROW.LEFT}
+            className="size-4"
+          />
+        </button>
+      : <span aria-hidden="true" />}
 
-      <div className="flex gap-2">
-        {pageNumbers.map((page) => {
-          const isCurrentPage = page === currentPage;
+      <div className="flex justify-center gap-1 sm:gap-2">
+        {pageItems.map((item) => {
+          if (typeof item !== 'number') {
+            return (
+              <span
+                key={item}
+                aria-hidden="true"
+                className="flex h-8 w-4 sm:w-8 items-center justify-center"
+              >
+                ...
+              </span>
+            );
+          }
+          const isCurrentPage = item === currentPage;
 
           return (
             <button
-              key={page}
+              key={item}
               type="button"
               aria-current={isCurrentPage ? 'page' : undefined}
               className={cn(
-                'flex h-8 w-8 items-center justify-center border text-center transition-colors',
+                'flex h-8 items-center justify-center border text-center rounded-sm hover-zoom-small',
                 isCurrentPage ?
-                  'border-primary bg-primary text-white dark:bg-accent-dark'
-                : 'border-elements text-black hover:border-primary dark:bg-surface-1-dark dark:text-white dark:hover:bg-elements',
+                  'w-8 border-primary bg-primary text-white dark:bg-accent-dark'
+                : 'w-7 sm:w-8 border-elements text-black hover:border-primary hover:bg-elements dark:bg-surface-1-dark dark:text-white dark:hover:bg-elements',
               )}
-              onClick={() => onPageChange(page)}
+              onClick={() => onPageChange(item)}
             >
               <Typography
                 level="body"
                 className="inherit"
               >
-                {page}
+                {item}
               </Typography>
             </button>
           );
         })}
       </div>
 
-      <button
-        type="button"
-        aria-label="Next page"
-        className={cn(
-          {
-            'dark:bg-surface-2-dark': currentPage !== totalPages,
-            'dark:hover:border-elements': currentPage === totalPages,
-          },
-          arrowButtonClass,
-        )}
-        disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
-      >
-        <Icon
-          src={ICONS.ARROW.RIGHT}
-          className="size-4"
-          isDisabled={currentPage === totalPages}
-        />
-      </button>
+      {currentPage < totalPages ?
+        <button
+          type="button"
+          aria-label="Next page"
+          className={arrowButtonClass}
+          onClick={() => onPageChange(currentPage + 1)}
+        >
+          <Icon
+            src={ICONS.ARROW.RIGHT}
+            className="size-4"
+          />
+        </button>
+      : <span aria-hidden="true" />}
     </nav>
   );
 };

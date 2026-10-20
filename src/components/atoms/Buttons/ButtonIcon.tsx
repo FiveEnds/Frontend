@@ -66,7 +66,7 @@ export const ButtonIcon: React.FC<Props> = ({
       type="button"
       whileTap={{ scale: 0.85 }}
       className={classNames(
-        'border flex justify-center items-center',
+        'border flex justify-center items-center cursor-pointer',
         {
           'disabled:border-elements dark:disabled:border-elements': isDisabled,
           'enabled:hover:border-primary border-icons':
@@ -85,25 +85,5 @@ export const ButtonIcon: React.FC<Props> = ({
         />
       </motion.span>
     </motion.button>
-
-    // <button
-    //   type="button"
-    //   className={classNames(
-    //     'border flex justify-center items-center',
-    //     {
-    //       'disabled:border-elements dark:disabled:border-elements': isDisabled,
-    //       'enabled:hover:border-primary border-icons': !isSelected && !isDisabled,
-    //       [variant.selected]: isSelected && !isDisabled,
-    //     },
-    //     className,
-    //   )}
-    //   onClick={handleClick}
-    //   disabled={isDisabled}
-    // >
-    //   <Icon
-    //     isDisabled={isDisabled}
-    //     src={src}
-    //   />
-    // </button>
   );
 };

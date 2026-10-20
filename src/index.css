@@ -60,16 +60,16 @@
   --color-white: var(--color-white);
   --color-green: var(--color-green);
   --color-red: var(--color-red);
-
   --font-mont: 'Mont', sans-serif;
   --color-hover-bg: #fafbfc;
   --color-silver: #f0f0f0;
   --color-spacegray: #4c4c4c;
   --color-midnightgreen: #5f7170;
   --color-gold: #fcdbc1;
+  --breakpoint-sm: 480px;
   --breakpoint-md: 640px;
+  --breakpoint-em: 768px;
   --breakpoint-lg: 1200px;
-
   --color-surface-2-dark: #323542;
   --color-surface-1-dark: #161827;
   --color-accent-dark: #905bff;
@@ -109,4 +109,31 @@
     background-color: var(--color-primary) !important;
     color: var(--color-white);
   }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@keyframes d-splash-loader {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.animate-splash-dot {
+  animation: d-splash-loader 3s ease-in-out infinite;
 }

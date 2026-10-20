@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppActions, useAppState } from '../store/store';
 import type { Category } from '../types/category';
 import type { Product } from '../types/Product';
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
 import { ProductItemTopBar } from '../components/molecules/ProductItemTopBar/ProductItemTopBar';
 import { PhotoGallery } from '../components/molecules/PhotoGallery/PhotoGallery';
@@ -12,6 +12,10 @@ import { PhoneTechSpecs } from '../components/organisms/PhoneTechSpecs/PhoneTech
 import { PhoneSpecsTable } from '../components/molecules/PhoneSpecsTable/PhoneSpecsTable';
 import { ProductsCarousel } from '../components/organisms/Carousels/ProductsCarousel/ProductsCarousel';
 import { shuffle } from '../utils/shuffle';
+import { getLimitedProducts } from '../utils/limitedProducts';
+import { useCarouselParams } from '../hooks/useCarouselParams';
+import type { CarouselConfig } from '../types/carouselConfig';
+import { useProductInfo } from '../hooks/useProductInfo';
 
 type Props = {
   category: Category;
@@ -21,53 +25,40 @@ function getProducts(products: Product[], productId: string) {
   const splitId = productId.split('-');
   const sliceProductId = splitId.slice(0, splitId.length - 2).join('-');
 
-  return shuffle(
-    products.filter((product) => {
-      const splitProductId = product.id.split('-');
-      const sliceCurrentProductId = splitProductId
-        .slice(0, splitProductId.length - 2)
-        .join('-');
+  return getLimitedProducts(
+    shuffle(
+      products.filter((product) => {
+        const splitProductId = product.id.split('-');
+        const sliceCurrentProductId = splitProductId
+          .slice(0, splitProductId.length - 2)
+          .join('-');
 
-      return sliceProductId !== sliceCurrentProductId;
-    }),
+        return sliceProductId !== sliceCurrentProductId;
+      }),
+    ) as Product[],
+    true,
   );
 }
 
-export const ProductItemPage: React.FC<Props> = ({ category }) => {
-  const [carouselParams, setCarouselParams] = useState({
+const carouselConfig: CarouselConfig = {
+  mobile: {
+    slides: 1.3,
+    height: 440,
+  },
+  tablet: {
+    slides: 2.5,
+    height: 512,
+  },
+  desktop: {
     slides: 4,
     height: 506,
-  });
+  },
+};
 
+export const ProductItemPage: React.FC<Props> = ({ category }) => {
   const startCartAnimation = useAppState((state) => state.startCartAnimation);
-
   const galleryRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setCarouselParams({
-          slides: 1.3,
-          height: 440,
-        });
-      } else if (width < 1200) {
-        setCarouselParams({
-          slides: 2.5,
-          height: 512,
-        });
-      } else {
-        setCarouselParams({
-          slides: 4,
-          height: 506,
-        });
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+  const carouselParams = useCarouselParams(carouselConfig);
   const { setProductItem, addItemToCart, toggleFavorite, removeItemFromCart } =
     useAppActions();
 
@@ -100,25 +91,23 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
   }, [productId, products, setProductItem, navigate]);
 
   const product = useAppState((state) => state.selectedProduct as Product);
-  const cart = useAppState((state) => state.cart);
-  const isLiked = useAppState((state) =>
-    state.favourites.some((favourite) => favourite.id === product?.id),
-  );
 
   const shuffleProducts = useMemo(() => {
     if (!product) {
       return [];
     }
 
-    return getProducts(products, product.id) as Product[];
+    return getProducts(products, product.id);
   }, [product, products]);
+
+  const { isLiked, isFavourite } = useProductInfo(product ? product.id : '');
 
   if (!product) {
     return <></>;
   }
 
   const handleCartClick = () => {
-    if (itemInCart) {
+    if (isFavourite) {
       removeItemFromCart(product.id);
       return;
     }
@@ -153,26 +142,22 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     });
   };
 
-  const itemInCart = Object.hasOwn(cart, product.id);
+  const handleColorSelect = (selectedValue: string) => {
+    const newLink =
+      products.find(
+        (currentProduct) =>
+          currentProduct.namespaceId === product.namespaceId &&
+          currentProduct.color === selectedValue,
+      )?.id || '*';
 
-  const handleCapacitySelect = (
-    selectedValue: string,
-    option: 'color' | 'capacity',
-  ) => {
+    navigate(`/${product.category}/${newLink}`, { replace: true });
+  };
+
+  const handleCapacitySelect = (selectedValue: string) => {
     const newLink = productId
       ?.split('-')
       .map((part) => {
-        if (
-          option === 'capacity' &&
-          part.toLowerCase() === product.capacity.toLowerCase()
-        ) {
-          return selectedValue.toLowerCase();
-        }
-
-        if (
-          option === 'color' &&
-          part.toLowerCase() === product.color.toLowerCase()
-        ) {
+        if (part.toLowerCase() === product.capacity.toLowerCase()) {
           return selectedValue.toLowerCase();
         }
 
@@ -196,12 +181,12 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       productConfigurator={
         <ProductConfigurator
           product={product}
-          handleColorSelect={handleCapacitySelect}
+          handleColorSelect={handleColorSelect}
           handleCapacitySelect={handleCapacitySelect}
           handleAddToCart={handleCartClick}
           handleLikeClick={() => toggleFavorite(product)}
           isLiked={isLiked}
-          isSelected={itemInCart}
+          isSelected={isFavourite}
         />
       }
       productAbout={<ProductAbout description={product.description} />}
