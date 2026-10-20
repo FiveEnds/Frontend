@@ -35,6 +35,7 @@ export const ProductSelectActions: React.FC<Props> = ({
       isSelected={isLiked}
       handleClick={handleLikeClick}
       src={isLiked ? ICONS.HEART_FILLED : ICONS.HEART_EMPTY}
+      animateIcon={true}
     />
   </div>
 );

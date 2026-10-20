@@ -60,7 +60,7 @@ export const CatalogFilterBar = ({
   return (
     <div
       ref={rootRef}
-      className="relative w-full"
+      className="relative w-full font-mont"
     >
       <button
         type="button"

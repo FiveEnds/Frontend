@@ -9,13 +9,28 @@ type CartItemInfo = {
   amountAdded: number;
 };
 
+type AnimationCoords = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+type CartAnimation = {
+  imageSrc: string;
+  start: AnimationCoords;
+  end: AnimationCoords;
+  id: number;
+};
+
 type StoreState = {
   phones: Phone[];
   tablets: Tablet[];
   accessories: Accessory[];
-  favourites: FavouriteProduct[];
-  cart: Record<string, CartItemInfo>;
+  favourites: Map<string, Product>;
+  cart: Map<string, CartItemInfo>;
   selectedProduct: Product | null;
+  cartAnimation: CartAnimation | null;
   ratings: Record<string, number>;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
@@ -29,15 +44,18 @@ type StoreState = {
     fetchRatings: () => Promise<void>;
     addProductReview: (product: Product, newRating: number) => Promise<void>;
   };
+  startCartAnimation: (animation: CartAnimation) => void;
+  finishCartAnimation: () => void;
 };
 
 export const useAppState = create<StoreState>()((set, get) => ({
   phones: [],
   tablets: [],
   accessories: [],
-  favourites: [],
-  cart: {},
+  favourites: new Map(),
+  cart: new Map(),
   selectedProduct: null,
+  cartAnimation: null,
   ratings: {},
 
   actions: {
@@ -45,67 +63,57 @@ export const useAppState = create<StoreState>()((set, get) => ({
     loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
     loadAccessories: (accessoriesToAdd) =>
       set({ accessories: accessoriesToAdd }),
-    toggleFavorite: (product) =>
-      set((state) => ({
-        favourites:
-          (
-            state.favourites.some(
-              (favorite) =>
-                favorite.id === product.id &&
-                favorite.category === product.category,
-            )
-          ) ?
-            state.favourites.filter(
-              (favourite) =>
-                !(
-                  favourite.id === product.id &&
-                  favourite.category === product.category
-                ),
-            )
-          : [...state.favourites, product],
-      })),
+    toggleFavorite: (product) => {
+      set((state) => {
+        const newFavourites = new Map(state.favourites);
+
+        if (newFavourites.has(product.id)) {
+          newFavourites.delete(product.id);
+        } else {
+          newFavourites.set(product.id, product);
+        }
+
+        return { favourites: newFavourites };
+      });
+    },
     setProductItem: (productItem) => set({ selectedProduct: productItem }),
     addItemToCart: (productToAdd) => {
-      const currentCart = get().cart;
+      const newCart = new Map(get().cart);
       const productId = productToAdd.id;
+      const itemValue = newCart.get(productId);
 
-      if (Object.hasOwn(currentCart, productId)) {
-        set({
-          cart: {
-            ...currentCart,
-            [productId]: {
-              ...currentCart[productId],
-              amountAdded: currentCart[productId].amountAdded + 1,
-            },
-          },
+      if (itemValue) {
+        newCart.set(productId, {
+          ...itemValue,
+          amountAdded: itemValue.amountAdded + 1,
         });
       } else {
-        set({
-          cart: {
-            ...currentCart,
-            [productId]: {
-              product: productToAdd,
-              amountAdded: 1,
-            },
-          },
-        });
+        newCart.set(productId, { product: productToAdd, amountAdded: 1 });
       }
+
+      set({ cart: newCart });
     },
     removeItemFromCart: (productId) => {
-      const currentCart = { ...get().cart };
-      delete currentCart[productId];
+      const currentCart = new Map(get().cart);
+      currentCart.delete(productId);
 
       set({ cart: currentCart });
     },
     decreaseAmountFromCart: (productId) => {
-      const currentCart = { ...get().cart };
-      currentCart[productId] = {
-        ...currentCart[productId],
-        amountAdded: currentCart[productId].amountAdded - 1,
-      };
+      const currentCart = new Map(get().cart);
+      const currentProductInCart = currentCart.get(productId);
 
-      if (currentCart[productId].amountAdded === 0) {
-        delete currentCart[productId];
+      if (!currentProductInCart) {
+        return;
+      }
+
+      if (currentProductInCart.amountAdded > 1) {
+        currentCart.set(productId, {
+          product: currentProductInCart?.product,
+          amountAdded: currentProductInCart?.amountAdded - 1,
+        });
+      } else {
+        currentCart.delete(productId);
       }
 
       set({ cart: currentCart });
@@ -161,6 +169,8 @@ export const useAppState = create<StoreState>()((set, get) => ({
       await get().actions.fetchRatings();
     },
   },
+  startCartAnimation: (animation) => set({ cartAnimation: animation }),
+  finishCartAnimation: () => set({ cartAnimation: null }),
 }));
 
 export const useAppActions = () => useAppState((state) => state.actions);
