@@ -20,7 +20,7 @@ export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
     >
       {favouriteProducts.size === 0 ?
         <div className="relative col-span-full flex w-full justify-center">
-          <div className="relative w-fit pr-14 sm:pr-26 md:pr-28 lg:pr-32">
+          <div className="relative w-fit pr-21 sm:pr-26 md:pr-28 lg:pr-32">
             <Typography
               className="text-primary text-center dark:text-white"
               level="h2"
