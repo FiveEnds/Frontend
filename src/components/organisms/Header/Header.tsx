@@ -13,23 +13,19 @@ export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isMenuOpen) {
-      return;
-    }
-
     const html = document.documentElement;
     const body = document.body;
 
-    const previousHtmlOverflow = html.style.overflow;
-    const previousBodyOverflow = body.style.overflow;
+    if (!isMenuOpen) {
+      html.style.overflow = '';
+      body.style.overflow = '';
+      return;
+    }
 
-    html.style.overflow = 'hidden';
-    body.style.overflow = 'hidden';
-
-    return () => {
-      html.style.overflow = previousHtmlOverflow;
-      body.style.overflow = previousBodyOverflow;
-    };
+    if (isMenuOpen) {
+      html.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
+    }
   }, [isMenuOpen]);
 
   const handleClickLink = () => {
