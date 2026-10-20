@@ -14,7 +14,6 @@ type Props = {
   product: Product;
   className?: string;
   cardHeight?: number;
-  hasDiscount?: boolean;
 };
 
 function getSpecifications(product: Product): Spec[] {
@@ -29,9 +28,9 @@ export const ProductCard: React.FC<Props> = ({
   product,
   className = '',
   cardHeight,
-  hasDiscount = true,
 }) => {
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
+  const hasDiscount = product.priceDiscount;
 
   const isLiked = useAppState((state) =>
     state.favourites.some(
