@@ -14,7 +14,7 @@ export const FavouritesPage: React.FC = () => {
       headingWithCount={
         <HeadingWithCount
           title="Favourites"
-          itemsCount={favouriteProducts.length}
+          itemsCount={favouriteProducts.size}
           countLabel="items"
         />
       }
