@@ -104,7 +104,6 @@
     color-scheme: dark;
   }
 
-  /* Force light theme background on both canvas elements */
   html,
   body {
     background-color: var(--color-white) !important;
@@ -112,7 +111,6 @@
     min-height: 100vh;
   }
 
-  /* Force dark theme background on both canvas elements */
   html.dark,
   html.dark body {
     background-color: var(--color-primary) !important;

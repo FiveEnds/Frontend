@@ -117,7 +117,8 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       products.find(
         (currentProduct) =>
           currentProduct.namespaceId === product.namespaceId &&
-          currentProduct.color === selectedValue,
+          currentProduct.color === selectedValue &&
+          currentProduct.capacity === product.capacity,
       )?.id || '*';
 
     navigate(`/${product.category}/${newLink}`, { replace: true });

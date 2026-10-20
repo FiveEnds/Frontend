@@ -8,8 +8,9 @@ type Props = {
 };
 
 const variant = {
-  default: 'ring-elements hover:ring-icons ',
-  selected: 'ring-primary',
+  default:
+    'ring-elements hover:ring-icons dark:ring-secondary dark:hover:ring-secondary',
+  selected: 'ring-primary dark:ring-white',
 };
 
 export const ButtonColor: React.FC<Props> = ({
@@ -20,7 +21,7 @@ export const ButtonColor: React.FC<Props> = ({
   <button
     type="button"
     className={classNames(
-      `w-7.5 h-7.5 rounded-full border-2 border-white
+      `w-7.5 h-7.5 rounded-full border-2 border-white dark:border-primary
       ring-1
       transition-all duration-300 ease-in-out
       ${className}`,
