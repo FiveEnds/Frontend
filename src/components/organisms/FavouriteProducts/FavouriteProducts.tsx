@@ -5,7 +5,6 @@ import { ProductCard } from '../ProductCard/ProductCard';
 
 type Props = {
   favouriteProducts: Map<string, FavouriteProduct>;
-  toggleFavorite: (product: FavouriteProduct) => void;
 };
 
 export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
@@ -20,18 +19,20 @@ export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
     lg:grid-cols-24"
     >
       {favouriteProducts.size === 0 ?
-        <div className="relative col-span-full w-fit">
-          <Typography
-            className="text-primary dark:text-white"
-            level="h4"
-          >
-            Add products to your favourites
-          </Typography>
+        <div className="relative col-span-full flex w-full justify-center">
+          <div className="relative w-fit pr-14 sm:pr-26 md:pr-28 lg:pr-32">
+            <Typography
+              className="text-primary text-center dark:text-white"
+              level="h2"
+            >
+              Add products to your favourites
+            </Typography>
 
-          <img
-            src="/img/empty-favourites.png"
-            className="absolute bottom-0 left-full ml-2 h-12 w-12 translate-y-2 object-contain sm:h-18 sm:w-18"
-          />
+            <img
+              src="/img/empty-favourites.png"
+              className="absolute right-0 top-1/2 h-24 w-24 -translate-y-1/2 rotate-12 object-contain sm:h-26 sm:w-26 md:h-28 md:w-28 lg:h-32 lg:w-32"
+            />
+          </div>
         </div>
       : productsList.map((product) => {
           return (
