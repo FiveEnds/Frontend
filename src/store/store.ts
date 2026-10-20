@@ -139,27 +139,26 @@ export const useAppState = create<StoreState>()((set, get) => ({
       }
     },
     addProductReview: async (product, newRating) => {
-      const currentRatings = get().ratings;
-      set({
-        ratings: {
-          ...currentRatings,
-          [product.id]: newRating,
-        },
-      });
+      let deviceId = localStorage.getItem('device_id');
+      if (!deviceId) {
+        deviceId = crypto.randomUUID();
+        localStorage.setItem('device_id', deviceId);
+      }
+
       const { error } = await supabase.from('reviews').insert([
         {
-          device_id: 'user_device_placeholder',
+          device_id: deviceId,
           category: product.category,
           product_id: product.id,
           rating: newRating,
         },
       ]);
+
       if (error) {
         console.error('Error saving to Supabase', error);
-        set({ ratings: currentRatings });
-      } else {
-        get().actions.fetchRatings();
+        return;
       }
+      await get().actions.fetchRatings();
     },
   },
 }));
