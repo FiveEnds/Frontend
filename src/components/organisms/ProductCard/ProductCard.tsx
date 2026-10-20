@@ -11,6 +11,8 @@ import { getScreenLabel } from '../../../utils/formatScreen';
 import { ProductRating } from '../../atoms/ProductRating/ProductRating';
 import { useProductInfo } from '../../../hooks/useProductInfo';
 
+import { useRef } from 'react';
+
 type Props = {
   product: Product;
   className?: string;
@@ -35,11 +37,47 @@ export const ProductCard: React.FC<Props> = ({
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
   const { isLiked, isFavourite } = useProductInfo(product.id);
 
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const getImageRect = () => {
+    if (imageRef.current) {
+      return imageRef.current.getBoundingClientRect();
+    }
+
+    return null;
+  };
+
+  const startCartAnimation = useAppState((state) => state.startCartAnimation);
+
   const handleCartClick = () => {
+    const imageRect = getImageRect();
+    const cartElement = document.querySelector('[data-cart-target="true"]');
+
     if (isFavourite) {
       removeItemFromCart(product.id);
     } else {
       addItemToCart(product);
+
+      if (imageRect && cartElement) {
+        const cartRect = cartElement.getBoundingClientRect();
+
+        startCartAnimation({
+          imageSrc: product.images[0],
+          start: {
+            x: imageRect.x,
+            y: imageRect.y,
+            width: imageRect.width,
+            height: imageRect.height,
+          },
+          end: {
+            x: cartRect.x,
+            y: cartRect.y,
+            width: cartRect.width,
+            height: cartRect.height,
+          },
+          id: Date.now(),
+        });
+      }
     }
   };
 
@@ -54,7 +92,8 @@ export const ProductCard: React.FC<Props> = ({
           className="flex justify-center w-full h-full overflow-hidden"
         >
           <img
-            className="max-h-full max-w-full object-contain"
+            ref={imageRef}
+            className="max-h-full max-w-full object-contain "
             src={product.images[0]}
             alt={product.id}
           />

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppActions, useAppState } from '../store/store';
 import type { Category } from '../types/category';
 import type { Product } from '../types/Product';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { ProductItemLayout } from '../components/templates/ProductItemLayout/ProductItemLayout';
 import { ProductItemTopBar } from '../components/molecules/ProductItemTopBar/ProductItemTopBar';
 import { PhotoGallery } from '../components/molecules/PhotoGallery/PhotoGallery';
@@ -56,6 +56,8 @@ const carouselConfig: CarouselConfig = {
 };
 
 export const ProductItemPage: React.FC<Props> = ({ category }) => {
+  const startCartAnimation = useAppState((state) => state.startCartAnimation);
+  const galleryRef = useRef<HTMLImageElement>(null);
   const carouselParams = useCarouselParams(carouselConfig);
   const { setProductItem, addItemToCart, toggleFavorite, removeItemFromCart } =
     useAppActions();
@@ -107,9 +109,37 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
   const handleCartClick = () => {
     if (isFavourite) {
       removeItemFromCart(product.id);
-    } else {
-      addItemToCart(product);
+      return;
     }
+
+    addItemToCart(product);
+
+    const imageElement = galleryRef.current;
+    const cartElement = document.querySelector('[data-cart-target="true"]');
+
+    if (!imageElement || !cartElement) {
+      return;
+    }
+
+    const imageRect = imageElement.getBoundingClientRect();
+    const cartRect = cartElement.getBoundingClientRect();
+
+    startCartAnimation({
+      imageSrc: imageElement.src,
+      start: {
+        x: imageRect.x,
+        y: imageRect.y,
+        width: imageRect.width,
+        height: imageRect.height,
+      },
+      end: {
+        x: cartRect.x,
+        y: cartRect.y,
+        width: cartRect.width,
+        height: cartRect.height,
+      },
+      id: Date.now(),
+    });
   };
 
   const handleColorSelect = (selectedValue: string) => {
@@ -143,6 +173,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
       pageProductDetails={<ProductItemTopBar title={product.name} />}
       productGallery={
         <PhotoGallery
+          imageRef={galleryRef}
           product={product}
           key={product.id}
         />

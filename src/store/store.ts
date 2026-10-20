@@ -9,6 +9,20 @@ type CartItemInfo = {
   amountAdded: number;
 };
 
+type AnimationCoords = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+type CartAnimation = {
+  imageSrc: string;
+  start: AnimationCoords;
+  end: AnimationCoords;
+  id: number;
+};
+
 type StoreState = {
   phones: Phone[];
   tablets: Tablet[];
@@ -16,6 +30,7 @@ type StoreState = {
   favourites: Map<string, Product>;
   cart: Map<string, CartItemInfo>;
   selectedProduct: Product | null;
+  cartAnimation: CartAnimation | null;
   ratings: Record<string, number>;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
@@ -29,6 +44,8 @@ type StoreState = {
     fetchRatings: () => Promise<void>;
     addProductReview: (product: Product, newRating: number) => Promise<void>;
   };
+  startCartAnimation: (animation: CartAnimation) => void;
+  finishCartAnimation: () => void;
 };
 
 export const useAppState = create<StoreState>()((set, get) => ({
@@ -38,6 +55,7 @@ export const useAppState = create<StoreState>()((set, get) => ({
   favourites: new Map(),
   cart: new Map(),
   selectedProduct: null,
+  cartAnimation: null,
   ratings: {},
 
   actions: {
@@ -151,6 +169,8 @@ export const useAppState = create<StoreState>()((set, get) => ({
       await get().actions.fetchRatings();
     },
   },
+  startCartAnimation: (animation) => set({ cartAnimation: animation }),
+  finishCartAnimation: () => set({ cartAnimation: null }),
 }));
 
 export const useAppActions = () => useAppState((state) => state.actions);

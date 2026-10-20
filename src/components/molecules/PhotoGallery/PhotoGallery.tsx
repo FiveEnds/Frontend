@@ -7,6 +7,7 @@ import type { Product } from '../../../types/Product';
 
 type Props = {
   product: Product; //change type with Product when api will be ready
+  imageRef: React.RefObject<HTMLImageElement | null>;
 };
 
 type ButtonProps = {
@@ -33,7 +34,7 @@ const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
   </button>
 );
 
-export const PhotoGallery: React.FC<Props> = ({ product }) => {
+export const PhotoGallery: React.FC<Props> = ({ product, imageRef }) => {
   const [currentPhoto, setCurrentPhoto] = useState<string>(product.images[0]);
 
   return (
@@ -50,6 +51,7 @@ export const PhotoGallery: React.FC<Props> = ({ product }) => {
       </div>
       <div className="col-span-full pb-4 md:pb-0 row-start-1 md:col-span-6 lg:col-span-10">
         <img
+          ref={imageRef}
           src={currentPhoto}
           alt={product.name}
           className="object-contain block w-full aspect-square hover-zoom-small"
