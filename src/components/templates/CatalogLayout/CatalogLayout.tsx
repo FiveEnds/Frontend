@@ -26,6 +26,7 @@ export type CatalogLayoutProps = {
   filters: CatalogFilters;
   filterOptions: FilterOptions;
   onFiltersChange: (filters: CatalogFilters) => void;
+  pageStartIndex: number;
 };
 
 export const CatalogLayout = ({
@@ -43,6 +44,7 @@ export const CatalogLayout = ({
   filters,
   filterOptions,
   onFiltersChange,
+  pageStartIndex,
 }: CatalogLayoutProps) => (
   <div className="mx-auto w-full max-w-300 px-4 pt-6 pb-20 md:px-6 lg:px-8">
     <Breadcrumbs />
@@ -105,10 +107,11 @@ export const CatalogLayout = ({
         aria-label={title}
         className="mt-6 grid grid-cols-4 gap-x-4 gap-y-10 md:grid-cols-12 lg:grid-cols-24"
       >
-        {products.map((product) => (
+        {products.map((product, index) => (
           <div
             key={product.id}
-            className="col-span-4 min-w-0 sm:col-span-2 md:col-span-6 em:col-span-4 lg:col-span-6"
+            id={index === pageStartIndex ? 'catalog-page-start' : undefined}
+            className="col-span-4 min-w-0 scroll-mt-12 sm:col-span-2 md:col-span-6 em:col-span-4 lg:col-span-6 lg:scroll-mt-16"
           >
             <ProductCard
               className="h-110 md:h-126.5"
