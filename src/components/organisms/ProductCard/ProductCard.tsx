@@ -9,6 +9,8 @@ import type { Product } from '../../../types/Product';
 import { useAppActions, useAppState } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
 
+import { useRef } from 'react';
+
 type Props = {
   product: Product;
   className?: string;
@@ -43,11 +45,47 @@ export const ProductCard: React.FC<Props> = ({
     Object.hasOwn(state.cart, product.id),
   );
 
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const getImageRect = () => {
+    if (imageRef.current) {
+      return imageRef.current.getBoundingClientRect();
+    }
+
+    return null;
+  };
+
+  const startCartAnimation = useAppState((state) => state.startCartAnimation);
+
   const handleCartClick = () => {
+    const imageRect = getImageRect();
+    const cartElement = document.querySelector('[data-cart-target="true"]');
+
     if (isSelected) {
       removeItemFromCart(product.id);
     } else {
       addItemToCart(product);
+
+      if (imageRect && cartElement) {
+        const cartRect = cartElement.getBoundingClientRect();
+
+        startCartAnimation({
+          imageSrc: product.images[0],
+          start: {
+            x: imageRect.x,
+            y: imageRect.y,
+            width: imageRect.width,
+            height: imageRect.height,
+          },
+          end: {
+            x: cartRect.x,
+            y: cartRect.y,
+            width: cartRect.width,
+            height: cartRect.height,
+          },
+          id: Date.now(),
+        });
+      }
     }
   };
 
@@ -62,6 +100,7 @@ export const ProductCard: React.FC<Props> = ({
           className="flex justify-center w-full h-full overflow-hidden"
         >
           <img
+            ref={imageRef}
             className="max-h-full max-w-full object-contain "
             src={product.images[0]}
             alt={product.id}

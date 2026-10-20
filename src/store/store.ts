@@ -8,6 +8,20 @@ type CartItemInfo = {
   amountAdded: number;
 };
 
+type AnimationCoords = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+type CartAnimation = {
+  imageSrc: string;
+  start: AnimationCoords;
+  end: AnimationCoords;
+  id: number;
+};
+
 type StoreState = {
   phones: Phone[];
   tablets: Tablet[];
@@ -15,6 +29,7 @@ type StoreState = {
   favourites: FavouriteProduct[];
   cart: Record<string, CartItemInfo>;
   selectedProduct: Product | null;
+  cartAnimation: CartAnimation | null;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
     loadTablets: (tabletsToAdd: Tablet[]) => void;
@@ -25,6 +40,8 @@ type StoreState = {
     removeItemFromCart: (productIdToRemove: string) => void;
     decreaseAmountFromCart: (productId: string) => void;
   };
+  startCartAnimation: (animation: CartAnimation) => void;
+  finishCartAnimation: () => void;
 };
 
 export const useAppState = create<StoreState>()((set, get) => ({
@@ -34,7 +51,7 @@ export const useAppState = create<StoreState>()((set, get) => ({
   favourites: [],
   cart: {},
   selectedProduct: null,
-
+  cartAnimation: null,
   actions: {
     loadPhones: (phonesToAdd) => set({ phones: phonesToAdd }),
     loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
@@ -106,6 +123,8 @@ export const useAppState = create<StoreState>()((set, get) => ({
       set({ cart: currentCart });
     },
   },
+  startCartAnimation: (animation) => set({ cartAnimation: animation }),
+  finishCartAnimation: () => set({ cartAnimation: null }),
 }));
 
 export const useAppActions = () => useAppState((state) => state.actions);

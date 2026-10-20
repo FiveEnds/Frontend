@@ -5,6 +5,7 @@ import CN from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { useAppState } from '../../../store/store';
 import { IconNotification } from '../IconNotification/IconNotification';
+import { useRef } from 'react';
 
 type Props = {
   onClick: () => void;
@@ -24,6 +25,8 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
       0,
     ),
   );
+
+  const cartRef = useRef<HTMLAnchorElement>(null);
 
   return (
     <nav className={CN('flex items-center', classNames)}>
@@ -53,6 +56,8 @@ export const NavigationButtons: React.FC<Props> = ({ onClick, classNames }) => {
         )}
       </NavLink>
       <NavLink
+        ref={cartRef}
+        data-cart-target="true"
         to="/bag"
         className={`${variant.default} border-l`}
         onClick={onClick}

@@ -11,6 +11,7 @@ import { HeaderLayout } from './components/templates/HeaderLayout';
 import { ProductItemPage } from './pages/ProductItemPage';
 import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
+import { CartFlyAnimation } from './components/molecules/CartFlyAnimation/CartFlyAnimation';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories } = useAppActions();
@@ -22,62 +23,65 @@ export const App: React.FC = () => {
   }, [loadAccessories, loadPhones, loadTablets]);
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<HeaderLayout />}
-      >
+    <>
+      <Routes>
         <Route
-          index
-          element={<HomePage />}
-        />
-        <Route
-          path="phones"
-          element={<CatalogPage category={CATEGORY.PHONES} />}
-        />
-        <Route
-          path="phones/:productId"
-          element={<ProductItemPage category={CATEGORY.PHONES} />}
-        />
-        <Route
-          path="tablets"
-          element={<CatalogPage category={CATEGORY.TABLETS} />}
-        />
-        <Route
-          path="tablets/:productId"
-          element={<ProductItemPage category={CATEGORY.TABLETS} />}
-        />
-        <Route
-          path="accessories"
-          element={<CatalogPage category={CATEGORY.ACCESSORIES} />}
-        />
-        <Route
-          path="accessories/:productId"
-          element={<ProductItemPage category={CATEGORY.ACCESSORIES} />}
-        />
-        <Route
-          path="favourites"
-          element={<FavouritesPage />}
-        />
-        <Route
-          path="bag"
-          element={<CartPage />}
-        />
-        <Route
-          path="*"
-          element={<PageNotFound />}
-        />
-        <Route
-          path="home"
-          element={
-            <Navigate
-              to="/"
-              replace
-            />
-          }
-        />
-      </Route>
-    </Routes>
+          path="/"
+          element={<HeaderLayout />}
+        >
+          <Route
+            index
+            element={<HomePage />}
+          />
+          <Route
+            path="phones"
+            element={<CatalogPage category={CATEGORY.PHONES} />}
+          />
+          <Route
+            path="phones/:productId"
+            element={<ProductItemPage category={CATEGORY.PHONES} />}
+          />
+          <Route
+            path="tablets"
+            element={<CatalogPage category={CATEGORY.TABLETS} />}
+          />
+          <Route
+            path="tablets/:productId"
+            element={<ProductItemPage category={CATEGORY.TABLETS} />}
+          />
+          <Route
+            path="accessories"
+            element={<CatalogPage category={CATEGORY.ACCESSORIES} />}
+          />
+          <Route
+            path="accessories/:productId"
+            element={<ProductItemPage category={CATEGORY.ACCESSORIES} />}
+          />
+          <Route
+            path="favourites"
+            element={<FavouritesPage />}
+          />
+          <Route
+            path="bag"
+            element={<CartPage />}
+          />
+          <Route
+            path="*"
+            element={<PageNotFound />}
+          />
+          <Route
+            path="home"
+            element={
+              <Navigate
+                to="/"
+                replace
+              />
+            }
+          />
+        </Route>
+      </Routes>
+      <CartFlyAnimation />
+    </>
   );
 };
 
