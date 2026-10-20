@@ -120,7 +120,7 @@ export const CatalogFilterBar = ({
                   capacity: '',
                 })
               }
-              className="h-10 text-sm text-secondary hover:text-primary"
+              className="h-10 text-sm text-secondary hover:text-primary hover-zoom-small dark:hover:text-white"
             >
               Reset filters
             </button>

@@ -6,13 +6,13 @@ import { Typography } from '../../atoms/Typography/Typography';
 type Props = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (page: number, preserveRange?: boolean) => void;
 };
 
 type PageItem = number | 'start-ellipsis' | 'end-ellipsis';
 
 const arrowButtonClass =
-  'flex h-8 w-5 sm:w-6 items-center justify-center rounded-sm border border-elements bg-white hover:border-primary dark:bg-surface-2-dark';
+  'flex h-8 w-5 sm:w-6 items-center justify-center rounded-sm border border-elements bg-white hover:border-primary hover:bg-elements hover-zoom-small dark:bg-surface-2-dark dark:hover:bg-elements';
 
 export const Pagination = ({
   currentPage,
@@ -59,7 +59,7 @@ export const Pagination = ({
           type="button"
           aria-label="Previous page"
           className={arrowButtonClass}
-          onClick={() => onPageChange(currentPage - 1)}
+          onClick={() => onPageChange(currentPage - 1, true)}
         >
           <Icon
             src={ICONS.ARROW.LEFT}
@@ -89,10 +89,10 @@ export const Pagination = ({
               type="button"
               aria-current={isCurrentPage ? 'page' : undefined}
               className={cn(
-                'flex h-8 items-center justify-center border text-center transition-colors rounded-sm',
+                'flex h-8 items-center justify-center border text-center rounded-sm hover-zoom-small',
                 isCurrentPage ?
                   'w-8 border-primary bg-primary text-white dark:bg-accent-dark'
-                : 'w-7 sm:w-8 border-elements text-black hover:border-primary dark:bg-surface-1-dark dark:text-white dark:hover:bg-elements',
+                : 'w-7 sm:w-8 border-elements text-black hover:border-primary hover:bg-elements dark:bg-surface-1-dark dark:text-white dark:hover:bg-elements',
               )}
               onClick={() => onPageChange(item)}
             >
@@ -112,7 +112,7 @@ export const Pagination = ({
           type="button"
           aria-label="Next page"
           className={arrowButtonClass}
-          onClick={() => onPageChange(currentPage + 1)}
+          onClick={() => onPageChange(currentPage + 1, true)}
         >
           <Icon
             src={ICONS.ARROW.RIGHT}

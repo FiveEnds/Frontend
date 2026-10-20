@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CatalogLayout } from '../components/templates/CatalogLayout/CatalogLayout';
 import { useAppState } from '../store/store';
@@ -46,6 +46,8 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
   const ratings = useAppState((state) => state.ratings);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const shouldScrollToPage = useRef(false);
+
   const [pageSize, setPageSize] = useState(getResponsivePageSize);
 
   const filters: CatalogFilters = {
@@ -78,6 +80,26 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
       );
     };
   }, [category]);
+
+  useEffect(() => {
+    if (!shouldScrollToPage.current) return;
+
+    shouldScrollToPage.current = false;
+
+    const currentFrom = searchParams.get('from');
+    const currentTo = searchParams.get('to');
+
+    const isFirstPage =
+      (currentFrom === null || currentFrom === '1') &&
+      (currentTo === null || currentTo === '1');
+
+    const targetId = isFirstPage ? 'catalog-controls' : 'catalog-page-start';
+
+    document.getElementById(targetId)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, [searchParams]);
 
   const updateSearchParams = (updates: Record<string, string>) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -142,6 +164,8 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
     pageLimit,
   );
 
+  const pageStartIndex = (to - from) * pageSize;
+
   const pageRange: PageRange = { from, to };
   const currentPage = to;
 
@@ -175,12 +199,17 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
     });
   };
 
-  const handlePageChange = (page: number) => {
-    updateSearchParams({
-      from: String(page),
-      to: String(page),
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handlePageChange = (page: number, preserveRange = false) => {
+    shouldScrollToPage.current = true;
+
+    if (preserveRange && from < to) {
+      updateSearchParams({ to: String(page) });
+    } else {
+      updateSearchParams({
+        from: String(page),
+        to: String(page),
+      });
+    }
   };
 
   return (
@@ -199,6 +228,7 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
       filters={filters}
       filterOptions={{ models, capacities }}
       onFiltersChange={handleFiltersChange}
+      pageStartIndex={pageStartIndex}
     />
   );
 };
