@@ -14,19 +14,25 @@ export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
     lg:grid-cols-24"
     >
       {favouriteProducts.length === 0 ?
-        <Typography
-          className="col-span-full"
-          level="h4"
-        >
-          Add products to your favourites
-        </Typography>
+        <div className="relative col-span-full w-fit">
+          <Typography
+            className="text-primary dark:text-white"
+            level="h4"
+          >
+            Add products to your favourites
+          </Typography>
+
+          <img
+            src="/img/empty-favourites.png"
+            className="absolute bottom-0 left-full ml-2 h-12 w-12 translate-y-2 object-contain sm:h-18 sm:w-18"
+          />
+        </div>
       : favouriteProducts.map((product) => {
           return (
             <ProductCard
-              className="col-span-4 md:col-span-6 md:h-126.5"
+              className="col-span-4 h-110 sm:col-span-2 md:col-span-6 md:h-126.5 em:col-span-4 lg:col-span-6"
               key={`${product.category}-${product.id}`}
               product={product}
-              cardHeight={440}
             />
           );
         })

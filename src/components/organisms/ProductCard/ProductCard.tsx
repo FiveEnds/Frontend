@@ -8,11 +8,12 @@ import { Link } from 'react-router-dom';
 import type { Product } from '../../../types/Product';
 import { useAppActions, useAppState } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
+import { ProductRating } from '../../atoms/ProductRating/ProductRating';
 
 type Props = {
   product: Product;
   className?: string;
-  cardHeight: number;
+  cardHeight?: number;
   hasDiscount?: boolean;
 };
 
@@ -53,7 +54,7 @@ export const ProductCard: React.FC<Props> = ({
 
   return (
     <div
-      className={`p-8 flex flex-col gap-2 border dark:bg-surface-1-dark border-elements dark:border-surface-1-dark transition-transform duration-300 ease-in-out hover:scale-105 hover:border-none ${className}`}
+      className={`p-8 flex flex-col gap-2 border dark:bg-surface-1-dark border-elements dark:border-surface-1-dark transition-transform duration-300 ease-in-out hover:scale-105 hover:border-transparent ${className}`}
       style={{ height: cardHeight }}
     >
       <div className="flex-1 min-h-0 flex items-center justify-center w-full">
@@ -62,7 +63,7 @@ export const ProductCard: React.FC<Props> = ({
           className="flex justify-center w-full h-full overflow-hidden"
         >
           <img
-            className="max-h-full max-w-full object-contain "
+            className="max-h-full max-w-full object-contain"
             src={product.images[0]}
             alt={product.id}
           />
@@ -75,6 +76,9 @@ export const ProductCard: React.FC<Props> = ({
       >
         <Typography>{product.name}</Typography>
       </Link>
+      <div className="mt-1 mb-1">
+        <ProductRating product={product} />
+      </div>
       <div className="border-b border-elements pb-2">
         {(
           hasDiscount &&

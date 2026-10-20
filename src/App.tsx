@@ -13,13 +13,15 @@ import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
 
 export const App: React.FC = () => {
-  const { loadPhones, loadTablets, loadAccessories } = useAppActions();
+  const { loadPhones, loadTablets, loadAccessories, fetchRatings } =
+    useAppActions();
 
   useEffect(() => {
     getPhones().then((data) => loadPhones(data));
     getTablets().then((data) => loadTablets(data));
     getAccessories().then((data) => loadAccessories(data));
-  }, [loadAccessories, loadPhones, loadTablets]);
+    fetchRatings();
+  }, [loadAccessories, loadPhones, loadTablets, fetchRatings]);
 
   return (
     <Routes>
@@ -33,7 +35,12 @@ export const App: React.FC = () => {
         />
         <Route
           path="phones"
-          element={<CatalogPage category={CATEGORY.PHONES} />}
+          element={
+            <CatalogPage
+              key={CATEGORY.PHONES}
+              category={CATEGORY.PHONES}
+            />
+          }
         />
         <Route
           path="phones/:productId"
@@ -41,7 +48,12 @@ export const App: React.FC = () => {
         />
         <Route
           path="tablets"
-          element={<CatalogPage category={CATEGORY.TABLETS} />}
+          element={
+            <CatalogPage
+              key={CATEGORY.TABLETS}
+              category={CATEGORY.TABLETS}
+            />
+          }
         />
         <Route
           path="tablets/:productId"
@@ -49,7 +61,12 @@ export const App: React.FC = () => {
         />
         <Route
           path="accessories"
-          element={<CatalogPage category={CATEGORY.ACCESSORIES} />}
+          element={
+            <CatalogPage
+              key={CATEGORY.ACCESSORIES}
+              category={CATEGORY.ACCESSORIES}
+            />
+          }
         />
         <Route
           path="accessories/:productId"
