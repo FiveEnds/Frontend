@@ -50,11 +50,11 @@ export const ProductsCarousel: React.FC<Props> = ({
       <div className="flex items-center justify-between gap-4 pb-6">
         <Typography
           level="h2"
-          className="min-w-0 break-words"
+          className="min-w-0 wrap-break-words"
         >
           {title}
         </Typography>
-        <div className="flex gap-4 -mr-[4px] md:-mr-[0px] lg:-mr-[1px]">
+        <div className="flex gap-4 -mr-1 md:mr-0 lg:-mr-px">
           <ButtonIcon
             className={cn('w-8 h-8 cursor-pointer', {
               'dark:bg-surface-2-dark': !prevBtnDisabled,
@@ -74,7 +74,7 @@ export const ProductsCarousel: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className="embla -mr-[16px] md:-mr-[24px] lg:-mr-[18px]"
+        className="embla -mr-4 md:-mr-6 lg:-mr-4.5"
         style={
           { '--slide-size': `${100 / displayedSlides}%` } as React.CSSProperties
         }
