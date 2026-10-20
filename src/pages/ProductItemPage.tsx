@@ -101,9 +101,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
 
   const product = useAppState((state) => state.selectedProduct as Product);
   const cart = useAppState((state) => state.cart);
-  const isLiked = useAppState((state) =>
-    state.favourites.some((favourite) => favourite.id === product?.id),
-  );
+  const isLiked = useAppState((state) => state.favourites?.has(product.id));
 
   const shuffleProducts = useMemo(() => {
     if (!product) {
@@ -125,7 +123,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     }
   };
 
-  const itemInCart = Object.hasOwn(cart, product.id);
+  const itemInCart = cart.has(product.id);
 
   const handleColorSelect = (selectedValue: string) => {
     const newLink =
