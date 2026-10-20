@@ -114,10 +114,20 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
 
   const sortedProducts = [...filteredProducts].sort((first, second) => {
     switch (sortBy) {
-      case 'Price low':
-        return first.priceDiscount - second.priceDiscount;
-      case 'Price high':
-        return second.priceDiscount - first.priceDiscount;
+      case 'Price low': {
+        const firstProductPrice =
+          first.priceDiscount ? first.priceDiscount : first.priceRegular;
+        const secondProductPrice =
+          second.priceDiscount ? second.priceDiscount : second.priceRegular;
+        return firstProductPrice - secondProductPrice;
+      }
+      case 'Price high': {
+        const firstProductPrice =
+          first.priceDiscount ? first.priceDiscount : first.priceRegular;
+        const secondProductPrice =
+          second.priceDiscount ? second.priceDiscount : second.priceRegular;
+        return secondProductPrice - firstProductPrice;
+      }
       case 'Newest':
         return second.year - first.year;
       case 'Top rated':

@@ -30,7 +30,6 @@ export const ProductsCarousel: React.FC<Props> = ({
   displayedSlides = 1,
   products,
   productCardHeight,
-  hasDiscount = true,
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
     Autoplay({ playOnInit: false }),
@@ -93,7 +92,6 @@ export const ProductsCarousel: React.FC<Props> = ({
                   product={product}
                   className={'w-full'}
                   cardHeight={productCardHeight}
-                  hasDiscount={hasDiscount}
                 />
               </div>
             ))}
