@@ -7,5 +7,3 @@ export type FilterOptions = {
   models: { value: string; label: string }[];
   capacities: string[];
 };
-
-export type PageRange = { from: number; to: number };
