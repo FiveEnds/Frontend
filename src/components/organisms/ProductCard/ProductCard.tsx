@@ -6,9 +6,10 @@ import type { Spec } from '../../../types/Specifications';
 import { SPECIFICATIONS } from '../../../constants/specifications';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../../types/Product';
-import { useAppActions, useAppState } from '../../../store/store';
+import { useAppActions } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
 import { ProductRating } from '../../atoms/ProductRating/ProductRating';
+import { useProductInfo } from '../../../hooks/useProductInfo';
 
 type Props = {
   product: Product;
@@ -32,13 +33,10 @@ export const ProductCard: React.FC<Props> = ({
   hasDiscount = true,
 }) => {
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
-
-  const isLiked = useAppState((state) => state.favourites.has(product.id));
-
-  const isSelected = useAppState((state) => state.cart.has(product.id));
+  const { isLiked, isFavourite } = useProductInfo(product.id);
 
   const handleCartClick = () => {
-    if (isSelected) {
+    if (isFavourite) {
       removeItemFromCart(product.id);
     } else {
       addItemToCart(product);
@@ -92,7 +90,7 @@ export const ProductCard: React.FC<Props> = ({
       <ProductSelectActions
         handleSelectClick={handleCartClick}
         handleLikeClick={() => toggleFavorite(product)}
-        isSelected={isSelected}
+        isSelected={isFavourite}
         isLiked={isLiked}
       />
     </div>
