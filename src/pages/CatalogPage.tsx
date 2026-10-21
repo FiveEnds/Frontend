@@ -90,6 +90,10 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
     });
   }, [searchParams]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [category]);
+
   const updateSearchParams = (updates: Record<string, string>) => {
     const nextParams = new URLSearchParams(searchParams);
 
