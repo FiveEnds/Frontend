@@ -9,12 +9,16 @@ type Props = {
   filters: CatalogFilters;
   filterOptions: FilterOptions;
   onFiltersChange: (filters: CatalogFilters) => void;
+  filterLabel: string;
+  filterAnyLabel: string;
 };
 
 export const CatalogFilterBar = ({
   filters,
   filterOptions,
   onFiltersChange,
+  filterLabel,
+  filterAnyLabel,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -101,12 +105,12 @@ export const CatalogFilterBar = ({
 
             <div className="w-full max-w-60">
               <Dropdown
-                label="Storage"
-                options={['Any storage', ...filterOptions.capacities]}
-                value={filters.capacity || 'Any storage'}
+                label={filterLabel}
+                options={[filterAnyLabel, ...filterOptions.capacities]}
+                value={filters.capacity || filterAnyLabel}
                 onChange={(value) =>
                   updateFilters({
-                    capacity: value === 'Any storage' ? '' : value,
+                    capacity: value === filterAnyLabel ? '' : value,
                   })
                 }
               />
