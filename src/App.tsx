@@ -4,17 +4,29 @@ import { HomePage } from './pages/HomePage';
 import { PageNotFound } from './pages/PageNotFound';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
-import { useAppActions } from './store/store';
+import { useAppActions, useAppState } from './store/store';
 import { getAccessories, getPhones, getTablets } from './services';
 import { useEffect } from 'react';
 import { HeaderLayout } from './components/templates/HeaderLayout';
 import { ProductItemPage } from './pages/ProductItemPage';
 import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
+import { supabase } from './services/supabase';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories, fetchRatings } =
     useAppActions();
+  const { setUser } = useAppActions();
+  const user = useAppState((state) => state.user);
+  const { syncFavorites, setFavorites } = useAppActions();
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+
+    void syncFavorites(user.id);
+  }, [user?.id, syncFavorites, user]);
 
   useEffect(() => {
     getPhones().then((data) => loadPhones(data));
@@ -22,6 +34,22 @@ export const App: React.FC = () => {
     getAccessories().then((data) => loadAccessories(data));
     fetchRatings();
   }, [loadAccessories, loadPhones, loadTablets, fetchRatings]);
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+
+      if (event === 'SIGNED_OUT') {
+        setFavorites([]);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [setUser, setFavorites]);
 
   return (
     <Routes>

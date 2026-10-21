@@ -6,7 +6,7 @@ type Props = {
   content: string;
   className?: string;
   handleClick: () => void;
-  isSelected: boolean;
+  isSelected?: boolean;
 };
 
 const variant = {

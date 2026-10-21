@@ -1,5 +1,4 @@
 import type React from 'react';
-import { SignInModal } from '../organisms/SignInModal/SignInModal';
 
 type Props = {
   breadCrumbs: React.ReactNode;
@@ -14,7 +13,6 @@ export const FavoritesLayout: React.FC<Props> = ({
 }) => (
   <main>
     <section>
-      <SignInModal />
       <div
         className="px-4 md:px-6 lg:px-8 max-w-300 w-full m-auto grid grid-cols-4 md:grid-cols-12 gap-4
           lg:grid-cols-24 gap-y-0 mt-6"
