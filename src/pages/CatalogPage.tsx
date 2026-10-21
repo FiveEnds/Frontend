@@ -224,6 +224,10 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
       filters={filters}
       filterOptions={{ models, capacities }}
       onFiltersChange={handleFiltersChange}
+      filterLabel={category === 'accessories' ? 'Display' : 'Storage'}
+      filterAnyLabel={
+        category === 'accessories' ? 'Any display' : 'Any storage'
+      }
     />
   );
 };
