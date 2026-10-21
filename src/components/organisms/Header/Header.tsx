@@ -8,37 +8,32 @@ import { useEffect, useState } from 'react';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { ThemeToggle } from '../../atoms/ToggleTheme/ToggleTheme';
 import classNames from 'classnames';
+import { SignInModal } from '../SignInModal/SignInModal';
+import { useAppState } from '../../../store/store';
+import { supabase } from '../../../services/supabase';
+import { LogIn, LogOut } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isSignModalOpen, setIsSignModalOpen] = useState<boolean>(false);
+
+  const user = useAppState((state) => state.user);
 
   useEffect(() => {
-    if (!isMenuOpen) {
-      return;
-    }
-
     const html = document.documentElement;
     const body = document.body;
 
-    const previousHtmlOverflow = html.style.overflow;
-    const previousBodyOverflow = body.style.overflow;
+    if (!isMenuOpen) {
+      html.style.overflow = '';
+      body.style.overflow = '';
+      return;
+    }
 
-    html.style.overflow = 'hidden';
-    body.style.overflow = 'hidden';
-
-    return () => {
-      html.style.overflow = previousHtmlOverflow;
-      body.style.overflow = previousBodyOverflow;
-    };
+    if (isMenuOpen) {
+      html.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
+    }
   }, [isMenuOpen]);
-
-  const handleClickLink = () => {
-    setIsMenuOpen(false);
-  };
-
-  const menuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,6 +45,26 @@ export const Header: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const handleClickLink = () => {
+    setIsMenuOpen(false);
+  };
+
+  const handleClickSignIn = () => {
+    setIsSignModalOpen(!isSignModalOpen);
+  };
+
+  const menuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -70,6 +85,24 @@ export const Header: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center h-full">
+            <div className="mr-4">
+              {user ?
+                <button
+                  className="hover:scale-110 transition-all duration-200 ease-in-out"
+                  type="button"
+                  onClick={handleSignOut}
+                >
+                  <LogOut size={20} />
+                </button>
+              : <button
+                  className="hover:scale-110 transition-all duration-200 ease-in-out"
+                  type="button"
+                  onClick={handleClickSignIn}
+                >
+                  <LogIn size={20} />
+                </button>
+              }
+            </div>
             <div className="border-l border-b border-elements">
               <ThemeToggle />
             </div>
@@ -93,6 +126,10 @@ export const Header: React.FC = () => {
       <BurgerMenu
         handleClickLink={handleClickLink}
         isOpen={isMenuOpen}
+      />
+      <SignInModal
+        onCloseModal={handleClickSignIn}
+        isOpen={isSignModalOpen}
       />
     </>
   );

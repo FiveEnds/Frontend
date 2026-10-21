@@ -3,6 +3,13 @@ import type { Accessory, Phone, Tablet } from '../types/api';
 import type { FavouriteProduct } from '../types/FavouriteProduct';
 import type { Product } from '../types/Product';
 import { supabase } from '../services/supabase';
+import type { User } from '@supabase/supabase-js';
+
+import {
+  saveFavorite,
+  removeFavorite,
+  fetchFavoriteProducts,
+} from '../services/favorites';
 
 type CartItemInfo = {
   product: Product;
@@ -32,17 +39,21 @@ type StoreState = {
   selectedProduct: Product | null;
   cartAnimation: CartAnimation | null;
   ratings: Record<string, number>;
+  user: User | null;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
     loadTablets: (tabletsToAdd: Tablet[]) => void;
     loadAccessories: (accessoriesToAdd: Accessory[]) => void;
-    toggleFavorite: (product: FavouriteProduct) => void;
     setProductItem: (itemToAdd: Product) => void;
     addItemToCart: (productToAdd: Product) => void;
     removeItemFromCart: (productIdToRemove: string) => void;
     decreaseAmountFromCart: (productId: string) => void;
     fetchRatings: () => Promise<void>;
     addProductReview: (product: Product, newRating: number) => Promise<void>;
+    setUser: (user: User | null) => void;
+    setFavorites: (favorites: FavouriteProduct[]) => void;
+    toggleFavorite: (product: FavouriteProduct) => Promise<void>;
+    syncFavorites: (userId: string) => Promise<void>;
   };
   startCartAnimation: (animation: CartAnimation) => void;
   finishCartAnimation: () => void;
@@ -57,25 +68,12 @@ export const useAppState = create<StoreState>()((set, get) => ({
   selectedProduct: null,
   cartAnimation: null,
   ratings: {},
-
+  user: null,
   actions: {
     loadPhones: (phonesToAdd) => set({ phones: phonesToAdd }),
     loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
     loadAccessories: (accessoriesToAdd) =>
       set({ accessories: accessoriesToAdd }),
-    toggleFavorite: (product) => {
-      set((state) => {
-        const newFavourites = new Map(state.favourites);
-
-        if (newFavourites.has(product.id)) {
-          newFavourites.delete(product.id);
-        } else {
-          newFavourites.set(product.id, product);
-        }
-
-        return { favourites: newFavourites };
-      });
-    },
     setProductItem: (productItem) => set({ selectedProduct: productItem }),
     addItemToCart: (productToAdd) => {
       const newCart = new Map(get().cart);
@@ -167,6 +165,58 @@ export const useAppState = create<StoreState>()((set, get) => ({
         return;
       }
       get().actions.fetchRatings();
+    },
+    setUser: (user) => set({ user }),
+    setFavorites: (favorites) => set({ favourites: favorites }),
+    toggleFavorite: async (product) => {
+      const { user, favourites } = get();
+
+      const isFavorite = favourites.some(
+        (favorite) =>
+          favorite.id === product.id && favorite.category === product.category,
+      );
+
+      try {
+        if (user) {
+          if (isFavorite) {
+            await removeFavorite(user.id, product);
+          } else {
+            await saveFavorite(user.id, product);
+          }
+        }
+
+        set({
+          favourites:
+            isFavorite ?
+              favourites.filter(
+                (favorite) =>
+                  !(
+                    favorite.id === product.id &&
+                    favorite.category === product.category
+                  ),
+              )
+            : [...favourites, product],
+        });
+      } catch (error) {
+        console.error('Failed to update favorites:', error);
+      }
+    },
+    syncFavorites: async (userId) => {
+      try {
+        // Сохраняем товары, выбранные до авторизации.
+        const localFavorites = get().favourites;
+
+        await Promise.all(
+          localFavorites.map((product) => saveFavorite(userId, product)),
+        );
+
+        // Загружаем итоговый список из Supabase.
+        const remoteFavorites = await fetchFavoriteProducts(userId);
+
+        set({ favourites: remoteFavorites });
+      } catch (error) {
+        console.error('Failed to sync favorites:', error);
+      }
     },
   },
   startCartAnimation: (animation) => set({ cartAnimation: animation }),
