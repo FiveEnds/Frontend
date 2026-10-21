@@ -13,6 +13,7 @@ import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
 import { supabase } from './services/supabase';
 import { CartFlyAnimation } from './components/molecules/CartFlyAnimation/CartFlyAnimation';
+import { Toaster } from 'react-hot-toast';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories, fetchRatings } =
@@ -126,6 +127,11 @@ export const App: React.FC = () => {
         </Route>
       </Routes>
       <CartFlyAnimation />
+      <Toaster
+        toastOptions={{
+          className: 'w-4/5 text-sm',
+        }}
+      />
     </>
   );
 };

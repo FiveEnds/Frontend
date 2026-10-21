@@ -6,10 +6,11 @@ import { supabase } from '../../../services/supabase';
 import classNames from 'classnames';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { ICONS } from '../../../constants/icons';
+import toast from 'react-hot-toast';
 
 const variant = {
   default:
-    'border border-icons focus:border-primary transition-all duration-200 inline-flex h-11 w-full appearance-none items-center justify-center   px-2.5 text-[14px] leading-none text-primary outline-none selection:bg-blackA6 selection:text-primary',
+    'border-elements px-3 py-2 rounded-lg bg-hover-bg dark:bg-surface-2-dark border text-primary dark:text-white text-sm focus:outline-none focus:border-primary dark:focus:border-white transition-colors',
 };
 
 type Props = {
@@ -22,6 +23,9 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
+
+  const notifySignUp = () => toast.success('Registration successful!');
+  const notifySignIn = () => toast.success('You have successfully signed in!');
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,6 +51,7 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
         }
 
         if (data.session) {
+          notifySignUp();
           onCloseModal();
         } else {
           setSuccessMessage('Check your email to confirm your account.');
@@ -61,7 +66,7 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
           setErrorMessage('Invalid email or password.');
           return;
         }
-
+        notifySignIn();
         onCloseModal();
       }
     } catch {
@@ -74,7 +79,7 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
   return (
     <div
       className={classNames(
-        'fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 transition-all duration-200 ease-in-out',
+        'fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-200 ease-in-out',
         {
           'scale-100 opacity-100': isOpen,
           'opacity-0 pointer-events-none': !isOpen,
@@ -84,21 +89,22 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
     >
       <Form.Root
         className={classNames(
-          'w-5/6 scale-0 opacity-0 sm:w-100 bg-white p-6 md:p-8 fixed z-100 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out',
+          'w-5/6 scale-0 opacity-0 sm:w-100 bg-white p-4 md:p-6 fixed z-100 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out',
+          ' dark:bg-surface-1-dark border border-elements dark:border-surface-2-dark rounded-2xl shadow-2xl',
           { 'scale-100 opacity-100': isOpen },
         )}
         onClick={(event) => event.stopPropagation()}
         onSubmit={handleSubmit}
       >
         <ButtonIcon
-          className="border-0 absolute top-6 right-6 md:top-8 md:right-8
+          className="border-0 absolute top-4 right-4 md:top-6 md:right-6
           hover:scale-120 transition-all duration-200 ease-in-out"
           src={ICONS.CLOSE}
           handleClick={onCloseModal}
         />
         <Typography
-          level="h3"
-          className="mb-4 w-full text-primary"
+          level="h2"
+          className="text-primary dark:text-white text-xl mb-3 md:mb-6"
         >
           {mode === 'signin' ? 'Sign in' : 'Create account'}
         </Typography>
@@ -120,15 +126,12 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
           </Typography>
         )}
         <Form.Field
-          className="mb-2.5 grid"
+          className="mb-4 grid"
           name="email"
         >
           <div className="flex items-baseline justify-between">
             <Form.Label>
-              <Typography
-                className="dark:text-primary"
-                level="body"
-              >
+              <Typography className="text-xs text-secondary font-medium dark:text-white">
                 Email address
               </Typography>
             </Form.Label>
@@ -166,15 +169,12 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
           </Form.Control>
         </Form.Field>
         <Form.Field
-          className="mb-2.5 grid"
+          className="mb-4 grid"
           name="password"
         >
           <div className="flex items-baseline justify-between">
             <Form.Label>
-              <Typography
-                className="dark:text-primary"
-                level="body"
-              >
+              <Typography className="dark:text-white text-xs text-secondary font-medium">
                 Password
               </Typography>
             </Form.Label>
@@ -217,7 +217,7 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full transition-all duration-300 ease-in-out font-semibold font-mont text-[14px] leading-[21px] tracking-normal p-2 mt-4 bg-primary dark:bg-accent-dark border-primary text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)] dark:hover:bg-accent-hover-dark disabled:opacity-50"
+            className="w-full px-4 py-3 bg-primary dark:bg-accent-dark text-white hover:cursor-pointer dark:text-white transition-all text-sm dark:hover:bg-accent-hover-dark hover-zoom-small"
           >
             {isSubmitting ?
               'Please wait...'
@@ -228,7 +228,7 @@ export const SignInModal: React.FC<Props> = ({ onCloseModal, isOpen }) => {
         </Form.Submit>
         <button
           type="button"
-          className="mt-4 w-full text-sm text-primary underline"
+          className="mt-4 w-full text-sm text-primary underline dark:text-white"
           onClick={() => {
             setMode((current) => (current === 'signin' ? 'signup' : 'signin'));
             setErrorMessage('');

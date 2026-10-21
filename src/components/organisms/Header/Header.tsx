@@ -13,12 +13,18 @@ import { NavigationTopList } from '../../molecules/Navigation/NavigationTopList'
 import { SearchBar } from '../../molecules/Navigation/SearchBar';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { SignInModal } from '../SignInModal/SignInModal';
+import { useAppState } from '../../../store/store';
+import { supabase } from '../../../services/supabase';
+import { LogIn, LogOut } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSignModalOpen, setIsSignModalOpen] = useState<boolean>(false);
 
   const user = useAppState((state) => state.user);
+
+  const notifySignOut = () => toast.error('You have signed out!');
 
   useEffect(() => {
     const html = document.documentElement;
@@ -63,6 +69,7 @@ export const Header: React.FC = () => {
     if (error) {
       console.error(error.message);
     }
+    notifySignOut();
   };
 
   return (
@@ -87,10 +94,10 @@ export const Header: React.FC = () => {
           <SearchBar />
 
           <div className="flex items-center h-full">
-            <div className="m-4">
+            <div className="border-l border-elements w-[48px] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center hover:bg-elements dark:bg-primary dark:hover:bg-icons text-primary dark:text-white transition-colors cursor-pointer">
               {user ?
                 <button
-                  className="hover:scale-110 transition-all duration-200 ease-in-out"
+                  className="flex justify-center items-center h-full w-full"
                   type="button"
                   onClick={handleSignOut}
                   aria-label="Sign out"
@@ -98,7 +105,7 @@ export const Header: React.FC = () => {
                   <LogOut size={20} />
                 </button>
               : <button
-                  className="hover:scale-110 transition-all duration-200 ease-in-out"
+                  className="flex justify-center items-center h-full w-full"
                   type="button"
                   onClick={handleClickSignIn}
                   aria-label="Sign in"
