@@ -12,6 +12,7 @@ import { ProductItemPage } from './pages/ProductItemPage';
 import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
 import { CartFlyAnimation } from './components/molecules/CartFlyAnimation/CartFlyAnimation';
+import { ContactPage } from './pages/ContactPage';
 
 export const App: React.FC = () => {
   const { loadPhones, loadTablets, loadAccessories, fetchRatings } =
@@ -31,6 +32,10 @@ export const App: React.FC = () => {
           path="/"
           element={<HeaderLayout />}
         >
+          <Route
+            path="contacts"
+            element={<ContactPage />}
+          />
           <Route
             index
             element={<HomePage />}
