@@ -54,6 +54,7 @@ type StoreState = {
     setFavorites: (favorites: FavouriteProduct[]) => void;
     toggleFavorite: (product: FavouriteProduct) => Promise<void>;
     syncFavorites: (userId: string) => Promise<void>;
+    clearCart: () => void;
   };
   startCartAnimation: (animation: CartAnimation) => void;
   finishCartAnimation: () => void;
@@ -96,6 +97,9 @@ export const useAppState = create<StoreState>()((set, get) => ({
       currentCart.delete(productId);
 
       set({ cart: currentCart });
+    },
+    clearCart: () => {
+      set({ cart: new Map() });
     },
     decreaseAmountFromCart: (productId) => {
       const currentCart = new Map(get().cart);

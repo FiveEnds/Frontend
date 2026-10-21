@@ -33,7 +33,7 @@ export const ButtonSelect: React.FC<Props> = ({
   >
     <Typography
       level="button"
-      className="inherit"
+      className="inherit translate-y-[2px]"
     >
       {content}
     </Typography>
