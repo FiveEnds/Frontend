@@ -56,7 +56,7 @@ export const CatalogLayout = ({
 
     <div
       id="catalog-controls"
-      className="mt-8 grid grid-cols-1 gap-4 scroll-mt-12 sm:grid-cols-[170px_170px] sm:items-end lg:scroll-mt-16"
+      className="mt-8 grid grid-cols-1 gap-4 scroll-mt-12 sm:grid-cols-[205px_230px] sm:items-end lg:scroll-mt-16"
     >
       <Dropdown
         label="Sort by"
