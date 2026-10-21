@@ -20,13 +20,12 @@ export type CatalogLayoutProps = {
   onSortChange: (value: string) => void;
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number, preserveRange?: boolean) => void;
+  onPageChange: (page: number) => void;
   canLoadMore: boolean;
   onLoadMore: () => void;
   filters: CatalogFilters;
   filterOptions: FilterOptions;
   onFiltersChange: (filters: CatalogFilters) => void;
-  pageStartIndex: number;
 };
 
 export const CatalogLayout = ({
@@ -44,7 +43,6 @@ export const CatalogLayout = ({
   filters,
   filterOptions,
   onFiltersChange,
-  pageStartIndex,
 }: CatalogLayoutProps) => (
   <div className="mx-auto w-full max-w-300 px-4 pt-6 pb-20 md:px-6 lg:px-8">
     <Breadcrumbs />
@@ -58,24 +56,20 @@ export const CatalogLayout = ({
 
     <div
       id="catalog-controls"
-      className="mt-8 grid grid-cols-1 items-end gap-4 scroll-mt-12 sm:grid-cols-2 lg:scroll-mt-16"
+      className="mt-8 grid grid-cols-1 gap-4 scroll-mt-12 sm:grid-cols-[205px_230px] sm:items-end lg:scroll-mt-16"
     >
-      <div className="w-full">
-        <Dropdown
-          label="Sort by"
-          options={sortOptions}
-          value={sortBy}
-          onChange={onSortChange}
-        />
-      </div>
+      <Dropdown
+        label="Sort by"
+        options={sortOptions}
+        value={sortBy}
+        onChange={onSortChange}
+      />
 
-      <div className="w-full">
-        <CatalogFilterBar
-          filters={filters}
-          filterOptions={filterOptions}
-          onFiltersChange={onFiltersChange}
-        />
-      </div>
+      <CatalogFilterBar
+        filters={filters}
+        filterOptions={filterOptions}
+        onFiltersChange={onFiltersChange}
+      />
     </div>
 
     {totalItems === 0 ?
@@ -107,10 +101,9 @@ export const CatalogLayout = ({
         aria-label={title}
         className="mt-6 grid grid-cols-4 gap-x-4 gap-y-10 md:grid-cols-12 lg:grid-cols-24"
       >
-        {products.map((product, index) => (
+        {products.map((product) => (
           <div
             key={product.id}
-            id={index === pageStartIndex ? 'catalog-page-start' : undefined}
             className="col-span-4 min-w-0 scroll-mt-12 sm:col-span-2 md:col-span-6 em:col-span-4 lg:col-span-6 lg:scroll-mt-16"
           >
             <ProductCard

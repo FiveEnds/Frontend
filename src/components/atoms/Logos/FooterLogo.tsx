@@ -1,7 +1,9 @@
-export const FooterLogo = () => {
+import { Link } from 'react-router-dom';
+
+export const FooterLogo: React.FC = () => {
   return (
-    <a
-      href="/"
+    <Link
+      to="/"
       className="cursor-pointer block shrink-0 "
     >
       <img
@@ -14,6 +16,6 @@ export const FooterLogo = () => {
         alt="Nice Gadgets"
         className="w-22.25 h-8 object-contain hidden dark:block"
       />
-    </a>
+    </Link>
   );
 };

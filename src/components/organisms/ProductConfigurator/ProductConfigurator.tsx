@@ -80,11 +80,17 @@ export const ProductConfigurator: React.FC<Props> = ({
         </div>
         <div className="py-8">
           <div className="pb-4">
-            <ProductPrice
-              currentPrice={product.priceDiscount}
-              oldPrice={product.priceRegular}
-              currentPriceSize={isSmallScreen ? 'h1' : 'h2'}
-            />
+            {product.priceDiscount ?
+              <ProductPrice
+                currentPrice={product.priceDiscount}
+                oldPrice={product.priceRegular}
+                currentPriceSize={isSmallScreen ? 'h1' : 'h2'}
+              />
+            : <ProductPrice
+                currentPrice={product.priceRegular}
+                currentPriceSize={isSmallScreen ? 'h1' : 'h2'}
+              />
+            }
           </div>
           <ProductSelectActions
             handleLikeClick={handleLikeClick}

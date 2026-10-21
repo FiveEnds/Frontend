@@ -9,12 +9,14 @@ import type { Product } from '../../../types/Product';
 import { useAppActions, useAppState } from '../../../store/store';
 import { getScreenLabel } from '../../../utils/formatScreen';
 import { ProductRating } from '../../atoms/ProductRating/ProductRating';
+import { useProductInfo } from '../../../hooks/useProductInfo';
+
+import { useRef } from 'react';
 
 type Props = {
   product: Product;
   className?: string;
   cardHeight?: number;
-  hasDiscount?: boolean;
 };
 
 function getSpecifications(product: Product): Spec[] {
@@ -29,26 +31,52 @@ export const ProductCard: React.FC<Props> = ({
   product,
   className = '',
   cardHeight,
-  hasDiscount = true,
 }) => {
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
+  const hasDiscount = product.priceDiscount;
+  const { isLiked, isFavourite } = useProductInfo(product.id);
 
-  const isLiked = useAppState((state) =>
-    state.favourites.some(
-      (favourite) =>
-        favourite.id === product.id && favourite.category === product.category,
-    ),
-  );
+  const imageRef = useRef<HTMLImageElement>(null);
 
-  const isSelected = useAppState((state) =>
-    Object.hasOwn(state.cart, product.id),
-  );
+  const getImageRect = () => {
+    if (imageRef.current) {
+      return imageRef.current.getBoundingClientRect();
+    }
+
+    return null;
+  };
+
+  const startCartAnimation = useAppState((state) => state.startCartAnimation);
 
   const handleCartClick = () => {
-    if (isSelected) {
+    const imageRect = getImageRect();
+    const cartElement = document.querySelector('[data-cart-target="true"]');
+
+    if (isFavourite) {
       removeItemFromCart(product.id);
     } else {
       addItemToCart(product);
+
+      if (imageRect && cartElement) {
+        const cartRect = cartElement.getBoundingClientRect();
+
+        startCartAnimation({
+          imageSrc: product.images[0],
+          start: {
+            x: imageRect.x,
+            y: imageRect.y,
+            width: imageRect.width,
+            height: imageRect.height,
+          },
+          end: {
+            x: cartRect.x,
+            y: cartRect.y,
+            width: cartRect.width,
+            height: cartRect.height,
+          },
+          id: Date.now(),
+        });
+      }
     }
   };
 
@@ -63,7 +91,8 @@ export const ProductCard: React.FC<Props> = ({
           className="flex justify-center w-full h-full overflow-hidden"
         >
           <img
-            className="max-h-full max-w-full object-contain"
+            ref={imageRef}
+            className="max-h-full max-w-full object-contain "
             src={product.images[0]}
             alt={product.id}
           />
@@ -99,7 +128,7 @@ export const ProductCard: React.FC<Props> = ({
       <ProductSelectActions
         handleSelectClick={handleCartClick}
         handleLikeClick={() => toggleFavorite(product)}
-        isSelected={isSelected}
+        isSelected={isFavourite}
         isLiked={isLiked}
       />
     </div>

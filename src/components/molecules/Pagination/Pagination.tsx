@@ -6,7 +6,7 @@ import { Typography } from '../../atoms/Typography/Typography';
 type Props = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number, preserveRange?: boolean) => void;
+  onPageChange: (page: number) => void;
 };
 
 type PageItem = number | 'start-ellipsis' | 'end-ellipsis';
@@ -59,7 +59,7 @@ export const Pagination = ({
           type="button"
           aria-label="Previous page"
           className={arrowButtonClass}
-          onClick={() => onPageChange(currentPage - 1, true)}
+          onClick={() => onPageChange(currentPage - 1)}
         >
           <Icon
             src={ICONS.ARROW.LEFT}
@@ -112,7 +112,7 @@ export const Pagination = ({
           type="button"
           aria-label="Next page"
           className={arrowButtonClass}
-          onClick={() => onPageChange(currentPage + 1, true)}
+          onClick={() => onPageChange(currentPage + 1)}
         >
           <Icon
             src={ICONS.ARROW.RIGHT}

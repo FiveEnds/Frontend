@@ -4,7 +4,7 @@ import { CatalogLayout } from '../components/templates/CatalogLayout/CatalogLayo
 import { useAppState } from '../store/store';
 import { BREAKPOINTS } from '../constants/breakpoints';
 import type { Category } from '../types/category';
-import type { CatalogFilters, PageRange } from '../types/Catalog';
+import type { CatalogFilters } from '../types/Catalog';
 import {
   CATEGORY_TITLES,
   MODEL_WORDS,
@@ -83,23 +83,16 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
 
   useEffect(() => {
     if (!shouldScrollToPage.current) return;
-
     shouldScrollToPage.current = false;
-
-    const currentFrom = searchParams.get('from');
-    const currentTo = searchParams.get('to');
-
-    const isFirstPage =
-      (currentFrom === null || currentFrom === '1') &&
-      (currentTo === null || currentTo === '1');
-
-    const targetId = isFirstPage ? 'catalog-controls' : 'catalog-page-start';
-
-    document.getElementById(targetId)?.scrollIntoView({
+    document.getElementById('catalog-controls')?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     });
   }, [searchParams]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [category]);
 
   const updateSearchParams = (updates: Record<string, string>) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -125,10 +118,20 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
 
   const sortedProducts = [...filteredProducts].sort((first, second) => {
     switch (sortBy) {
-      case 'Price low':
-        return first.priceDiscount - second.priceDiscount;
-      case 'Price high':
-        return second.priceDiscount - first.priceDiscount;
+      case 'Price low': {
+        const firstProductPrice =
+          first.priceDiscount ? first.priceDiscount : first.priceRegular;
+        const secondProductPrice =
+          second.priceDiscount ? second.priceDiscount : second.priceRegular;
+        return firstProductPrice - secondProductPrice;
+      }
+      case 'Price high': {
+        const firstProductPrice =
+          first.priceDiscount ? first.priceDiscount : first.priceRegular;
+        const secondProductPrice =
+          second.priceDiscount ? second.priceDiscount : second.priceRegular;
+        return secondProductPrice - firstProductPrice;
+      }
       case 'Newest':
         return second.year - first.year;
       case 'Top rated':
@@ -164,14 +167,11 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
     pageLimit,
   );
 
-  const pageStartIndex = (to - from) * pageSize;
-
-  const pageRange: PageRange = { from, to };
   const currentPage = to;
 
   const visibleProducts = sortedProducts.slice(
-    (pageRange.from - 1) * pageSize,
-    pageRange.to * pageSize,
+    (from - 1) * pageSize,
+    to * pageSize,
   );
 
   const canLoadMore = currentPage < totalPages;
@@ -199,17 +199,13 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
     });
   };
 
-  const handlePageChange = (page: number, preserveRange = false) => {
+  const handlePageChange = (page: number) => {
     shouldScrollToPage.current = true;
 
-    if (preserveRange && from < to) {
-      updateSearchParams({ to: String(page) });
-    } else {
-      updateSearchParams({
-        from: String(page),
-        to: String(page),
-      });
-    }
+    updateSearchParams({
+      from: String(page),
+      to: String(page),
+    });
   };
 
   return (
@@ -228,7 +224,6 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
       filters={filters}
       filterOptions={{ models, capacities }}
       onFiltersChange={handleFiltersChange}
-      pageStartIndex={pageStartIndex}
     />
   );
 };

@@ -5,7 +5,8 @@ import { useAppState, useAppActions } from '../store/store';
 import { ButtonBack } from '../components/atoms/Buttons/ButtonBack';
 
 export const CartPage: React.FC = () => {
-  const localCart = useAppState((state) => state.cart);
+  const cartMap = useAppState((state) => state.cart);
+  const localCart = [...cartMap.values()];
 
   const { addItemToCart, removeItemFromCart, decreaseAmountFromCart } =
     useAppActions();
@@ -28,22 +29,15 @@ export const CartPage: React.FC = () => {
     <>
       <main
         className="
-      grid grid-cols-1 gap-x-4 w-full mx-auto
-
-      min-[1200px]:grid-cols-[repeat(24,32px)]
-      min-[1200px]:w-fit
-
-      min-[640px]:max-[1200px]:grid-cols-[repeat(12,minmax(0,1fr))]
-      min-[640px]:max-[1200px]:px-6
-      min-[640px]:max-[1200px]:gap-x-4
-
-      min-[320px]:max-[640px]:grid-cols-[repeat(4,minmax(0,1fr))]
-      min-[320px]:max-[640px]:px-4
-      min-[320px]:max-[640px]:gap-x-4
-      "
+          grid
+          grid-cols-4 px-4 gap-x-4
+          max-w-300 mx-auto
+          md:grid-cols-12 md:px-6 md:gap-x-4
+          lg:grid-cols-24 lg:px-8 lg:gap-x-6
+        "
       >
         <section className="col-span-full grid grid-cols-subgrid">
-          <span className="col-span-1 flex items-center w-max mt-10 mb-4 min-[320px]:max-[640px]:my-6">
+          <span className="col-span-1 flex items-center w-max my-6 md:mt-10 md:mb-4">
             <ButtonBack />
           </span>
 
@@ -53,18 +47,14 @@ export const CartPage: React.FC = () => {
           >
             Cart
           </Typography>
+
           {Object.values(localCart).length === 0 ?
             <div
               className="
-              w-full flex justify-center items-center relative
-              min-[1200px]:col-span-24
-              min-[1200px]:mb-20
-
-              min-[640px]:max-[1200px]:col-span-12
-              min-[640px]:max-[1200px]:mb-16
-
-              min-[320px]:max-[640px]:col-span-4
-              min-[320px]:max-[640px]:mb-14
+                w-full flex justify-center items-center relative
+                col-span-4 mb-14
+                md:col-span-12 md:mb-16
+                lg:col-span-24 lg:mb-20
               "
             >
               <div>
@@ -78,37 +68,23 @@ export const CartPage: React.FC = () => {
                   src="/img/easter-egg.png"
                   className="
                     absolute rotate-12
-                    min-[1200px]:w-20
-                    min-[1200px]:top-0
-                    min-[1200px]:right-36
-
-                    min-[640px]:max-[1200px]:w-10
-                    min-[640px]:max-[1200px]:bottom-8
-                    min-[640px]:max-[1200px]:left-32
-                    md:rotate-12
-
-                    min-[640px]:max-[717px]:-bottom-5
-
+                    w-10 bottom-15 right-16
                     min-[503px]:max-[640px]:bottom-7
-
-                    min-[320px]:max-[640px]:w-10
-                    min-[320px]:max-[640px]:bottom-15
-                    min-[320px]:max-[640px]:right-16"
+                    md:bottom-8 md:left-32 md:right-auto
+                    md:max-[717px]:-bottom-5
+                    lg:w-20 lg:top-0 lg:right-36 lg:left-auto lg:bottom-auto
+                  "
                 />
               </div>
             </div>
           : <>
               <div
                 className="
-              w-full flex flex-col gap-4
-              min-[1200px]:col-span-16
-              min-[1200px]:mb-20
-
-              min-[640px]:max-[1200px]:col-span-12
-
-              min-[320px]:max-[640px]:col-span-4
-              
-            "
+                  w-full flex flex-col gap-4
+                  col-span-4
+                  md:col-span-12
+                  lg:col-span-16 lg:mb-20
+                "
               >
                 {Object.values(localCart).map((item) => (
                   <CartItem
@@ -135,17 +111,10 @@ export const CartPage: React.FC = () => {
 
               <div
                 className="
-          min-[1200px]:col-span-8
-          min-[1200px]:mb-20
-          
-          min-[640px]:max-[1200px]:col-span-12
-          min-[640px]:max-[1200px]:mt-8
-          min-[640px]:max-[1200px]:mb-16
-
-          min-[320px]:max-[640px]:col-span-4
-          min-[320px]:max-[640px]:mt-8
-          min-[320px]:max-[640px]:mb-14
-          "
+                  col-span-4 mt-8 mb-14
+                  md:col-span-12 md:mt-8 md:mb-16
+                  lg:col-span-8 lg:mt-0 lg:mb-20
+                "
               >
                 <Checkout
                   sum={cartTotal}
