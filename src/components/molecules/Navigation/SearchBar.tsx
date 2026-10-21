@@ -176,7 +176,7 @@ export const SearchBar = () => {
             value={query}
             placeholder="Search"
             aria-label="Search"
-            className="h-8 w-full min-w-0 rounded-sm border border-elements bg-white pl-8 pr-8 text-sm dark:bg-primary"
+            className="h-8 w-full min-w-0 rounded-sm border border-elements bg-white pl-8 pr-8 text-sm text-black placeholder:text-secondary dark:bg-primary dark:text-white dark:placeholder:text-secondary"
             onChange={(event) => {
               setQuery(event.target.value);
               setIsResultsOpen(true);
@@ -195,7 +195,7 @@ export const SearchBar = () => {
                     setIsOpen(false);
                     setIsResultsOpen(false);
                   }}
-                  className="block px-3 py-2 text-sm hover:bg-hover-bg"
+                  className="block px-3 py-2 text-sm text-black hover:bg-elements dark:text-white dark:hover:bg-surface-2-dark"
                 >
                   {product.name.replace(/^Apple\s+/i, '')}
                 </Link>

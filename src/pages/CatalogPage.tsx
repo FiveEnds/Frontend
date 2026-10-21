@@ -109,11 +109,16 @@ export const CatalogPage: React.FC<Props> = ({ category }) => {
   };
 
   const filteredProducts = products.filter((product) => {
-    return (
-      (!filters.model || product.namespaceId === filters.model) &&
-      (!filters.capacity ||
-        product.capacityAvailable.includes(filters.capacity))
-    );
+    const matchesModel =
+      !filters.model || product.namespaceId === filters.model;
+
+    const matchesCapacity =
+      !filters.capacity ||
+      (category === 'accessories' ?
+        product.capacityAvailable.includes(filters.capacity)
+      : product.capacity === filters.capacity);
+
+    return matchesModel && matchesCapacity;
   });
 
   const sortedProducts = [...filteredProducts].sort((first, second) => {
