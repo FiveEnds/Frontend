@@ -74,6 +74,15 @@
   --color-surface-1-dark: #161827;
   --color-accent-dark: #905bff;
   --color-accent-hover-dark: #a378ff;
+  --color-rosegold: #b76e79;
+  --color-skyblue: #6ba1c4;
+  --color-starlight: #f9f3ee;
+  --color-pink: #ffd1dc;
+  --color-midnight: #171e27;
+  --color-sierrablue: #9bb5ce;
+  --color-graphite: #5c5b57;
+  --color-spaceblack: #0a0c0d;
+  --color-blue: #0071e3;
 }
 
 @layer utilities {
@@ -95,7 +104,6 @@
     color-scheme: dark;
   }
 
-  /* Force light theme background on both canvas elements */
   html,
   body {
     background-color: var(--color-white) !important;
@@ -103,7 +111,6 @@
     min-height: 100vh;
   }
 
-  /* Force dark theme background on both canvas elements */
   html.dark,
   html.dark body {
     background-color: var(--color-primary) !important;

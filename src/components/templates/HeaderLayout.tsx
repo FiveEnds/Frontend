@@ -7,7 +7,7 @@ export const HeaderLayout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-primary text-primary dark:text-white transition-colors">
       <Header />
-      <main className="flex-grow">
+      <main className="grow">
         <Outlet />
       </main>
       <Footer />
