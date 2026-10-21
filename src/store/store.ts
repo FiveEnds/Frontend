@@ -87,7 +87,10 @@ export const useAppState = create<StoreState>()((set, get) => ({
           amountAdded: itemValue.amountAdded + 1,
         });
       } else {
-        newCart.set(productId, { product: productToAdd, amountAdded: 1 });
+        newCart.set(productId, {
+          product: productToAdd,
+          amountAdded: 1,
+        });
       }
 
       set({ cart: newCart });
