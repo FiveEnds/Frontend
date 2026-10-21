@@ -134,7 +134,7 @@ export const SearchBar = () => {
         aria-expanded={isOpen}
         onClick={toggleSearch}
         className={cn(
-          'flex h-full w-12 items-center justify-center border-x border-elements em:hidden',
+          'flex h-full w-12 items-center justify-center border-l border-elements em:hidden',
           { 'hover-zoom-small': isOpen },
         )}
       >
