@@ -167,14 +167,15 @@ export const useAppState = create<StoreState>()((set, get) => ({
       get().actions.fetchRatings();
     },
     setUser: (user) => set({ user }),
-    setFavorites: (favorites) => set({ favourites: favorites }),
+    setFavorites: (favoritesArray) => {
+      const favoritesMap = new Map();
+      favoritesArray.forEach((fav) => favoritesMap.set(fav.id, fav));
+      set({ favourites: favoritesMap });
+    },
     toggleFavorite: async (product) => {
       const { user, favourites } = get();
 
-      const isFavorite = favourites.some(
-        (favorite) =>
-          favorite.id === product.id && favorite.category === product.category,
-      );
+      const isFavorite = favourites.has(product.id);
 
       try {
         if (user) {
@@ -185,35 +186,33 @@ export const useAppState = create<StoreState>()((set, get) => ({
           }
         }
 
-        set({
-          favourites:
-            isFavorite ?
-              favourites.filter(
-                (favorite) =>
-                  !(
-                    favorite.id === product.id &&
-                    favorite.category === product.category
-                  ),
-              )
-            : [...favourites, product],
-        });
+        const newFavourites = new Map(favourites);
+
+        if (isFavorite) {
+          newFavourites.delete(product.id);
+        } else {
+          newFavourites.set(product.id, product);
+        }
+
+        set({ favourites: newFavourites });
       } catch (error) {
         console.error('Failed to update favorites:', error);
       }
     },
     syncFavorites: async (userId) => {
       try {
-        // Сохраняем товары, выбранные до авторизации.
-        const localFavorites = get().favourites;
+        const localFavorites = Array.from(get().favourites.values());
 
         await Promise.all(
           localFavorites.map((product) => saveFavorite(userId, product)),
         );
 
-        // Загружаем итоговый список из Supabase.
         const remoteFavorites = await fetchFavoriteProducts(userId);
 
-        set({ favourites: remoteFavorites });
+        const newFavoritesMap = new Map();
+        remoteFavorites.forEach((fav) => newFavoritesMap.set(fav.id, fav));
+
+        set({ favourites: newFavoritesMap });
       } catch (error) {
         console.error('Failed to sync favorites:', error);
       }
