@@ -9,6 +9,7 @@ import { useAppState } from '../store/store';
 import { getLimitedProducts } from '../utils/limitedProducts';
 import type { CarouselConfig } from '../types/carouselConfig';
 import { useCarouselParams } from '../hooks/useCarouselParams';
+import { CATEGORY_IMAGES } from '../constants/categoryImages';
 
 const carouselConfig: CarouselConfig = {
   mobile: {
@@ -78,19 +79,19 @@ export const HomePage: React.FC = () => {
           categories={[
             {
               title: 'Mobile phones',
-              image: '/img/banners/SquarePhones.png',
+              image: CATEGORY_IMAGES.phones,
               count: phones.length,
               to: '/phones',
             },
             {
               title: 'Tablets',
-              image: '/img/banners/SquareTablets.png',
+              image: CATEGORY_IMAGES.tablets,
               count: tablets.length,
               to: '/tablets',
             },
             {
               title: 'Accessories',
-              image: '/img/accessories/apple-watch-se/gold/00.webp',
+              image: CATEGORY_IMAGES.accessories,
               count: accessories.length,
               to: '/accessories',
             },
