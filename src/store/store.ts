@@ -158,7 +158,7 @@ export const useAppState = create<StoreState>()((set, get) => ({
         console.error('Error saving to Supabase', error);
         return;
       }
-      await get().actions.fetchRatings();
+      get().actions.fetchRatings();
     },
   },
 }));
