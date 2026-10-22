@@ -13,6 +13,7 @@ import { CATEGORY } from './constants/category';
 import { CatalogPage } from './pages/CatalogPage';
 import { supabase } from './services/supabase';
 import { CartFlyAnimation } from './components/molecules/CartFlyAnimation/CartFlyAnimation';
+import { ContactPage } from './pages/ContactPage';
 import { Toaster } from 'react-hot-toast';
 
 export const App: React.FC = () => {
@@ -60,6 +61,10 @@ export const App: React.FC = () => {
           path="/"
           element={<HeaderLayout />}
         >
+          <Route
+            path="contacts"
+            element={<ContactPage />}
+          />
           <Route
             index
             element={<HomePage />}
