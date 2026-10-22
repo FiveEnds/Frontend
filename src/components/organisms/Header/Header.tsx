@@ -1,9 +1,6 @@
 import type React from 'react';
 import { useEffect, useState } from 'react';
-import { LogIn, LogOut } from 'lucide-react';
 import classNames from 'classnames';
-import { supabase } from '../../../services/supabase';
-import { useAppState } from '../../../store/store';
 import { ICONS } from '../../../constants/icons';
 import { ButtonIcon } from '../../atoms/Buttons/ButtonIcon';
 import { HeadLogo } from '../../atoms/Logos/HeadLogo';
@@ -94,7 +91,7 @@ export const Header: React.FC = () => {
           <SearchBar />
 
           <div className="flex items-center h-full">
-            <div className="border-l border-elements w-[48px] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center hover:bg-elements dark:bg-primary dark:hover:bg-icons text-primary dark:text-white transition-colors cursor-pointer">
+            <div className="border-l border-b border-elements w-[48px] h-[48px] lg:w-[64px] lg:h-[64px] flex items-center justify-center hover:bg-elements dark:bg-primary dark:hover:bg-icons text-primary dark:text-white transition-colors cursor-pointer">
               {user ?
                 <button
                   className="flex justify-center items-center h-full w-full"
