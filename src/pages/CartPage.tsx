@@ -3,13 +3,21 @@ import { Typography } from '../components/atoms/Typography/Typography';
 import { Checkout } from '../components/molecules/Checkout/Checkout';
 import { useAppState, useAppActions } from '../store/store';
 import { ButtonBack } from '../components/atoms/Buttons/ButtonBack';
+import { useState } from 'react';
+import { CheckoutModal } from '../components/molecules/CheckoutModal/CheckoutModal';
 
 export const CartPage: React.FC = () => {
   const cartMap = useAppState((state) => state.cart);
   const localCart = [...cartMap.values()];
 
-  const { addItemToCart, removeItemFromCart, decreaseAmountFromCart } =
-    useAppActions();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    addItemToCart,
+    removeItemFromCart,
+    decreaseAmountFromCart,
+    clearCart,
+  } = useAppActions();
 
   const cartTotal = Object.values(localCart).reduce((total, item) => {
     const currentItemPrice =
@@ -24,6 +32,16 @@ export const CartPage: React.FC = () => {
     (count, item) => item.amountAdded + count,
     0,
   );
+
+  const handleOrderSubmit = (formData: {
+    name: string;
+    address: string;
+    phone: string;
+  }) => {
+    console.log(formData);
+
+    clearCart();
+  };
 
   return (
     <>
@@ -119,12 +137,20 @@ export const CartPage: React.FC = () => {
                 <Checkout
                   sum={cartTotal}
                   amount={cartCount}
+                  onCheckout={() => setIsModalOpen(true)}
                 />
               </div>
             </>
           }
         </section>
       </main>
+      <CheckoutModal
+        isOpen={isModalOpen}
+        totalSum={cartTotal}
+        itemCount={cartCount}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleOrderSubmit}
+      />
     </>
   );
 };

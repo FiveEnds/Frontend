@@ -20,7 +20,7 @@ export const NavigationTopList: React.FC<NavigationListProps> = ({
 
   return (
     <nav
-      className={`flex ${isColumn ? 'flex-col items-center gap-[16px]' : 'items-center gap-[32px] lg:gap-[64px]'}`}
+      className={`flex ${isColumn ? 'flex-col items-center gap-[16px]' : 'items-center gap-5  em:gap-[32px] lg:gap-[64px]'}`}
     >
       {navItems.map((item) => {
         return (

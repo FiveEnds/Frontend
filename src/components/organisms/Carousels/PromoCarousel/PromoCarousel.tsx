@@ -2,7 +2,6 @@
 import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
-import { useAutoplay } from '../js/EmblaCarouselAutoplay';
 import { usePrevNextButtons } from '../js/EmblaCarouselArrowButtons';
 import { Typography } from '../../../atoms/Typography/Typography';
 import { ButtonIcon } from '../../../atoms/Buttons/ButtonIcon';
@@ -21,13 +20,11 @@ type Props = {
 
 export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
-    Autoplay({ playOnInit: false }),
+    Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false }),
   ]);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-  const { onAutoplayButtonClick } = useAutoplay(emblaApi);
 
   const {
     prevBtnDisabled,
@@ -39,10 +36,25 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
   const onDotButtonClick = useCallback(
     (index: number) => {
       if (!emblaApi) return;
-      onAutoplayButtonClick(() => emblaApi.scrollTo(index));
+      emblaApi.scrollTo(index);
+
+      const autoplay = emblaApi.plugins().autoplay;
+      if (autoplay) autoplay.reset();
     },
-    [emblaApi, onAutoplayButtonClick],
+    [emblaApi],
   );
+
+  const handlePrevClick = useCallback(() => {
+    onPrevButtonClick();
+    const autoplay = emblaApi?.plugins().autoplay;
+    if (autoplay) autoplay.reset();
+  }, [emblaApi, onPrevButtonClick]);
+
+  const handleNextClick = useCallback(() => {
+    onNextButtonClick();
+    const autoplay = emblaApi?.plugins().autoplay;
+    if (autoplay) autoplay.reset();
+  }, [emblaApi, onNextButtonClick]);
 
   const onInit = useCallback((api: EmblaCarouselType) => {
     setScrollSnaps(api.scrollSnapList());
@@ -84,7 +96,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
       <div className="grid grid-cols-[auto_1fr_auto] md:gap-[19px] lg:gap-[16px]">
         <ButtonIcon
           className="w-8 h-full hidden md:block dark:bg-surface-2-dark cursor-pointer"
-          handleClick={() => onAutoplayButtonClick(onPrevButtonClick)}
+          handleClick={handlePrevClick}
           isDisabled={prevBtnDisabled}
           src={ICONS.ARROW.LEFT}
         />
@@ -124,7 +136,7 @@ export const PromoCarousel: React.FC<Props> = ({ banners, squareBanners }) => {
         </div>
         <ButtonIcon
           className="w-8 h-full hidden md:block dark:bg-surface-2-dark cursor-pointer"
-          handleClick={() => onAutoplayButtonClick(onNextButtonClick)}
+          handleClick={handleNextClick}
           isDisabled={nextBtnDisabled}
           src={ICONS.ARROW.RIGHT}
         />

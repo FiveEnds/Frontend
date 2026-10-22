@@ -3,6 +3,13 @@ import type { Accessory, Phone, Tablet } from '../types/api';
 import type { FavouriteProduct } from '../types/FavouriteProduct';
 import type { Product } from '../types/Product';
 import { supabase } from '../services/supabase';
+import type { User } from '@supabase/supabase-js';
+
+import {
+  saveFavorite,
+  removeFavorite,
+  fetchFavoriteProducts,
+} from '../services/favorites';
 
 type CartItemInfo = {
   product: Product;
@@ -32,17 +39,22 @@ type StoreState = {
   selectedProduct: Product | null;
   cartAnimation: CartAnimation | null;
   ratings: Record<string, number>;
+  user: User | null;
   actions: {
     loadPhones: (phonesToAdd: Phone[]) => void;
     loadTablets: (tabletsToAdd: Tablet[]) => void;
     loadAccessories: (accessoriesToAdd: Accessory[]) => void;
-    toggleFavorite: (product: FavouriteProduct) => void;
     setProductItem: (itemToAdd: Product) => void;
     addItemToCart: (productToAdd: Product) => void;
     removeItemFromCart: (productIdToRemove: string) => void;
     decreaseAmountFromCart: (productId: string) => void;
     fetchRatings: () => Promise<void>;
     addProductReview: (product: Product, newRating: number) => Promise<void>;
+    setUser: (user: User | null) => void;
+    setFavorites: (favorites: FavouriteProduct[]) => void;
+    toggleFavorite: (product: FavouriteProduct) => Promise<void>;
+    syncFavorites: (userId: string) => Promise<void>;
+    clearCart: () => void;
   };
   startCartAnimation: (animation: CartAnimation) => void;
   finishCartAnimation: () => void;
@@ -57,25 +69,12 @@ export const useAppState = create<StoreState>()((set, get) => ({
   selectedProduct: null,
   cartAnimation: null,
   ratings: {},
-
+  user: null,
   actions: {
     loadPhones: (phonesToAdd) => set({ phones: phonesToAdd }),
     loadTablets: (tabletsToAdd) => set({ tablets: tabletsToAdd }),
     loadAccessories: (accessoriesToAdd) =>
       set({ accessories: accessoriesToAdd }),
-    toggleFavorite: (product) => {
-      set((state) => {
-        const newFavourites = new Map(state.favourites);
-
-        if (newFavourites.has(product.id)) {
-          newFavourites.delete(product.id);
-        } else {
-          newFavourites.set(product.id, product);
-        }
-
-        return { favourites: newFavourites };
-      });
-    },
     setProductItem: (productItem) => set({ selectedProduct: productItem }),
     addItemToCart: (productToAdd) => {
       const newCart = new Map(get().cart);
@@ -88,7 +87,10 @@ export const useAppState = create<StoreState>()((set, get) => ({
           amountAdded: itemValue.amountAdded + 1,
         });
       } else {
-        newCart.set(productId, { product: productToAdd, amountAdded: 1 });
+        newCart.set(productId, {
+          product: productToAdd,
+          amountAdded: 1,
+        });
       }
 
       set({ cart: newCart });
@@ -98,6 +100,9 @@ export const useAppState = create<StoreState>()((set, get) => ({
       currentCart.delete(productId);
 
       set({ cart: currentCart });
+    },
+    clearCart: () => {
+      set({ cart: new Map() });
     },
     decreaseAmountFromCart: (productId) => {
       const currentCart = new Map(get().cart);
@@ -167,6 +172,57 @@ export const useAppState = create<StoreState>()((set, get) => ({
         return;
       }
       get().actions.fetchRatings();
+    },
+    setUser: (user) => set({ user }),
+    setFavorites: (favoritesArray) => {
+      const favoritesMap = new Map();
+      favoritesArray.forEach((fav) => favoritesMap.set(fav.id, fav));
+      set({ favourites: favoritesMap });
+    },
+    toggleFavorite: async (product) => {
+      const { user, favourites } = get();
+
+      const isFavorite = favourites.has(product.id);
+
+      try {
+        if (user) {
+          if (isFavorite) {
+            await removeFavorite(user.id, product);
+          } else {
+            await saveFavorite(user.id, product);
+          }
+        }
+
+        const newFavourites = new Map(favourites);
+
+        if (isFavorite) {
+          newFavourites.delete(product.id);
+        } else {
+          newFavourites.set(product.id, product);
+        }
+
+        set({ favourites: newFavourites });
+      } catch (error) {
+        console.error('Failed to update favorites:', error);
+      }
+    },
+    syncFavorites: async (userId) => {
+      try {
+        const localFavorites = Array.from(get().favourites.values());
+
+        await Promise.all(
+          localFavorites.map((product) => saveFavorite(userId, product)),
+        );
+
+        const remoteFavorites = await fetchFavoriteProducts(userId);
+
+        const newFavoritesMap = new Map();
+        remoteFavorites.forEach((fav) => newFavoritesMap.set(fav.id, fav));
+
+        set({ favourites: newFavoritesMap });
+      } catch (error) {
+        console.error('Failed to sync favorites:', error);
+      }
     },
   },
   startCartAnimation: (animation) => set({ cartAnimation: animation }),

@@ -26,6 +26,8 @@ export type CatalogLayoutProps = {
   filters: CatalogFilters;
   filterOptions: FilterOptions;
   onFiltersChange: (filters: CatalogFilters) => void;
+  filterLabel: string;
+  filterAnyLabel: string;
 };
 
 export const CatalogLayout = ({
@@ -43,6 +45,8 @@ export const CatalogLayout = ({
   filters,
   filterOptions,
   onFiltersChange,
+  filterLabel,
+  filterAnyLabel,
 }: CatalogLayoutProps) => (
   <div className="mx-auto w-full max-w-300 px-4 pt-6 pb-20 md:px-6 lg:px-8">
     <Breadcrumbs />
@@ -69,6 +73,8 @@ export const CatalogLayout = ({
         filters={filters}
         filterOptions={filterOptions}
         onFiltersChange={onFiltersChange}
+        filterLabel={filterLabel}
+        filterAnyLabel={filterAnyLabel}
       />
     </div>
 
