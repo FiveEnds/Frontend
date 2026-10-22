@@ -21,6 +21,7 @@ export const ContactPage: React.FC<Props> = ({
           />
           <motion.a
             href="https://github.com/FiveEnds/Frontend"
+            target="blank"
             className="absolute z-10 top-[10%] left-1/2 -translate-x-1/2 text-center"
             whileHover={{
               scale: [1, 1.1, 1],
@@ -36,6 +37,7 @@ export const ContactPage: React.FC<Props> = ({
           {/* Голова Бороди - Кентавр(отак-от) */}
           <motion.a
             href="https://github.com/haaos2009"
+            target="blank"
             className="absolute z-10 block top-[25%] left-[47%] w-[8%]"
             whileHover={{
               scale: [1, scale, 1],
@@ -52,6 +54,7 @@ export const ContactPage: React.FC<Props> = ({
           {/* Голова ТехЛіда - Сидить у кріслі(жирний) */}
           <motion.a
             href="https://github.com/VladyslavL02"
+            target="blank"
             className="absolute z-10 block top-[51%] left-[27%] w-[7%]"
             whileHover={{
               scale: [1, scale, 1],
@@ -68,6 +71,7 @@ export const ContactPage: React.FC<Props> = ({
           {/* Голова Тимофія - Ровний тіп */}
           <motion.a
             href="https://github.com/TeoKisel"
+            target="blank"
             className="absolute z-10 block top-[40%] left-[38%] w-[10%]"
             whileHover={{
               scale: [1, scale, 1],
@@ -84,6 +88,7 @@ export const ContactPage: React.FC<Props> = ({
           {/* Голова Проджект Менеджера - Качок */}
           <motion.a
             href="https://github.com/pwcupcake228-png"
+            target="blank"
             className="absolute z-10 block top-[35%] left-[60%] w-[11%]"
             whileHover={{
               scale: [1, scale, 1],
@@ -100,6 +105,7 @@ export const ContactPage: React.FC<Props> = ({
           {/* Голова Влада) - Гном-перекач */}
           <motion.a
             href="https://github.com/vlad4uikov"
+            target="blank"
             className="absolute z-10 block top-[53%] left-[55%] w-[7.5%]"
             whileHover={{
               scale: [1, scale, 1],
