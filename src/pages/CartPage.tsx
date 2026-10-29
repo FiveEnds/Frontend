@@ -45,7 +45,7 @@ export const CartPage: React.FC = () => {
 
   return (
     <>
-      <main
+      <div
         className="
           grid
           grid-cols-4 px-4 gap-x-4
@@ -84,6 +84,7 @@ export const CartPage: React.FC = () => {
                 </Typography>
                 <img
                   src="/img/easter-egg.png"
+                  alt="No items in cart icon"
                   className="
                     absolute rotate-12
                     w-10 bottom-15 right-16
@@ -143,7 +144,7 @@ export const CartPage: React.FC = () => {
             </>
           }
         </section>
-      </main>
+      </div>
       <CheckoutModal
         isOpen={isModalOpen}
         totalSum={cartTotal}

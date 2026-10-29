@@ -71,7 +71,6 @@ export const HomePage: React.FC = () => {
           products={newProducts}
           productCardHeight={carouselParams.height}
           displayedSlides={carouselParams.slides}
-          hasDiscount={false}
         />
       }
       shopByCategory={

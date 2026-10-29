@@ -30,6 +30,7 @@ export const FavouriteProducts: React.FC<Props> = ({ favouriteProducts }) => {
 
             <img
               src="/img/empty-favourites.png"
+              alt="No favourites icon"
               className="absolute right-0 top-1/2 h-24 w-24 -translate-y-1/2 rotate-12 object-contain sm:h-26 sm:w-26 md:h-28 md:w-28 lg:h-32 lg:w-32"
             />
           </div>

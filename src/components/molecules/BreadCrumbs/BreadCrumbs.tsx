@@ -26,7 +26,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
 
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex items-center gap-2">
+      <ol className="flex items-center gap-2 h-4">
         <li className="flex items-center">
           <Link
             to="/"
@@ -51,7 +51,10 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
           const label = breadcrumbNameMap[value] || value;
 
           return (
-            <React.Fragment key={to}>
+            <li
+              key={to}
+              className="flex gap-2"
+            >
               <span className="text-icons flex items-center">
                 <img
                   src={ICONS.ARROW.RIGHT}
@@ -59,7 +62,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
                   className="w-4 h-4"
                 />
               </span>
-              <li className="flex items-center">
+              <span className="flex items-center">
                 {isLast ?
                   <Typography
                     level="body"
@@ -76,8 +79,8 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
                     </Typography>
                   </Link>
                 }
-              </li>
-            </React.Fragment>
+              </span>
+            </li>
           );
         })}
       </ol>
