@@ -14,7 +14,7 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({
   hotPricesCarousel,
 }) => (
   <div className="flex flex-col items-center w-full overflow-x-hidden">
-    <main className="w-full max-w-[1200px] pt-[24px] md:pt-[32px] lg:pt-[56px] pb-16 lg:pb-20">
+    <div className="w-full max-w-[1200px] pt-[24px] md:pt-[32px] lg:pt-[56px] pb-16 lg:pb-20">
       <div className="grid grid-cols-4 md:grid-cols-12 lg:grid-cols-24 gap-4 w-full">
         <section className="col-span-4 md:col-span-12 lg:col-span-24 w-full md:px-6 lg:px-8">
           {heroSlider}
@@ -32,6 +32,6 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({
           {hotPricesCarousel}
         </section>
       </div>
-    </main>
+    </div>
   </div>
 );

@@ -45,7 +45,7 @@ export const CartPage: React.FC = () => {
 
   return (
     <>
-      <main
+      <div
         className="
           grid
           grid-cols-4 px-4 gap-x-4
@@ -144,7 +144,7 @@ export const CartPage: React.FC = () => {
             </>
           }
         </section>
-      </main>
+      </div>
       <CheckoutModal
         isOpen={isModalOpen}
         totalSum={cartTotal}
