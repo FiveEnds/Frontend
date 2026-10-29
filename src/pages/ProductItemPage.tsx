@@ -100,14 +100,14 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
     return getProducts(products, product.id);
   }, [product, products]);
 
-  const { isLiked, isFavourite } = useProductInfo(product ? product.id : '');
+  const { isLiked, isSelected } = useProductInfo(product ? product.id : '');
 
   if (!product) {
     return <></>;
   }
 
   const handleCartClick = () => {
-    if (isFavourite) {
+    if (isSelected) {
       removeItemFromCart(product.id);
       return;
     }
@@ -187,7 +187,7 @@ export const ProductItemPage: React.FC<Props> = ({ category }) => {
           handleAddToCart={handleCartClick}
           handleLikeClick={() => toggleFavorite(product)}
           isLiked={isLiked}
-          isSelected={isFavourite}
+          isSelected={isSelected}
         />
       }
       productAbout={<ProductAbout description={product.description} />}

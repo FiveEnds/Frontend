@@ -34,7 +34,7 @@ export const ProductCard: React.FC<Props> = ({
 }) => {
   const { toggleFavorite, addItemToCart, removeItemFromCart } = useAppActions();
   const hasDiscount = product.priceDiscount;
-  const { isLiked, isFavourite } = useProductInfo(product.id);
+  const { isLiked, isSelected } = useProductInfo(product.id);
 
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -52,7 +52,7 @@ export const ProductCard: React.FC<Props> = ({
     const imageRect = getImageRect();
     const cartElement = document.querySelector('[data-cart-target="true"]');
 
-    if (isFavourite) {
+    if (isSelected) {
       removeItemFromCart(product.id);
     } else {
       addItemToCart(product);
@@ -128,7 +128,7 @@ export const ProductCard: React.FC<Props> = ({
       <ProductSelectActions
         handleSelectClick={handleCartClick}
         handleLikeClick={() => toggleFavorite(product)}
-        isSelected={isFavourite}
+        isSelected={isSelected}
         isLiked={isLiked}
       />
     </div>
