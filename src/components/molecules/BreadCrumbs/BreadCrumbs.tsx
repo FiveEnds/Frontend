@@ -53,7 +53,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems }) => {
           return (
             <li
               key={to}
-              className="flex"
+              className="flex gap-2"
             >
               <span className="text-icons flex items-center">
                 <img
