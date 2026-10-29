@@ -28,7 +28,7 @@ const Button = ({ imageSrc, currentPhoto, setCurrentPhoto }: ButtonProps) => (
   >
     <img
       src={imageSrc}
-      alt=""
+      alt={imageSrc.split('/')[2] || 'Gallery product image'}
       className={cn('object-contain w-full aspect-square')}
     />
   </button>

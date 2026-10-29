@@ -82,7 +82,7 @@ export const CatalogLayout = ({
       <div className="mt-10 flex flex-col items-center gap-4 py-12 text-center">
         <img
           src="/img/no-products-found.png"
-          alt=""
+          alt="No product icon"
           className="mb-2 h-32 w-auto object-contain"
         />
 

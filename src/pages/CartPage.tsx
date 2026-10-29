@@ -84,6 +84,7 @@ export const CartPage: React.FC = () => {
                 </Typography>
                 <img
                   src="/img/easter-egg.png"
+                  alt="No items in cart icon"
                   className="
                     absolute rotate-12
                     w-10 bottom-15 right-16

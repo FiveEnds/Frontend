@@ -94,7 +94,7 @@ export const ProductCard: React.FC<Props> = ({
             ref={imageRef}
             className="max-h-full max-w-full object-contain "
             src={product.images[0]}
-            alt={product.id}
+            alt={product.name}
           />
         </Link>
       </div>
