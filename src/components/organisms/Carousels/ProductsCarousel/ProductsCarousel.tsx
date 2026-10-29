@@ -82,7 +82,7 @@ export const ProductsCarousel: React.FC<Props> = ({
           className="embla__viewport"
           ref={emblaRef}
         >
-          <div className="embla__container cursor-pointer">
+          <div className="embla__container">
             {products.map((product) => (
               <div
                 className="embla__slide "
