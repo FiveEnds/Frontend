@@ -82,7 +82,7 @@ export const ProductCard: React.FC<Props> = ({
 
   return (
     <div
-      className={`p-8 flex flex-col gap-2 border dark:bg-surface-1-dark border-elements dark:border-surface-1-dark transition-transform duration-300 ease-in-out hover:scale-105 hover:border-transparent ${className}`}
+      className={`box-border transform-gpu backface-hidden p-8 flex flex-col gap-2 border dark:bg-surface-1-dark border-elements dark:border-surface-1-dark transition-transform duration-300 ease-in-out hover:scale-105 hover:border-transparent ${className}`}
       style={{ height: cardHeight }}
     >
       <div className="flex-1 min-h-0 flex items-center justify-center w-full">
