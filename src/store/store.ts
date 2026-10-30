@@ -125,32 +125,22 @@ export const useAppState = create<StoreState>()((set, get) => ({
     },
 
     fetchRatings: async () => {
-      const { data, error } = await supabase
-        .from('reviews')
-        .select('product_id, rating');
+      const { data, error } = await supabase.rpc('get_average_ratings');
+
       if (error) {
-        console.error('Failed to get review:', error);
+        console.error('Failed to get average ratings:', error);
         return;
       }
 
       if (data) {
-        const grouping: Record<string, { total: number; count: number }> = {};
-
-        data.forEach((item) => {
-          if (!grouping[item.product_id]) {
-            grouping[item.product_id] = { total: 0, count: 0 };
-          }
-          grouping[item.product_id].total += item.rating;
-          grouping[item.product_id].count += 1;
-        });
         const averageRatingsMap: Record<string, number> = {};
-        Object.keys(grouping).forEach((productId) => {
-          const avg = grouping[productId].total / grouping[productId].count;
-          averageRatingsMap[productId] = Math.round(avg * 10) / 10;
+        data.forEach((item: { product_id: string; average_rating: number }) => {
+          averageRatingsMap[item.product_id] = Number(item.average_rating);
         });
         set({ ratings: averageRatingsMap });
       }
     },
+
     addProductReview: async (product, newRating) => {
       let deviceId = localStorage.getItem('device_id');
       if (!deviceId) {
@@ -158,19 +148,18 @@ export const useAppState = create<StoreState>()((set, get) => ({
         localStorage.setItem('device_id', deviceId);
       }
 
-      const { error } = await supabase.from('reviews').insert([
-        {
-          device_id: deviceId,
-          category: product.category,
-          product_id: product.id,
-          rating: newRating,
-        },
-      ]);
+      const { error } = await supabase.rpc('add_or_update_review', {
+        p_device_id: deviceId,
+        p_category: product.category,
+        p_product_id: product.id,
+        p_rating: newRating,
+      });
 
       if (error) {
-        console.error('Error saving to Supabase', error);
-        return;
+        console.error('Error saving review to Supabase', error);
+        throw error;
       }
+
       get().actions.fetchRatings();
     },
     setUser: (user) => set({ user }),
